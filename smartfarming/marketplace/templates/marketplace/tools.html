@@ -1,0 +1,139 @@
+{% load static %}
+{% load marketplace_filters %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tools Marketplace</title>
+    <style>
+        body {
+            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            background: rgba(79, 79, 79, 0.7); /* Transparent white */
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 1000px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #eaecef;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: rgba(113, 128, 150, 0.9); /* Semi-transparent button */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(74, 85, 104, 0.95);
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background-color: rgba(67, 66, 66, 0.6); /* Transparent card */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.02);
+        }
+
+        .tool-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #f1f2f4;
+        }
+
+        .tool-card p {
+            margin-bottom: 10px;
+            color: #f7f5f5;
+        }
+
+        .tool-card a {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: rgba(56, 161, 105, 0.9); /* Semi-transparent green */
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .tool-card a:hover {
+            background-color: rgba(47, 133, 90, 0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tools Marketplace</h1>
+
+        <!-- Back Button -->
+        <a href="{% url 'marketplace:marketplace_home' %}" class="back-btn">← Back</a>
+
+        <!-- Filters -->
+        <form method="get" class="filters mb-3">
+            <select name="category">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>
+                        {{ category }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Apply</button>
+        </form>
+
+        <!-- Tools Grid -->
+        <div class="tool-grid">
+            {% for tool in tools %}
+                <div class="tool-card">
+                    <!-- {% if tool.image_url %}
+                        <img src="{{ tool.image_url }}" alt="{{ tool.name }}">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" alt="No image available">
+                    {% endif %} -->
+                    <h3>{{ tool.name }}</h3>
+                    <p><strong>Description:</strong> {{ tool.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ tool.price }}</p>
+                    <p><strong>Category:</strong> {{ tool.category }}</p>
+                    <a href="{% url 'marketplace:add_tool_to_cart' tool.id %}">Add to Cart</a>
+                </div>
+            {% empty %}
+                <p>No tools available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

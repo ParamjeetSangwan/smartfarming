@@ -1,0 +1,136 @@
+{% load static %}
+{% load marketplace_filters %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pesticides & Fertilizers</title>
+    <style>
+        body {
+            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            background: rgba(75, 74, 74, 0.7); /* Transparent */
+            margin: 60px auto;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 1000px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #e1e4e9;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: rgba(113, 128, 150, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(74, 85, 104, 0.95);
+        }
+
+        .pesticide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .pesticide-card {
+            background-color: rgba(76, 74, 74, 0.6); /* Transparent */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .pesticide-card:hover {
+            transform: scale(1.02);
+        }
+
+        .pesticide-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .pesticide-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #eeeff0;
+        }
+
+        .pesticide-card p {
+            margin: 5px 0;
+            font-size: 15px;
+            color: #f4ecec;
+        }
+
+        .price {
+            color: #dee8e3;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .details-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 18px;
+            background-color: rgba(0, 123, 255, 0.9);
+            color: #ded5d5;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .details-btn:hover {
+            background-color: rgba(0, 86, 179, 0.95);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Pesticides & Fertilizers</h1>
+
+    <!-- Back Button -->
+    <a href="{% url 'marketplace:marketplace_home' %}" class="back-btn">← Back</a>
+
+    <!-- Pesticides Grid -->
+    {% if pesticides %}
+        <div class="pesticide-grid">
+            {% for pesticide in pesticides %}
+                <div class="pesticide-card">
+                    <!-- {% if pesticide.image %}
+                        <img src="{{ pesticide.image.url }}" alt="{{ pesticide.name }}">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" alt="No image available">
+                    {% endif %} -->
+                    <h3>{{ pesticide.name }}</h3>
+                    <p><strong>Category:</strong> {{ pesticide.category }}</p>
+                    <p class="price">₹{{ pesticide.price }}</p>
+                    <a href="{% url 'marketplace:pesticide_detail' pesticide.id %}" class="details-btn">View Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p style="text-align:center;">No pesticides or fertilizers available.</p>
+    {% endif %}
+</div>
+</body>
+</html>

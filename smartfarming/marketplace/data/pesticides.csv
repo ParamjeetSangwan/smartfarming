@@ -1,0 +1,61 @@
+Name,Category,Type,Description,Price,Image URL
+Azospirillum,Fertilizer,Bio-fertilizer,Root development and yield booster,190,https://example.com/images/azospirillum.jpg
+Azotobacter,Fertilizer,Bio-fertilizer,Free-living nitrogen-fixer for cereals,180,https://example.com/images/azotobacter.jpg
+Mycorrhiza,Fertilizer,Bio-fertilizer,Enhances root absorption and phosphorus uptake,350,https://example.com/images/mycorrhiza.jpg
+Phosphate Solubilizing Bacteria (PSB),Fertilizer,Bio-fertilizer,Solubilizes phosphate in acidic soils,210,https://example.com/images/phosphate_solubilizing_bacteria_(psb).jpg
+Potash Mobilizing Bacteria (KMB),Fertilizer,Bio-fertilizer,Mobilizes potassium for plant uptake,200,https://example.com/images/potash_mobilizing_bacteria_(kmb).jpg
+Rhizobium,Fertilizer,Bio-fertilizer,Nitrogen fixation in legumes,200,https://example.com/images/rhizobium.jpg
+NPK 10:26:26,Fertilizer,Complex Fertilizer,For flowering and fruiting in horticultural crops,45,https://example.com/images/npk_10:26:26.jpg
+NPK 12:32:16,Fertilizer,Complex Fertilizer,High P blend for transplanting crops,46,https://example.com/images/npk_12:32:16.jpg
+NPK 15:15:15,Fertilizer,Complex Fertilizer,General-purpose growth fertilizer,48,https://example.com/images/npk_15:15:15.jpg
+NPK 19:19:19,Fertilizer,Complex Fertilizer,Balanced feed for vegetables and fruits,50,https://example.com/images/npk_19:19:19.jpg
+NPK 20:20:0,Fertilizer,Complex Fertilizer,Rich in N & P for wheat and rice,42,https://example.com/images/npk_20:20:0.jpg
+Borax,Fertilizer,Micronutrient,Improves flowering in vegetables,150,https://example.com/images/borax.jpg
+Chelated Micronutrient Mix,Fertilizer,Micronutrient,Corrects multiple deficiencies,400,https://example.com/images/chelated_micronutrient_mix.jpg
+Copper Sulphate,Fertilizer,Micronutrient,Prevents fungal diseases and copper deficiency,85,https://example.com/images/copper_sulphate.jpg
+Iron EDTA,Fertilizer,Micronutrient,Treats iron chlorosis in plants,300,https://example.com/images/iron_edta.jpg
+Magnesium Sulphate,Fertilizer,Micronutrient,Corrects magnesium deficiency in crops,120,https://example.com/images/magnesium_sulphate.jpg
+Manganese Sulphate,Fertilizer,Micronutrient,Boosts enzyme activity in maize,100,https://example.com/images/manganese_sulphate.jpg
+Zinc Sulphate,Fertilizer,Micronutrient,"Prevents zinc deficiency, promotes tillering",90,https://example.com/images/zinc_sulphate.jpg
+Ammonium Nitrate,Fertilizer,Nitrogen-Based,"Rapid leaf development in wheat, rice",25,https://example.com/images/ammonium_nitrate.jpg
+Ammonium Sulphate,Fertilizer,Nitrogen-Based,Improves soil acidity in paddy fields,22,https://example.com/images/ammonium_sulphate.jpg
+Calcium Ammonium Nitrate (CAN),Fertilizer,Nitrogen-Based,Balanced N + Ca for pH-sensitive crops,30,https://example.com/images/calcium_ammonium_nitrate_(can).jpg
+UAN (Urea-Ammonium Nitrate),Fertilizer,Nitrogen-Based,Foliar spray and fertigation systems,22,https://example.com/images/uan_(urea-ammonium_nitrate).jpg
+Urea 46%,Fertilizer,Nitrogen-Based,Promotes vegetative growth in cereals and leafy crops,28,https://example.com/images/urea_46%.jpg
+Bone Meal,Fertilizer,Organic,Phosphorus-rich slow-release source,80,https://example.com/images/bone_meal.jpg
+Cow Dung Compost,Fertilizer,Organic,Improves water retention and organic matter,3,https://example.com/images/cow_dung_compost.jpg
+Fish Emulsion,Fertilizer,Organic,High in nitrogen for leafy vegetables,250,https://example.com/images/fish_emulsion.jpg
+Neem Cake Fertilizer,Fertilizer,Organic,Pest repellent and organic nitrogen,20,https://example.com/images/neem_cake_fertilizer.jpg
+Seaweed Extract,Fertilizer,Organic,Stimulates growth hormones under stress,180,https://example.com/images/seaweed_extract.jpg
+Vermicompost,Fertilizer,Organic,Improves soil structure and microbial life,5,https://example.com/images/vermicompost.jpg
+Diammonium Phosphate (DAP),Fertilizer,Phosphorus-Based,Basal dressing for maize and pulses,27,https://example.com/images/diammonium_phosphate_(dap).jpg
+Rock Phosphate,Fertilizer,Phosphorus-Based,"Slow-release P, suits acidic soils",12,https://example.com/images/rock_phosphate.jpg
+Single Super Phosphate (SSP),Fertilizer,Phosphorus-Based,Boosts root development in pulses,15,https://example.com/images/single_super_phosphate_(ssp).jpg
+Triple Super Phosphate (TSP),Fertilizer,Phosphorus-Based,Improves flowering and fruit set,23,https://example.com/images/triple_super_phosphate_(tsp).jpg
+Muriate of Potash (MOP),Fertilizer,Potassium-Based,Improves drought resistance in fruits,35,https://example.com/images/muriate_of_potash_(mop).jpg
+Potassium Nitrate,Fertilizer,Potassium-Based,"Improves fruit sweetness, avoids blossom-end rot",60,https://example.com/images/potassium_nitrate.jpg
+Sulphate of Potash (SOP),Fertilizer,Potassium-Based,For chloride-sensitive crops like grapes,40,https://example.com/images/sulphate_of_potash_(sop).jpg
+Bacillus thuringiensis (Bt),Pesticide,Bio-Insecticide,Targets caterpillars,450,https://example.com/images/bacillus_thuringiensis_(bt).jpg
+Beauveria bassiana,Pesticide,Bio-Insecticide,Fungal control for whiteflies,600,https://example.com/images/beauveria_bassiana.jpg
+Neem Oil,Pesticide,Bio-Insecticide,Controls sucking pests organically,650,https://example.com/images/neem_oil.jpg
+Carbendazim,Pesticide,Fungicide,Systemic control of wilt and rot,200,https://example.com/images/carbendazim.jpg
+Copper Oxychloride,Pesticide,Fungicide,Contact fungicide for downy mildew,120,https://example.com/images/copper_oxychloride.jpg
+Mancozeb,Pesticide,Fungicide,Protective spray against fungal diseases,180,https://example.com/images/mancozeb.jpg
+Propiconazole,Pesticide,Fungicide,Foliar spray for rust and mildew,450,https://example.com/images/propiconazole.jpg
+Tebuconazole,Pesticide,Fungicide,Broad-spectrum systemic fungicide,600,https://example.com/images/tebuconazole.jpg
+"2,4-D Amine Salt",Pesticide,Herbicide,Broadleaf weed control in cereals,370,"https://example.com/images/2,4-d_amine_salt.jpg"
+Atrazine,Pesticide,Herbicide,Maize field weed control,290,https://example.com/images/atrazine.jpg
+Glyphosate,Pesticide,Herbicide,Post-emergence weed control,450,https://example.com/images/glyphosate.jpg
+Paraquat Dichloride,Pesticide,Herbicide,Quick knockdown of weeds,500,https://example.com/images/paraquat_dichloride.jpg
+Acephate,Pesticide,Insecticide,Systemic control of sucking pests,300,https://example.com/images/acephate.jpg
+Chlorpyrifos,Pesticide,Insecticide,Contact insecticide for soil pests,320,https://example.com/images/chlorpyrifos.jpg
+Cypermethrin,Pesticide,Insecticide,Effective on caterpillars and beetles,290,https://example.com/images/cypermethrin.jpg
+Dimethoate,Pesticide,Insecticide,"Controls aphids, mealybugs, jassids",260,https://example.com/images/dimethoate.jpg
+Fipronil,Pesticide,Insecticide,Soil insecticide for termites,500,https://example.com/images/fipronil.jpg
+Imidacloprid,Pesticide,Insecticide,Controls sucking pests like aphids,450,https://example.com/images/imidacloprid.jpg
+Lambda Cyhalothrin,Pesticide,Insecticide,Controls leaf-eating insects,280,https://example.com/images/lambda_cyhalothrin.jpg
+Quinalphos,Pesticide,Insecticide,Effective on stem borer in rice,240,https://example.com/images/quinalphos.jpg
+Spinosad,Pesticide,Insecticide,Organic spray against thrips,1200,https://example.com/images/spinosad.jpg
+Thiamethoxam,Pesticide,Insecticide,Seed treatment for early-stage protection,550,https://example.com/images/thiamethoxam.jpg
+Aluminium Phosphide,Pesticide,Rodenticide,Fumigant for stored grain pests,120,https://example.com/images/aluminium_phosphide.jpg
+Zinc Phosphide,Pesticide,Rodenticide,Rodent control in fields and stores,150,https://example.com/images/zinc_phosphide.jpg

@@ -1,0 +1,151 @@
+Category,Name,Stock,Price,Image URL,Description
+Tractor,John Deere 5310,12,840000,https://www.deere.com/assets/images/tractors/john-deere-5310.png,John Deere 5310 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Mahindra 575 DI XP Plus,15,710000,https://www.mahindratractor.com/images/575-di-xp.png,Mahindra 575 DI XP Plus is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Swaraj 744 FE,10,695000,https://www.swarajtractors.com/uploads/models/744fe.png,Swaraj 744 FE is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,New Holland 3630 TX Super Plus,9,875000,https://www.newholland.com/in/images/3630tx.png,New Holland 3630 TX Super Plus is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Powertrac Euro 50,14,740000,https://www.powertrac.com/images/euro-50.png,Powertrac Euro 50 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Eicher 380,18,600000,https://www.eichertractors.in/uploads/eicher380.png,Eicher 380 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Sonalika DI 60,7,885000,https://www.sonalika.com/uploads/di60.png,Sonalika DI 60 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Farmtrac 60 PowerMaxx,11,860000,https://www.farmtrac.com/images/powermaxx-60.png,Farmtrac 60 PowerMaxx is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Kubota MU4501,6,800000,https://www.kubota.com/tractors/mu4501.png,Kubota MU4501 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor,Escorts Farmtrac Atom 26,5,495000,https://www.escortsgroup.com/images/atom26.png,Escorts Farmtrac Atom 26 is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Front Loader,16,10216,https://example.com/images/front_loader.png,Front Loader is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Backhoe Attachment,8,22280,https://example.com/images/backhoe_attachment.png,Backhoe Attachment is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Rotary Tiller Attachment,7,91649,https://example.com/images/rotary_tiller_attachment.png,Rotary Tiller Attachment is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Post Hole Digger,18,79301,https://example.com/images/post_hole_digger.png,Post Hole Digger is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Dozer Blade,13,114867,https://example.com/images/dozer_blade.png,Dozer Blade is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Boom Sprayer,12,56279,https://example.com/images/boom_sprayer.png,Boom Sprayer is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Mulcher,18,121279,https://example.com/images/mulcher.png,Mulcher is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Bale Spear,7,145717,https://example.com/images/bale_spear.png,Bale Spear is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Land Leveler,19,108215,https://example.com/images/land_leveler.png,Land Leveler is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Tractor Trailer,20,95622,https://example.com/images/tractor_trailer.png,Tractor Trailer is a high-performance tractor suitable for farming and heavy-duty field work.
+Tractor Attachments,Tractor Cultivator,18,14233,https://example.com/images/tractor_cultivator.png,Tractor Cultivator is a high-performance tractor suitable for farming and heavy-duty field work.
+Tillage Equipment,Rotavator,13,107285,https://example.com/images/rotavator.png,Rotavator is a reliable tool for agricultural operations.
+Tillage Equipment,Disc Harrow,16,136083,https://example.com/images/disc_harrow.png,Disc Harrow is a reliable tool for agricultural operations.
+Tillage Equipment,Mouldboard Plough,20,134523,https://example.com/images/mouldboard_plough.png,Mouldboard Plough is a reliable tool for agricultural operations.
+Tillage Equipment,Chisel Plough,20,117635,https://example.com/images/chisel_plough.png,Chisel Plough is a reliable tool for agricultural operations.
+Tillage Equipment,Cultivator,18,18822,https://example.com/images/cultivator.png,Cultivator is a reliable tool for agricultural operations.
+Tillage Equipment,Spring Loaded Tiller,11,28681,https://example.com/images/spring_loaded_tiller.png,Spring Loaded Tiller is a reliable tool for agricultural operations.
+Tillage Equipment,Subsoiler,13,149317,https://example.com/images/subsoiler.png,Subsoiler is a reliable tool for agricultural operations.
+Tillage Equipment,Power Harrow,6,122066,https://example.com/images/power_harrow.png,Power Harrow is a reliable tool for agricultural operations.
+Tillage Equipment,Offset Disc Harrow,18,72667,https://example.com/images/offset_disc_harrow.png,Offset Disc Harrow is a reliable tool for agricultural operations.
+Tillage Equipment,Tractor Tiller,9,90324,https://example.com/images/tractor_tiller.png,Tractor Tiller is a reliable tool for agricultural operations.
+Seeders & Planters,Zero Till Seed Drill,9,110246,https://example.com/images/zero_till_seed_drill.png,Zero Till Seed Drill is a reliable tool for agricultural operations.
+Seeders & Planters,Multi Crop Planter,10,40022,https://example.com/images/multi_crop_planter.png,Multi Crop Planter is a reliable tool for agricultural operations.
+Seeders & Planters,Pneumatic Planter,10,17687,https://example.com/images/pneumatic_planter.png,Pneumatic Planter is a reliable tool for agricultural operations.
+Seeders & Planters,Seed Cum Fertilizer Drill,15,55455,https://example.com/images/seed_cum_fertilizer_drill.png,Seed Cum Fertilizer Drill is a reliable tool for agricultural operations.
+Seeders & Planters,Automatic Seeder,8,75882,https://example.com/images/automatic_seeder.png,Automatic Seeder is a reliable tool for agricultural operations.
+Seeders & Planters,Potato Planter,9,108527,https://example.com/images/potato_planter.png,Potato Planter is a reliable tool for agricultural operations.
+Seeders & Planters,Transplanter,6,5885,https://example.com/images/transplanter.png,Transplanter is a reliable tool for agricultural operations.
+Seeders & Planters,Rice Transplanter,16,25300,https://example.com/images/rice_transplanter.png,Rice Transplanter is a reliable tool for agricultural operations.
+Seeders & Planters,Maize Planter,19,149432,https://example.com/images/maize_planter.png,Maize Planter is a reliable tool for agricultural operations.
+Seeders & Planters,Tractor Mounted Seeder,15,25538,https://example.com/images/tractor_mounted_seeder.png,Tractor Mounted Seeder is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Boom Sprayer,20,82746,https://example.com/images/boom_sprayer.png,Boom Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Battery Operated Knapsack Sprayer,8,73171,https://example.com/images/battery_operated_knapsack_sprayer.png,Battery Operated Knapsack Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Manual Knapsack Sprayer,20,65548,https://example.com/images/manual_knapsack_sprayer.png,Manual Knapsack Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,HTP Sprayer,5,29631,https://example.com/images/htp_sprayer.png,HTP Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Power Sprayer,5,88593,https://example.com/images/power_sprayer.png,Power Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Mist Blower,13,117560,https://example.com/images/mist_blower.png,Mist Blower is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Portable Sprayer,14,131733,https://example.com/images/portable_sprayer.png,Portable Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Backpack Sprayer,9,65238,https://example.com/images/backpack_sprayer.png,Backpack Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Tractor Mounted Sprayer,10,144309,https://example.com/images/tractor_mounted_sprayer.png,Tractor Mounted Sprayer is a reliable tool for agricultural operations.
+Sprayers & Crop Protection Tools,Fogging Machine,15,103796,https://example.com/images/fogging_machine.png,Fogging Machine is a reliable tool for agricultural operations.
+Fertilizer Applicators,Fertilizer Spreader,11,146326,https://example.com/images/fertilizer_spreader.png,Fertilizer Spreader is a reliable tool for agricultural operations.
+Fertilizer Applicators,Manure Spreader,7,136660,https://example.com/images/manure_spreader.png,Manure Spreader is a reliable tool for agricultural operations.
+Fertilizer Applicators,Tractor Mounted Fertilizer Applicator,14,20613,https://example.com/images/tractor_mounted_fertilizer_applicator.png,Tractor Mounted Fertilizer Applicator is a reliable tool for agricultural operations.
+Fertilizer Applicators,Handheld Fertilizer Dispenser,11,118854,https://example.com/images/handheld_fertilizer_dispenser.png,Handheld Fertilizer Dispenser is a reliable tool for agricultural operations.
+Fertilizer Applicators,Broadcast Seeder,11,27765,https://example.com/images/broadcast_seeder.png,Broadcast Seeder is a reliable tool for agricultural operations.
+Fertilizer Applicators,Dry Fertilizer Applicator,12,55411,https://example.com/images/dry_fertilizer_applicator.png,Dry Fertilizer Applicator is a reliable tool for agricultural operations.
+Fertilizer Applicators,Seed Cum Fertilizer Drill,6,141967,https://example.com/images/seed_cum_fertilizer_drill.png,Seed Cum Fertilizer Drill is a reliable tool for agricultural operations.
+Fertilizer Applicators,Micro Doser,12,128879,https://example.com/images/micro_doser.png,Micro Doser is a reliable tool for agricultural operations.
+Fertilizer Applicators,Fertilizer Injector,16,61390,https://example.com/images/fertilizer_injector.png,Fertilizer Injector is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Mini Combine Harvester,13,19017,https://example.com/images/mini_combine_harvester.png,Mini Combine Harvester is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Reaper Binder,13,104412,https://example.com/images/reaper_binder.png,Reaper Binder is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Maize Harvester,19,88203,https://example.com/images/maize_harvester.png,Maize Harvester is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Sugarcane Harvester,17,53645,https://example.com/images/sugarcane_harvester.png,Sugarcane Harvester is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Crop Cutter,15,119898,https://example.com/images/crop_cutter.png,Crop Cutter is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Brush Cutter,20,147381,https://example.com/images/brush_cutter.png,Brush Cutter is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Paddy Harvester,12,112791,https://example.com/images/paddy_harvester.png,Paddy Harvester is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Straw Reaper,6,147660,https://example.com/images/straw_reaper.png,Straw Reaper is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Potato Digger,8,112578,https://example.com/images/potato_digger.png,Potato Digger is a reliable tool for agricultural operations.
+Harvesting Tools & Machines,Threshing Machine,11,97508,https://example.com/images/threshing_machine.png,Threshing Machine is a reliable tool for agricultural operations.
+Manual Tools,Spade,13,53274,https://example.com/images/spade.png,Spade is a reliable tool for agricultural operations.
+Manual Tools,Hoe,5,71211,https://example.com/images/hoe.png,Hoe is a reliable tool for agricultural operations.
+Manual Tools,Rake,18,141268,https://example.com/images/rake.png,Rake is a reliable tool for agricultural operations.
+Manual Tools,Sickle,16,103922,https://example.com/images/sickle.png,Sickle is a reliable tool for agricultural operations.
+Manual Tools,Pickaxe,17,51770,https://example.com/images/pickaxe.png,Pickaxe is a reliable tool for agricultural operations.
+Manual Tools,Shovel,11,75890,https://example.com/images/shovel.png,Shovel is a reliable tool for agricultural operations.
+Manual Tools,Hand Trowel,19,118238,https://example.com/images/hand_trowel.png,Hand Trowel is a reliable tool for agricultural operations.
+Manual Tools,Weeder,16,89127,https://example.com/images/weeder.png,Weeder is a reliable tool for agricultural operations.
+Manual Tools,Hand Fork,7,115858,https://example.com/images/hand_fork.png,Hand Fork is a reliable tool for agricultural operations.
+Manual Tools,Garden Scissors,5,44536,https://example.com/images/garden_scissors.png,Garden Scissors is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Wheel Hoe,5,4786,https://example.com/images/wheel_hoe.png,Wheel Hoe is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Cono Weeder,17,114298,https://example.com/images/cono_weeder.png,Cono Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Finger Weeder,12,136598,https://example.com/images/finger_weeder.png,Finger Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Hand Cultivator,13,129589,https://example.com/images/hand_cultivator.png,Hand Cultivator is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Rotary Weeder,14,16750,https://example.com/images/rotary_weeder.png,Rotary Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Power Weeder,15,132983,https://example.com/images/power_weeder.png,Power Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Inter Cultivator,7,53533,https://example.com/images/inter_cultivator.png,Inter Cultivator is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Push Type Weeder,8,4034,https://example.com/images/push_type_weeder.png,Push Type Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Manual Weeder,9,53044,https://example.com/images/manual_weeder.png,Manual Weeder is a reliable tool for agricultural operations.
+Weeding & Cultivation Tools,Tractor Mounted Cultivator,9,106179,https://example.com/images/tractor_mounted_cultivator.png,Tractor Mounted Cultivator is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Centrifugal Pump,5,82040,https://example.com/images/centrifugal_pump.png,Centrifugal Pump is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Submersible Pump,16,66874,https://example.com/images/submersible_pump.png,Submersible Pump is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Drip Irrigation Kit,11,81250,https://example.com/images/drip_irrigation_kit.png,Drip Irrigation Kit is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Sprinkler System,18,6621,https://example.com/images/sprinkler_system.png,Sprinkler System is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Diesel Water Pump,9,38022,https://example.com/images/diesel_water_pump.png,Diesel Water Pump is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Solar Pump,13,46932,https://example.com/images/solar_pump.png,Solar Pump is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Irrigation Pipe,5,13372,https://example.com/images/irrigation_pipe.png,Irrigation Pipe is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,HDPE Pipe,10,111853,https://example.com/images/hdpe_pipe.png,HDPE Pipe is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Rain Gun,17,31728,https://example.com/images/rain_gun.png,Rain Gun is a reliable tool for agricultural operations.
+Water Pumps & Irrigation Equipment,Tractor PTO Pump,18,10050,https://example.com/images/tractor_pto_pump.png,Tractor PTO Pump is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,VST Shakti 130 DI,11,133145,https://example.com/images/vst_shakti_130_di.png,VST Shakti 130 DI is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Honda FJ500,9,78625,https://example.com/images/honda_fj500.png,Honda FJ500 is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Kubota PEM140DI,17,55261,https://example.com/images/kubota_pem140di.png,Kubota PEM140DI is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Greaves Cotton GS15DIL,20,97613,https://example.com/images/greaves_cotton_gs15dil.png,Greaves Cotton GS15DIL is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Shrachi 100,20,102989,https://example.com/images/shrachi_100.png,Shrachi 100 is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Kisankraft KK IC 205P,11,15487,https://example.com/images/kisankraft_kk_ic_205p.png,Kisankraft KK IC 205P is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Mega T 15D,20,69008,https://example.com/images/mega_t_15d.png,Mega T 15D is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Powertrac Mini Tiller,16,120808,https://example.com/images/powertrac_mini_tiller.png,Powertrac Mini Tiller is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,VST FT350,16,26114,https://example.com/images/vst_ft350.png,VST FT350 is a reliable tool for agricultural operations.
+Power Tillers & Mini Tillers,Krishiraja Mini Power Tiller,19,94152,https://example.com/images/krishiraja_mini_power_tiller.png,Krishiraja Mini Power Tiller is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Soil pH Meter,17,92600,https://example.com/images/soil_ph_meter.png,Soil pH Meter is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Soil Moisture Sensor,17,108198,https://example.com/images/soil_moisture_sensor.png,Soil Moisture Sensor is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,NPK Soil Testing Kit,7,136716,https://example.com/images/npk_soil_testing_kit.png,NPK Soil Testing Kit is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Soil Salinity Meter,5,148502,https://example.com/images/soil_salinity_meter.png,Soil Salinity Meter is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Digital Soil Thermometer,17,21321,https://example.com/images/digital_soil_thermometer.png,Digital Soil Thermometer is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Portable Soil Testing Lab,15,87925,https://example.com/images/portable_soil_testing_lab.png,Portable Soil Testing Lab is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Field Soil Test Kit,5,10355,https://example.com/images/field_soil_test_kit.png,Field Soil Test Kit is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,EC Meter,6,126178,https://example.com/images/ec_meter.png,EC Meter is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Soil Analysis Kit,16,111533,https://example.com/images/soil_analysis_kit.png,Soil Analysis Kit is a reliable tool for agricultural operations.
+Soil Testing & Monitoring Kits,Mobile Soil Test Kit,5,110713,https://example.com/images/mobile_soil_test_kit.png,Mobile Soil Test Kit is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Pruning Shears,11,1927,https://example.com/images/pruning_shears.png,Pruning Shears is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Lopper,14,30110,https://example.com/images/lopper.png,Lopper is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Hedge Trimmer,9,34772,https://example.com/images/hedge_trimmer.png,Hedge Trimmer is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Pruning Saw,17,77292,https://example.com/images/pruning_saw.png,Pruning Saw is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Electric Secateurs,15,41256,https://example.com/images/electric_secateurs.png,Electric Secateurs is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Garden Knife,6,144797,https://example.com/images/garden_knife.png,Garden Knife is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Pole Pruner,9,37664,https://example.com/images/pole_pruner.png,Pole Pruner is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Chain Saw,7,130322,https://example.com/images/chain_saw.png,Chain Saw is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Hand Pruner,13,65482,https://example.com/images/hand_pruner.png,Hand Pruner is a reliable tool for agricultural operations.
+Cutting & Pruning Tools,Brush Cutter,19,144998,https://example.com/images/brush_cutter.png,Brush Cutter is a reliable tool for agricultural operations.
+Storage & Transport Tools,Grain Storage Bin,15,138309,https://example.com/images/grain_storage_bin.png,Grain Storage Bin is a reliable tool for agricultural operations.
+Storage & Transport Tools,PVC Sacks,6,136301,https://example.com/images/pvc_sacks.png,PVC Sacks is a reliable tool for agricultural operations.
+Storage & Transport Tools,Metal Trolley,5,68501,https://example.com/images/metal_trolley.png,Metal Trolley is a reliable tool for agricultural operations.
+Storage & Transport Tools,Plastic Crate,12,87930,https://example.com/images/plastic_crate.png,Plastic Crate is a reliable tool for agricultural operations.
+Storage & Transport Tools,Harvest Basket,13,124126,https://example.com/images/harvest_basket.png,Harvest Basket is a reliable tool for agricultural operations.
+Storage & Transport Tools,Hand Cart,18,23005,https://example.com/images/hand_cart.png,Hand Cart is a reliable tool for agricultural operations.
+Storage & Transport Tools,Seed Box,17,62236,https://example.com/images/seed_box.png,Seed Box is a reliable tool for agricultural operations.
+Storage & Transport Tools,Fertilizer Sack,17,28622,https://example.com/images/fertilizer_sack.png,Fertilizer Sack is a reliable tool for agricultural operations.
+Storage & Transport Tools,Storage Drum,16,104793,https://example.com/images/storage_drum.png,Storage Drum is a reliable tool for agricultural operations.
+Storage & Transport Tools,Farm Transport Trolley,5,43474,https://example.com/images/farm_transport_trolley.png,Farm Transport Trolley is a reliable tool for agricultural operations.
+Livestock Tools,Milking Machine,16,88649,https://example.com/images/milking_machine.png,Milking Machine is a reliable tool for agricultural operations.
+Livestock Tools,Automatic Cattle Feeder,16,61881,https://example.com/images/automatic_cattle_feeder.png,Automatic Cattle Feeder is a reliable tool for agricultural operations.
+Livestock Tools,Water Trough,17,21357,https://example.com/images/water_trough.png,Water Trough is a reliable tool for agricultural operations.
+Livestock Tools,Fodder Cutter,16,62583,https://example.com/images/fodder_cutter.png,Fodder Cutter is a reliable tool for agricultural operations.
+Livestock Tools,Cattle Brush,5,23904,https://example.com/images/cattle_brush.png,Cattle Brush is a reliable tool for agricultural operations.
+Livestock Tools,Hoof Trimmer,16,105229,https://example.com/images/hoof_trimmer.png,Hoof Trimmer is a reliable tool for agricultural operations.
+Livestock Tools,Feed Mixer,9,105947,https://example.com/images/feed_mixer.png,Feed Mixer is a reliable tool for agricultural operations.
+Livestock Tools,Veterinary Kit,6,101123,https://example.com/images/veterinary_kit.png,Veterinary Kit is a reliable tool for agricultural operations.
+Livestock Tools,Hay Rack,14,3775,https://example.com/images/hay_rack.png,Hay Rack is a reliable tool for agricultural operations.
+Livestock Tools,Cow Mat,7,38271,https://example.com/images/cow_mat.png,Cow Mat is a reliable tool for agricultural operations.

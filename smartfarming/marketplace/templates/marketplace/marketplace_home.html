@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketplace</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-image: url("{% static 'images/background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #00ffcc;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: #00ffcc;
+            font-size: 24px;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.05);
+        }
+
+        .card span {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            margin-top: 50px;
+        }
+
+        .back-btn a {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #00ffcc;
+            color: black;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn a:hover {
+            background-color: #00ddaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Marketplace</h2>
+
+        <div class="grid">
+            <a href="{% url 'marketplace:tools_view' %}" class="card">
+                <span>🛠</span>
+                Tools
+            </a>
+            <a href="{% url 'marketplace:pesticides_view' %}" class="card">
+                <span>🌿</span>
+                Pesticides & Fertilizers
+            </a>
+        </div>
+
+        <div class="back-btn">
+            <a href="{% url 'dashboard' %}">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    .section-heading {
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 3px black;
+    }
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: scale(1.03);
+    }
+    .card img {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center section-heading">Pesticides & Fertilizers Marketplace</h2>
+
+    <div class="row">
+        {% for pesticide in pesticides %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <a href="{% url 'marketplace:pesticides_detail' pesticide.id %}">
+                    {% if pesticide.image_url %}
+                    <img src="{{ pesticide.image_url }}" class="card-img-top" alt="{{ pesticide.name }}">
+                    {% else %}
+                    <img src="{% static 'images/default_pesticide.jpg' %}" class="card-img-top" alt="Default Image">
+                    {% endif %}
+                </a>
+                <div class="card-body bg-light">
+                    <h5 class="card-title">{{ pesticide.name }}</h5>
+                    <p><strong>Category:</strong> {{ pesticide.category }}</p>
+                    <p><strong>Type:</strong> {{ pesticide.type }}</p>
+                    <p><strong>Description:</strong> {{ pesticide.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ pesticide.price }}</p>
+                    <a href="{% url 'marketplace:pesticides_detail' pesticide.id %}" class="btn btn-sm btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

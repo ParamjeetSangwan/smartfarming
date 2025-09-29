@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% load marketplace_filters %}
+{% block content %}
+<style>
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <!-- Back to Dashboard Button -->
+    <a href="{% url 'marketplace:marketplace_home' %}" class="btn btn-secondary mb-3">
+        ← Back to Dashboard
+    </a>
+
+    <h2 class="mb-4">My Orders</h2>
+
+    {% if orders %}
+        <!-- Clear Orders Button -->
+        <form method="post" action="{% url 'marketplace:clear_orders' %}" class="mb-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"
+                    onclick="return confirm('Are you sure you want to clear all your previous orders?');">
+                Clear All Orders
+            </button>
+        </form>
+
+        {% for order in orders %}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <strong>Order #{{ order.id }}</strong> - {{ order.created_at|date:"Y-m-d" }}
+                <span class="float-end">Total: ₹{{ order.total_price }}</span>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order.items.all %}
+                        <tr>
+                            <td>
+                                {% if item.product %}
+                                    <div class="d-flex align-items-center">
+                                        {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.name }}" 
+                                                 class="img-thumbnail me-2" style="width: 60px; height: 60px; object-fit: cover;">
+                                        {% else %}
+                                            <div class="bg-light border d-flex align-items-center justify-content-center me-2"
+                                                 style="width: 60px; height: 60px;">
+                                                <small class="text-muted">No Image</small>
+                                            </div>
+                                        {% endif %}
+                                        <span>{{ item.product.name }}</span>
+                                    </div>
+                                {% else %}
+                                    {{ item.name }} <small class="text-muted">(Deleted)</small>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.item_type|title }}</td>
+                            <td>₹{{ item.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>
+                                ₹
+                                {# use mul filter to multiply price * quantity and format to 2 decimals #}
+                                {{ item.price|mul:item.quantity|floatformat:2 }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">You have not placed any orders yet.</div>
+    {% endif %}
+</div>
+{% endblock %}

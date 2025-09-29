@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        body {
+            background-image: url("{% static 'images/background.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .profile-box {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 16px;
+            width: 400px;
+        }
+        .profile-box h2 {
+            text-align: center;
+        }
+        .profile-box input, .profile-box button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .back-button:hover{
+            background-color: #ffffff55;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0f0f0f33;
+            color: rgb(24, 21, 21);
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #fff;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-box">
+        <h2>Edit Profile</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label>Name:</label>
+            <input type="text" name="name" value="{{ name }}" required>
+
+            <label>Location:</label>
+            <input type="text" name="location" value="{{ location }}" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="{% url 'dashboard' %}" class="back-button">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1500 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <!doctype html>
+  <!--[if IE 8 ]><html class="ie ie8" lang=en> <![endif]-->
+  <!--[if (gte IE 9)|!(IE)]><html lang=en class=no-js> <![endif]-->
+  <html lang="en">
+
+  <head>
+    <title>Eicher Tractors | Buy Tractor | Best Agriculture Tractor</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"> -->
+    <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+    <meta name="description" content="Eicher Tractors, One of India's oldest tractor manufacturer, offering a wide range of Powerful and reliable tractors to meet all your farming needs. Visit us now!  ">
+            <meta name="robots" content="Index, Follow" />
+    
+    <meta name="keywords" content="Tafe, Eicher Tractors, Tractor Trailer, tractors for sale, tractor and equipment, tractor accessories, tractor shop, tractor brands, tractor dealer near me, tractor engines, tractor implement, tractor repair, tractor parts, tractor speed, Tractor hp, tractor power, Indian farm implements, Farm implements in India, farm equipments in India, farm equipment market in India, farm equipment market in India  ">
+    <link rel="canonical" href="https://eichertractors.in/" />
+
+    <meta name="google-site-verification" content="JGRCS6_Z9mfkFOTppYgVHC_dIqIhzr1p4ft-j47Cu0I" />
+    <meta name="facebook-domain-verification" content="6xnfbaforsy8myybmyk0fgka4ul4pf" />
+
+    <meta name="theme-color" content="#ED1B24" />
+    <!-- <link rel="manifest" href="manifest.json"> -->
+    <link rel="shortcut icon" href="https://eichertractors.in/images/favicon.ico">
+
+
+
+    <!-- Script Files -->
+    <script type="text/javascript" src="https://eichertractors.in/js/jquery.min.js"></script>
+    <script type="text/javascript">
+      let agg = navigator.userAgent;
+      var __ac_ = agg.includes("Lighthouse");
+    </script>
+    <script type="text/javascript">
+      scripts_loaded = false;
+      class RocketLazyLoadScripts {
+        constructor(e) {
+          this.triggerEvents = e, this.eventOptions = {
+            passive: !0
+          }, this.userEventListener = this.triggerListener.bind(this), this.delayedScripts = {
+            normal: [],
+            async: [],
+            defer: []
+          }, this.allJQueries = []
+        }
+        _addUserInteractionListener(e) {
+          this.triggerEvents.forEach(t => window.addEventListener(t, e.userEventListener, e.eventOptions))
+        }
+        _removeUserInteractionListener(e) {
+          this.triggerEvents.forEach(t => window.removeEventListener(t, e.userEventListener, e.eventOptions))
+        }
+        triggerListener() {
+          this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow()
+        }
+        async _loadEverythingNow() {
+          if (!scripts_loaded) {
+            scripts_loaded = true;
+            console.log("loading now");
+            this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async), await this._triggerDOMContentLoaded(), await this._triggerWindowLoad(), window.dispatchEvent(new Event("rocket-allScriptsLoaded"))
+          }
+        }
+        _registerAllDelayedScripts() {
+          document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e => {
+            e.hasAttribute("src") ? e.hasAttribute("async") && !1 !== e.async ? this.delayedScripts.async.push(e) : e.hasAttribute("defer") && !1 !== e.defer || "module" === e.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(e) : this.delayedScripts.normal.push(e) : this.delayedScripts.normal.push(e)
+          })
+        }
+        async _transformScript(e) {
+          return await this._requestAnimFrame(), new Promise(t => {
+            const n = document.createElement("script");
+            let i;
+            [...e.attributes].forEach(e => {
+              let t = e.nodeName;
+              "type" !== t && ("data-rocket-type" === t && (t = "type", i = e.nodeValue), n.setAttribute(t, e.nodeValue))
+            }), e.hasAttribute("src") ? (n.addEventListener("load", t), n.addEventListener("error", t)) : (n.text = e.text, t()), e.parentNode.replaceChild(n, e)
+          })
+        }
+        async _loadScriptsFromList(e) {
+          const t = e.shift();
+          return t ? (await this._transformScript(t), this._loadScriptsFromList(e)) : Promise.resolve()
+        }
+        _preloadAllScripts() {
+          var e = document.createDocumentFragment();
+          [...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async].forEach(t => {
+            const n = t.getAttribute("src");
+            if (n) {
+              const t = document.createElement("link");
+              t.href = n, t.rel = "preload", t.as = "script", e.appendChild(t)
+            }
+          }), document.head.appendChild(e)
+        }
+        _delayEventListeners() {
+          let e = {};
+
+          function t(t, n) {
+            ! function(t) {
+              function n(n) {
+                return e[t].eventsToRewrite.indexOf(n) >= 0 ? "rocket-" + n : n
+              }
+              e[t] || (e[t] = {
+                originalFunctions: {
+                  add: t.addEventListener,
+                  remove: t.removeEventListener
+                },
+                eventsToRewrite: []
+              }, t.addEventListener = function() {
+                arguments[0] = n(arguments[0]), e[t].originalFunctions.add.apply(t, arguments)
+              }, t.removeEventListener = function() {
+                arguments[0] = n(arguments[0]), e[t].originalFunctions.remove.apply(t, arguments)
+              })
+            }(t), e[t].eventsToRewrite.push(n)
+          }
+
+          function n(e, t) {
+            let n = e[t];
+            Object.defineProperty(e, t, {
+              get: () => n || function() {},
+              set(i) {
+                e["rocket" + t] = n = i
+              }
+            })
+          }
+          t(document, "DOMContentLoaded"), t(window, "DOMContentLoaded"), t(window, "load"), t(window, "pageshow"), t(document, "readystatechange"), n(document, "onreadystatechange"), n(window, "onload"), n(window, "onpageshow")
+        }
+        _delayJQueryReady(e) {
+          let t = window.jQuery;
+          Object.defineProperty(window, "jQuery", {
+            get: () => t,
+            set(n) {
+              if (n && n.fn && !e.allJQueries.includes(n)) {
+                n.fn.ready = n.fn.init.prototype.ready = function(t) {
+                  e.domReadyFired ? t.bind(document)(n) : document.addEventListener("rocket-DOMContentLoaded", () => t.bind(document)(n))
+                };
+                const t = n.fn.on;
+                n.fn.on = n.fn.init.prototype.on = function() {
+                  if (this[0] === window) {
+                    function e(e) {
+                      return e.split(" ").map(e => "load" === e || 0 === e.indexOf("load.") ? "rocket-jquery-load" : e).join(" ")
+                    }
+                    "string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = e(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach(t => {
+                      delete Object.assign(arguments[0], {
+                        [e(t)]: arguments[0][t]
+                      })[t]
+                    })
+                  }
+                  return t.apply(this, arguments), this
+                }, e.allJQueries.push(n)
+              }
+              t = n
+            }
+          })
+        }
+        async _triggerDOMContentLoaded() {
+          this.domReadyFired = !0, await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._requestAnimFrame(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._requestAnimFrame(), document.rocketonreadystatechange && document.rocketonreadystatechange()
+        }
+        async _triggerWindowLoad() {
+          await this._requestAnimFrame(), window.dispatchEvent(new Event("rocket-load")), await this._requestAnimFrame(), window.rocketonload && window.rocketonload(), await this._requestAnimFrame(), this.allJQueries.forEach(e => e(window).trigger("rocket-jquery-load")), window.dispatchEvent(new Event("rocket-pageshow")), await this._requestAnimFrame(), window.rocketonpageshow && window.rocketonpageshow()
+        }
+        _handleDocumentWrite() {
+          const e = new Map;
+          document.write = document.writeln = function(t) {
+            const n = document.currentScript,
+              i = document.createRange(),
+              r = n.parentElement;
+            let o = e.get(n);
+            void 0 === o && (o = n.nextSibling, e.set(n, o));
+            const a = document.createDocumentFragment();
+            i.setStart(a, 0), a.appendChild(i.createContextualFragment(t)), r.insertBefore(a, o)
+          }
+        }
+        async _requestAnimFrame() {
+          return new Promise(e => requestAnimationFrame(e))
+        }
+        static run(forceLoad) {
+          const e = new RocketLazyLoadScripts(["keydown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"]);
+          if (forceLoad == 'force') {
+            e._loadEverythingNow();
+            return;
+          }
+          e._addUserInteractionListener(e);
+        }
+      }
+    </script>
+    <script type="text/javascript">
+      RocketLazyLoadScripts.run();
+      window.onload = function() {
+        if (!__ac_) {
+          RocketLazyLoadScripts.run();
+        }
+        if (!__ac_) {
+          /* optimisation code 1*/
+          // lzyCSS(bsURL+'css/settings.css');
+          // lzyCSS(bsURL+'css/style.css');
+          // lzyCSS(bsURL+'css/style-1.css');
+          // lzyCSS(bsURL+'css/owl.carousel.min.css');
+          // lzyCSS(bsURL+'css/responsive.css');
+          // lzyCSS(bsURL+'css/animate.css');
+          // lzyCSS(bsURL+'menu/css/tafe-menu.css');
+          // lzyCSS(bsURL+'css/colors/blue.css');
+          // lzyCSS(bsURL+'css/fontello.css');
+          // lzyCSS(bsURL+'css/form.css');
+          // lzyCSS(bsURL+'css/slider.css');
+          // lzyCSS(bsURL+'css/ohsnap.css');
+          // lzyCSS(bsURL+'css/magnific-popup.css');
+
+          setTimeout(function() {
+            if (!scripts_loaded) {
+              RocketLazyLoadScripts.run('force');
+            }
+          }, 500);
+        }
+
+      }
+
+      // $(window).load(function() {
+      //   setTimeout(function() {
+      //     $("#loader").fadeOut()
+      //   }, 5000)
+      // })
+    </script>
+    <!-- optimisation code 3 -->
+    <script type="text/javascript">
+      var bsURL = 'https://eichertractors.in/';
+      var lzyCSS = function(href) {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = href;
+        var h = document.getElementsByTagName('head')[0];
+        h.appendChild(l);
+      };
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/bootstrap.css" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/settings.css" media=screen />
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/style-1.css?105" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/animate.css" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/menu/css/tafe-menu.css?5573" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/colors/blue.css" title=blue media=screen />
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/fontello.css" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/form.css" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/slider.css" media=screen>
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/owl.carousel.min.css">
+          <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/home-style.css?2437" media=screen>
+      <!-- <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/style.css" media=screen> -->
+        <link rel="stylesheet" type="text/css" href="https://eichertractors.in/css/responsive.css?9444" media=screen>
+    <!-- Eicher Tribe Style -->
+    
+    <!-- Newsroom Style -->
+    
+
+    <!-- JS Files -->
+    <script type="text/javascript" src="https://eichertractors.in/js/jquery.min.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/bootstrap.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/owl.carousel.min.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/jquery.appear.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/jquery.textillate.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/magnific-popup.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/script-stage.js"></script>
+    <script type="rocketlazyloadscript" src="https://eichertractors.in/js/form.js"></script>
+
+    <!-- <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.themepunch.plugins.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.parallax.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.easypiechart.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.lettering.js"></script> -->
+    <!-- <script type="text/javascript" src="js/nivo-lightbox.min.js"></script> -->
+    <!-- <script type="text/javascript" src="js/jquery.fitvids.js"></script> -->
+    <!-- <script type="text/javascript" src="js/count-to.js"></script> -->
+
+    <!-- Dealer Locator Scripts -->
+    
+    <script type="rocketlazyloadscript">
+      setTimeout(function() {
+         var tag = document.createElement("script");
+         tag.src = "https://www.google.com/recaptcha/api.js";
+         document.getElementsByTagName("head")[0].appendChild(tag);
+      }, 5000);
+   </script>
+
+    <!-- 360 Deg Script -->
+    
+    <!-- Facebook Pixel Code 28/10/2021-->
+<script>
+	! function(f, b, e, v, n, t, s)
+
+	{
+		if (f.fbq) return;
+		n = f.fbq = function() {
+			n.callMethod ?
+
+				n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+		};
+
+		if (!f._fbq) f._fbq = n;
+		n.push = n;
+		n.loaded = !0;
+		n.version = '2.0';
+
+		n.queue = [];
+		t = b.createElement(e);
+		t.async = !0;
+
+		t.src = v;
+		s = b.getElementsByTagName(e)[0];
+
+		s.parentNode.insertBefore(t, s)
+	}(window, document, 'script',
+
+		'https://ddei5-0-ctp.trendmicro.com:443/wis/clicktime/v1/query?url=https%3a%2f%2fconnect.facebook.net%2fen%5fUS%2ffbevents.js&umid=A6180D99-CF67-4105-8D95-D95DE00D9D32&auth=dab6037f57dca716ac933e3f01ac5bbbb6aac8cb-0d86e7387e035676fa62e2d2e7b3411ac70abb98');
+
+	fbq('init', '630955468315215');
+
+	fbq('track', 'PageView');
+</script>
+
+<noscript><img height="1" width="1" style="display:none" src=https://www.facebook.com/tr?id=630955468315215&ev=PageView&noscript=1 /></noscript>
+
+<!-- End Facebook Pixel Code -->
+
+<!-- Google Tag Manager -->
+<script>
+	(function(w, d, s, l, i) {
+		w[l] = w[l] || [];
+		w[l].push({
+			'gtm.start': new Date().getTime(),
+			event: 'gtm.js'
+		});
+		var f = d.getElementsByTagName(s)[0],
+			j = d.createElement(s),
+			dl = l != 'dataLayer' ? '&l=' + l : '';
+		j.async = true;
+		j.src =
+			'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+		f.parentNode.insertBefore(j, f);
+	})(window, document, 'script', 'dataLayer', 'GTM-WZVPPFK');
+</script>
+<!-- End Google Tag Manager -->
+
+<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Corporation",
+		"name": "Eicher Tractors",
+		"url": "https://eichertractors.in/",
+		"logo": "",
+		"sameAs": [
+			"https://www.facebook.com/EicherTractors/",
+			"https://instagram.com/eichertractorsofficial?igshid=MzRlODBiNWFlZA==",
+			"https://www.linkedin.com/company/eichertractors/?originalSubdomain=in",
+			""
+		]
+	}
+</script>
+          <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Corporation",
+          "name": "Eicher Tractors",
+          "alternateName": "Tractors and Farm Machinery Manufacturers",
+          "url": "https://eichertractors.in/",
+          "logo": "https://eichertractors.in/images/eicher-logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "1800-2020-200",
+            "contactType": "customer service",
+            "contactOption": "TollFree",
+            "areaServed": "IN",
+            "availableLanguage": "en"
+          },
+          "sameAs": [
+            "https://www.facebook.com/EicherTractors",
+            "https://www.youtube.com/@EicherTractorsOfficial/videos",
+            "https://www.instagram.com/eichertractorsofficial/",
+            "https://www.linkedin.com/company/eichertractors/"
+          ]
+        }
+      </script>
+    </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZVPPFK"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="clearfix">
+      <div class="navbar navbar-default navbar-static-top">
+        <div class="container main-container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="https://eichertractors.in/"><img alt="Eicher Tractors, TAFE" src="https://eichertractors.in/images/eicher-logo.png"></a>
+
+                      </div>
+          <button type="button" id="collbtn" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right" id="corp">
+              <li class="new-label"> <a href="https://eichertractors.in/Eicher-Prima-G3/">PRIMA G3</a></li>
+              <li> <a href="https://eichertractors.in/eichertractors/">Tractors</a></li>
+              <li> <a href="https://eichertractors.in/dealer-locator/">Dealer Locator </a></li>
+              <li> <a href="https://eichertractors.in/eicher-tribe">EICHER TRIBE</a></li>
+              <li> <a href="https://eichertractors.in/certifications">Certifications</a></li>
+              <li> <a href="https://eichertractors.in/policies">Policies</a></li>
+              <li> <a href="https://eichertractors.in/contact">Contact Us </a></li>
+              <li class="li_changLang">
+                <form method="get" action="" id="form_lang">
+                  <i class="fa fa-globe"></i> <select name="lang" onchange="changeLang();">
+                    <option value="en" >English</option>
+                    <option value="hn" >Hindi </option>
+                  </select>
+                </form>
+              </li>
+            </ul>
+            <a class="navbar-brand-2 hidden-md hidden-lg"><img alt="Eicher logo" src="https://eichertractors.in/images/tmtl-logo.png"></a>
+          </div>
+          <a class="navbar-brand-2 hidden-md hidden-sm hidden-xs"><img alt="tmtl logo" src="https://eichertractors.in/images/tmtl-logo.png"></a>
+        </div> <!--/.nav-collapse -->
+      </div>
+    </header>
+    <script>
+      $(document).ready(function() {
+        $(document).click(function(event) {
+          var clickover = $(event.target);
+          var _opened = $(".navbar-collapse").hasClass("navbar-collapse in");
+          if (_opened === true && !clickover.hasClass("navbar-toggle")) {
+            $("button.navbar-toggle").click();
+          }
+        });
+      });
+      $(document).ready(function($) {
+        var url = window.location.href;
+        $('.nav li a[href="' + url + '"]').addClass('active');
+
+        $(".navbar-toggle").on("click", function(e) {
+          e.preventDefault();
+          $(".navbar-toggle").toggleClass("active");
+          // $(".navbar").toggleClass("active");
+
+        });
+      });
+    </script> <link rel="preload" href="images/eicher-65years-desktop-banner-new.webp" as="image"  media="(min-width: 768px)" style="width: 100%; height:100%"> <link rel="preload" href="images/eicher-65years-mobile-banner-new.webp" as="image" media="(max-width: 768px)" style="width: 100%; height:100%"><style>
+  input:-webkit-autofill {
+    -webkit-background-clip: text !important;
+    /* -webkit-text-fill-color: #fff !important; */
+  }
+
+  #homepage-banner-form input:-webkit-autofill,
+  #footer-form input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+  }
+
+  input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 50px transparent inset;
+  }
+
+  #merchandise-slider .item {
+    height: 330px;
+    min-height: 380px;
+  }
+
+  #merchandise-slider .owl-loaded .item {
+    height: auto;
+  }
+</style>
+<div id="container">
+  <div id=slider>
+    <div class="owl-carousel homepage-hero-banner" id="hero-banner">
+      <div class="item">
+        <picture>
+          <source media="(min-width: 768px)" srcset="images/eicher-65years-desktop-banner-new.webp">
+          <source media="(max-width: 768px)" srcset="images/eicher-65years-mobile-banner.webp" width="430" height="430">
+          <img src="images/eicher-65years-desktop-banner-new.webp" alt="EICHER PRIMA G3" style="opacity: 1;" width="1350" height="465">
+        </picture>
+        <!-- <div class="know-more-btn">
+          <a href="/Eicher-Prima-G3/">Know More</a>
+        </div> -->
+      </div>
+      <div class="item">
+        <picture>
+          <source media="(min-width: 768px)" srcset="/img/eicher-prima-g3-desktop-banner.jpg">
+          <source media="(max-width: 768px)" srcset="images/EICHER-PRIMA-G3-mb.webp">
+          <img src="/img/eicher-prima-g3-desktop-banner.jpg" alt="EICHER PRIMA G3" style="opacity: 1;" width="1350" height="465">
+        </picture>
+        <div class="know-more-btn">
+          <a href="/Eicher-Prima-G3/">Know More</a>
+        </div>
+      </div>
+      <div class="item">
+        <picture>
+          <source media="(min-width: 768px)" srcset="images/homepage-desktop-banner-2.jpg">
+          <source media="(max-width: 768px)" srcset="images/homepage-mobile-banner-2.webp">
+          <img src="images/homepage-desktop-banner-2.jpg" alt="EICHER Tractors" style="opacity: 1;" width="1350" height="465">
+        </picture>
+      </div>
+      <div class="item">
+        <picture>
+          <source media="(min-width: 768px)" srcset="images/homepage-desktop-banner-3.jpg">
+          <source media="(max-width: 768px)" srcset="images/homepage-mobile-banner-3.webp">
+          <img src="images/homepage-desktop-banner-3.jpg" alt="EICHER Tractors" style="opacity: 1;" width="1350" height="465">
+        </picture>
+      </div>
+    </div>
+
+    <div class="container banner-container hidden-sm hidden-xs">
+      <div class="row">
+        <div class="col-md-12" id="farmer">
+          <div class="switch-form">
+            <form method="post" action="saveInfo.php" id="homepage-banner-form" autocomplete="off">
+              <h2 class="text-center"><strong>Book Demo</strong></h2>
+              <div class="row">
+                <div class="field col-md-12">
+                  <label class="form-label" for="name">Name* </label>
+                  <input id="name" class="a form-control" type="text" name="name" minlength="3" required />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="number">Mobile*</label>
+                  <input id="number" name="number" type="text" onkeypress="phoneno()" minlength="10" maxlength="12" class="a form-control" required />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="email">E-mail (Optional)</label>
+                  <input id="email" class="a form-control" type="email" name="email" />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="state">State*</label>
+                  <select class="a form-control" style="color:#fff;margin-bottom: 12px;" id="state" name="state" aria-placeholder="State*" required>
+                    <option></option>
+                    <option style="color:#444;" style="color:#444;" value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option style="color:#444;" value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option style="color:#444;" value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option style="color:#444;" value="Assam">Assam</option>
+                    <option style="color:#444;" value="Bihar">Bihar</option>
+                    <option style="color:#444;" value="Chandigarh">Chandigarh</option>
+                    <option style="color:#444;" value="Chhattisgarh">Chhattisgarh</option>
+                    <option style="color:#444;" value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                    <option style="color:#444;" value="Daman and Diu">Daman and Diu</option>
+                    <option style="color:#444;" value="Delhi">Delhi</option>
+                    <option style="color:#444;" value="Goa">Goa</option>
+                    <option style="color:#444;" value="Gujarat">Gujarat</option>
+                    <option style="color:#444;" value="Haryana">Haryana</option>
+                    <option style="color:#444;" value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option style="color:#444;" value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option style="color:#444;" value="Jharkhand">Jharkhand</option>
+                    <option style="color:#444;" value="Karnataka">Karnataka</option>
+                    <option style="color:#444;" value="Kerala">Kerala</option>
+                    <option style="color:#444;" value="Lakshadweep">Lakshadweep</option>
+                    <option style="color:#444;" value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option style="color:#444;" value="Maharashtra">Maharashtra</option>
+                    <option style="color:#444;" value="Manipur">Manipur</option>
+                    <option style="color:#444;" value="Meghalaya">Meghalaya</option>
+                    <option style="color:#444;" value="Mizoram">Mizoram</option>
+                    <option style="color:#444;" value="Nagaland">Nagaland</option>
+                    <option style="color:#444;" value="Odisha">Odisha</option>
+                    <option style="color:#444;" value="Pondicherry">Pondicherry</option>
+                    <option style="color:#444;" value="Punjab">Punjab</option>
+                    <option style="color:#444;" value="Rajasthan">Rajasthan</option>
+                    <option style="color:#444;" value="Sikkim">Sikkim</option>
+                    <option style="color:#444;" value="Tamil Nadu">Tamil Nadu</option>
+                    <option style="color:#444;" value="Tripura">Tripura</option>
+                    <option style="color:#444;" value="Uttaranchal">Uttaranchal</option>
+                    <option style="color:#444;" value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option style="color:#444;" value="West Bengal">West Bengal</option>
+                  </select>
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="district">District*</label>
+                  <input id="district" class="a form-control" type="text" name="district" required="" />
+                </div>
+                <div class="col-md-12">
+                  <div class="checkbox agree">
+                    <input type="checkbox" name="agree" id="agree" required>
+                    <label class="label-agree" for="agree">
+                      By clicking ‘Request Call Back’, I agree to receive calls and messages on my Mobile Phone and WhatsApp from Eicher Tractors or its authorized associates to assist me further.
+                    </label>
+                  </div>
+                  <label id="agree-error" class="error" for="agree"></label>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LdPewgaAAAAAOrxjqOrgG5YeVfkq1RaZQOjwsbY"></div>
+                <div class="field col-md-12">
+                  <button style="width:100%;" type="submit" name="submit" class="btr">Request Callback</button>
+                </div>
+                <input type="hidden" name="form_name" value="Banner Form">
+                <!-- <input type="hidden" name="function" value="Microsite form"> -->
+                <input type="hidden" name="utm_source" value="">
+                <input type="hidden" name="utm_medium" value="">
+                <input type="hidden" name="utm_term" value="">
+                <input type="hidden" name="utm_content" value="">
+                <input type="hidden" name="utm_campaign" value="">
+                <input type="hidden" name="pageUrl" value="https://eichertractors.in/">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="content" class="full-sections f99 visible-sm visible-xs">
+    <div class="section">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="col-md-offset-8  " id="farmer" style="display: block;position:relative;z-index:99;">
+            <div class="switch-form col-md-12">
+              <form class="row" style="padding:10px" method="post" action="saveInfo.php" id="homepage-banner-form-2" autocomplete="off">
+                <h2 class="text-center" style="color:#fff;padding:10px"><strong>Book Your Tractors and Implements NOW !</strong></h2>
+                <div class="field col-md-12">
+                  <label class="form-label" for="">Name*</label>
+                  <input id="" class="a form-control" type="text" name="name" minlength="3" required />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="">Mobile*</label>
+                  <input id="mobile" name="mobile" type="text" onkeypress="phoneno()" maxlength="12" class="a form-control" required />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="">E-Mail(Optional)</label>
+                  <input id="" class="a form-control" type="email" name="email" />
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="state">State*</label>
+                  <select class="a form-control" style="color:#fff;margin-bottom: 12px;" name="state" required>
+                    <option></option>
+                    <option style="color:#444;" style="color:#444;" value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option style="color:#444;" value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option style="color:#444;" value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option style="color:#444;" value="Assam">Assam</option>
+                    <option style="color:#444;" value="Bihar">Bihar</option>
+                    <option style="color:#444;" value="Chandigarh">Chandigarh</option>
+                    <option style="color:#444;" value="Chhattisgarh">Chhattisgarh</option>
+                    <option style="color:#444;" value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                    <option style="color:#444;" value="Daman and Diu">Daman and Diu</option>
+                    <option style="color:#444;" value="Delhi">Delhi</option>
+                    <option style="color:#444;" value="Goa">Goa</option>
+                    <option style="color:#444;" value="Gujarat">Gujarat</option>
+                    <option style="color:#444;" value="Haryana">Haryana</option>
+                    <option style="color:#444;" value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option style="color:#444;" value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option style="color:#444;" value="Jharkhand">Jharkhand</option>
+                    <option style="color:#444;" value="Karnataka">Karnataka</option>
+                    <option style="color:#444;" value="Kerala">Kerala</option>
+                    <option style="color:#444;" value="Lakshadweep">Lakshadweep</option>
+                    <option style="color:#444;" value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option style="color:#444;" value="Maharashtra">Maharashtra</option>
+                    <option style="color:#444;" value="Manipur">Manipur</option>
+                    <option style="color:#444;" value="Meghalaya">Meghalaya</option>
+                    <option style="color:#444;" value="Mizoram">Mizoram</option>
+                    <option style="color:#444;" value="Nagaland">Nagaland</option>
+                    <option style="color:#444;" value="Odisha">Odisha</option>
+                    <option style="color:#444;" value="Pondicherry">Pondicherry</option>
+                    <option style="color:#444;" value="Punjab">Punjab</option>
+                    <option style="color:#444;" value="Rajasthan">Rajasthan</option>
+                    <option style="color:#444;" value="Sikkim">Sikkim</option>
+                    <option style="color:#444;" value="Tamil Nadu">Tamil Nadu</option>
+                    <option style="color:#444;" value="Tripura">Tripura</option>
+                    <option style="color:#444;" value="Uttaranchal">Uttaranchal</option>
+                    <option style="color:#444;" value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option style="color:#444;" value="West Bengal">West Bengal</option>
+                  </select>
+                </div>
+                <div class="field col-md-12">
+                  <label class="form-label" for="">District*</label>
+                  <input id="district" class="a form-control" type="text" name="district" required="" style="margin-bottom: 12px;" />
+                </div>
+                <div class="col-md-12">
+                  <div class="checkbox agree">
+                    <input type="checkbox" name="agree" id="agree1" required>
+                    <label class="label-agree" for="agree1">
+                      By clicking ‘Request Call Back’, I agree to receive calls and messages on my Mobile Phone and WhatsApp from Eicher Tractors or its authorized associates to assist me further.
+                    </label>
+                  </div>
+                  <label id="agree-error" class="error" for="agree"></label>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6LdPewgaAAAAAOrxjqOrgG5YeVfkq1RaZQOjwsbY"></div>
+                <div class="field col-md-12 text-center">
+                  <button type="submit" name="submit" class="bt">Request Callback</button>
+                </div>
+                <input type="hidden" name="form_name" value="Banner Form">
+                <input type="hidden" name="utm_source" value="">
+                <input type="hidden" name="utm_medium" value="">
+                <input type="hidden" name="utm_term" value="">
+                <input type="hidden" name="utm_content" value="">
+                <input type="hidden" name="utm_campaign" value="">
+                <input type="hidden" name="pageUrl" value="https://eichertractors.in/">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content" class="full-sections hidden-sm hidden-xs f99">
+    <div class="section-1">
+      <div class="container">
+      </div>
+    </div>
+  </div>
+  <div id="content" class="full-sections f99">
+    <div class="section">
+      <div class="container">
+        <div class="about-eicher">
+          <div class="col-md-7 hidden-lg hidden-md hidden-xl">
+            <img src="images/eicher-420.webp" alt="eicher-420-tractor" style="padding-bottom:40px" width="370" height="423" />
+          </div>
+          <div class="col-md-5">
+            <div class="big-title text-left" data-animation="fadeInDown" data-animation-delay="02">
+              <h1 class="classic-title"><strong>About EICHER Tractors</strong> </h1>
+            </div>
+            <p data-animation="fadeInRight" data-animation-delay="03">
+              The EICHER brand of tractors are one of the oldest names in the industry, and with the all new and refreshing EICHER ‘E’ symbol, are a household name in India, and a respected mark of trust in various parts of the world. A reputed brand in the agricultural vista, EICHER tractors are renowned for their high value for money proposition, providing cost-effective and proficient products packed with some of the finest global technology. Synonymous with ruggedness and reliability, EICHER tractors are efficient, economical and offer an Ummeed Se Zyada, (translated means “it exceeds expectations”) experience.
+              <br />
+              <br />
+            </p>
+
+
+            <div style="position: absolute;bottom: -130px;">
+              <a href="https://eichertractors.in/eichertractors/" class="btn-system btn-large border-btn btn-gray animated fadeInDown delay-03" data-animation="fadeInDown" data-animation-delay="03">Read More</a><br />
+              <a href="https://eichertractors.in/dealer-locator/" class="btn-system btn-large border-btn btn-gray-1 animated fadeInDown delay-03" data-animation="fadeInDown" data-animation-delay="03">Dealer Locator</a>
+            </div>
+          </div>
+          <div class="col-md-7 hidden-xs hidden-sm" data-animation="fadeInUp" data-animation-delay="04">
+            <img src="images/eicher-420.webp" alt="eicher-420-tractor" class="jfarm-mob" width="665" height="728" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="content" class="full-sections f99">
+    <div class="section mpb-0">
+      <div class="container empt">
+      </div>
+    </div>
+  </div>
+  <div id="content" class="full-sections f99">
+    <div class="section">
+      <div class="container">
+        <div class="about-tmtl">
+          <div class="col-md-7 hidden-xs hidden-sm" data-animation="fadeInUp" data-animation-delay="04">
+            <img src="images/tafe-plant.webp" alt="jtafe-plant" class="jfarm-mob" style="padding-bottom:0px" width="665" height="675" />
+          </div>
+          <div class="col-md-7 hidden-xl hidden-lg hidden-md" data-animation="fadeInUp" data-animation-delay="04">
+            <img src="images/tafe-plant.webp" alt="jfarm-mobile-app" width="370" height="416" />
+          </div>
+          <div class="col-md-5">
+            <div class="big-title text-left" data-animation="fadeInDown" data-animation-delay="02">
+              <h2 class="classic-title"><strong>About TMTL</strong> </h2>
+            </div>
+            <p data-animation="fadeInRight" data-animation-delay="03">
+              TMTL – TAFE Motors and Tractors Limited, a wholly owned subsidiary of TAFE – Tractors and Farm Equipment Limited, comprises three manufacturing divisions, the Tractors Division, the Engines Division and the Transmissions Division. TMTL was established in 2005, when TAFE acquired the Tractors, Engines and Gears divisions of Eicher Motors Limited in 2005.
+              <br><br>
+              TMTL’s Tractors Division at Mandideep near Bhopal, manufactures tractors under the Eicher brand, addressing the dynamic market demands in agriculture and needs of the modern farmers with a comprehensive range of tractors, implements and farm solutions, that are acknowledged for their rugged build quality, efficiency and low cost of operation. TMTL is probably the only manufacturer of both, air-cooled and water-cooled tractors in the world. Its top-of-the-line Research and Development (R&D) facility is capable of designing and developing new tractor models with its in-house prototype development and tooling competencies, that sets exemplary standards in the industry.
+            </p>
+            <br>
+            <div style="position: absolute;bottom: -70px;">
+              <a href="https://www.tmtl.in/corporate/" target="_blank" class="btn-system btn-large border-btn btn-gray-1 animated fadeInDown delay-03" data-animation="fadeInDown" data-animation-delay="03">Read More</a><br />
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="content" class="full-sections ">
+	<div class="section">
+		<div class="container empt">
+		</div>
+	</div>
+</div> -->
+  <div class="tafe-tribe f99">
+    <div class="container">
+      <div class="big-title text-left" data-animation="fadeInDown" data-animation-delay="01">
+        <p class="title-desc"></p>
+        <h2 class="classic-title"> <strong>TAFE TRIBE | </strong>Original Eicher Merchandise </h2>
+      </div>
+      <div class="latest-posts">
+        <div class="latest-posts-classic owl-carousel" id="merchandise-slider">
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-darknight-cap.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/eicher_darknight_cap_2.webp" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-darknight-cap.html" target="_blank">Eicher DarKnight Cap</a></h3>
+            <div class="post-content">
+              <p>The Eicher DarKnight Cap is made of high-grade poly cotton with a convenient velcro strap for comfort fit and a rounded visor to save your eyes from bright sun flare. The bold red and black is sure to make you stand out at all times! </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-darknight-cap.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-camou-cap.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/red_and_army_cap_e_mailer_new.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-camou-cap.html" target="_blank">Eicher Camou Cap</a></h3>
+            <div class="post-content">
+              <p>Get a fresh look and pair your outfit with the Eicher CamouCap to give your style a new lease of life. Made of camouflage fabric, the cap will help you blend in, yet stand out! </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-camou-cap.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-ninja-hoodie-945.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/ninja_hoodie.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-ninja-hoodie-945.html" target="_blank">Eicher Ninja Hoodie</a></h3>
+            <div class="post-content">
+              <p>Unleash your inner ninja and slip into the Eicher Ninja Hoodie! Made of 100% cotton this hoodie can keep you warm and yet make you look cool. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-ninja-hoodie-945.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <!-- <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-red-satin-pen-887.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="https://www.tafetribe.com/pub/media/catalog/product/cache/343ef2803f1a27d8d77b5e62acabb37c/r/e/red_satin_pen_1.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-red-satin-pen-887.html" target="_blank">Eicher Red Satin Pen</a></h3>
+            <div class="post-content">
+              <p>Unleash your inner ninja and slip into the Eicher Ninja Hoodie! Made of 100% cotton this hoodie can keep you warm and yet make you look cool. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-red-satin-pen-887.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-weather-armour-937.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="https://www.tafetribe.com/pub/media/catalog/product/cache/343ef2803f1a27d8d77b5e62acabb37c/w/e/weather_armour.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-weather-armour-937.html" target="_blank">Eicher Weather Armour</a></h3>
+            <div class="post-content">
+              <p>Unleash your inner ninja and slip into the Eicher Ninja Hoodie! Made of 100% cotton this hoodie can keep you warm and yet make you look cool. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-weather-armour-937.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-prima-g3-t-shirt-black-with-grey-collar.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="https://www.tafetribe.com/pub/media/catalog/product/cache/343ef2803f1a27d8d77b5e62acabb37c/e/i/eicher_prima_g3_t-shirt_-_black_with_grey_collar.png" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-prima-g3-t-shirt-black-with-grey-collar.html" target="_blank">Eicher Prima G3 T-shirt - black with grey collar</a></h3>
+            <div class="post-content">
+              <a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-prima-g3-t-shirt-black-with-grey-collar.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-prima-g3-hot-and-cold-water-bottle.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="https://www.tafetribe.com/pub/media/catalog/product/cache/343ef2803f1a27d8d77b5e62acabb37c/e/i/eicher_prima_flask.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-prima-g3-hot-and-cold-water-bottle.html" target="_blank">Eicher Prima G3 Hot and Cold Water Bottle</a></h3>
+            <div class="post-content">
+              <p>Unleash your inner ninja and slip into the Eicher Ninja Hoodie! Made of 100% cotton this hoodie can keep you warm and yet make you look cool. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-prima-g3-hot-and-cold-water-bottle.html" target="_blank"> Shop Now</a>
+            </div>
+          </div> -->
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-shine-pen-921.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/eicher_shine_pen_2.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-shine-pen-921.html" target="_blank">Eicher Shine Pen</a></h3>
+            <div class="post-content">
+              <p>Heavy-duty 3-in-1 metal ball-point pen, that packs a stylus to protect your phone or tab screen from unwanted smudge marks and an LED light to illuminate your way. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-shine-pen-921.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/bhopal-heritage-mug.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/coffee_mug_03.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/bhopal-heritage-mug.html" target="_blank">Bhopal Heritage Mug</a></h3>
+            <div class="post-content">
+              <p>With the Bhopal Heritage Mug, earn yourself a place in the heart of India - Bhopal, the land of Eicher Tractors, and experience its rich tradition and heritage with every sip of your favourite brew be it coffee or tea! </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/bhopal-heritage-mug.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <!-- <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-gymmy-bag.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/gymmy_bag.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-gymmy-bag.html" target="_blank">Eicher Gymmy Bag</a></h3>
+            <div class="post-content">
+              <p>Carry your attitude and everything else you may want to. Overnight travel, a morning workout, a weekend with friends or a drive up the mountains. This multi-purpose bag will swing with your mood. Yes, your perfect companion. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-gymmy-bag.html" target="_blank"> Shop Now</a>
+            </div>
+          </div> -->
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-blue-grille-shirt-961.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/blue_grille_shirt_1.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-blue-grille-shirt-961.html" target="_blank">Eicher Blue Grille Shirt</a></h3>
+            <div class="post-content">
+              <p>Blend style and substance with the Eicher Blue Grille Shirt. Tailored in classic fit, this geometric design is crafted in a premium blended fabric. Pair this full-sleeve shirt with navy trousers and steal the show. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-blue-grille-shirt-961.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+          <div class="post-row item">
+            <div class="left-meta-post">
+              <a href="https://www.tafetribe.com/eicher-space-gray-shirt-967.html" target="_blank">
+                <picture>
+                  <img class="owl-lazy" data-src="images/tafe-tribe/space_grey_shirt.jpg" alt="TAFE TRIBE" height="150" width="150">
+                </picture>
+              </a>
+            </div>
+            <h3 class="post-title"><a href="https://www.tafetribe.com/eicher-space-gray-shirt-967.html" target="_blank">Eicher Space Gray Shirt</a></h3>
+            <div class="post-content">
+              <p>Break away from the mundane with the Eicher Space Gray Shirt. Defining class and elegance, this full-sleeve shirt is a symbol of fine craftsmanship for the true-breed gentlemen. </p><a target=_blank rel="noopener" class="read-more" href="https://www.tafetribe.com/eicher-space-gray-shirt-967.html" target="_blank"> Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <style>
+	.modal-body button.close {
+		position: absolute;
+		right: 20px;
+		z-index: 1;
+	}
+
+	.form-gap {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0px;
+	}
+	.align-center {
+		text-align: center;
+	}
+
+	@media(max-width: 820px) {
+		.form-gap {
+			flex-direction: column;
+			/* gap: 15px; */
+		}
+
+		#footer-form .field {
+			width: 65%;
+			margin: 0 auto;
+		}
+
+		.checkbox.agree #footer_agree {
+			margin-right: 10px;
+		}
+	}
+
+	@media (max-width: 495px) {
+		#footer-form .field {
+			width: 95%;
+		}
+
+
+	}
+</style>
+<footer>
+	<div class="col-md-12 footer-form-wrapper" style="margin-bottom:2%;">
+		<div class="row" style="background-color:#555;padding:20px 0px;">
+						<form action="https://eichertractors.in/saveInfo.php" method="post" id="footer-form" autocomplete="off">
+				<div class="container">
+					<div class="row">
+						<div class="field col-md-2">
+							<!-- <label class="form-label" for="f_name">Name*</label> -->
+							<input id="f_name" class="a form-control" type="text" name="name" placeholder="Name*" minlength="3" required />
+						</div>
+						<div class="field col-md-2">
+							<!-- <label class="form-label" for="f_number">Mobile*</label> -->
+							<input id="f_number" name="number" type="text" onkeypress="return isNumberKey(event);" minlength="10" maxlength="12" placeholder="Mobile*" class="a form-control" required />
+						</div>
+						<div class="field col-md-2">
+							<!-- <label class="form-label" for="f_email">E-mail (Optional)</label> -->
+							<input id="f_email" class="a form-control" type="email" name="email" placeholder="E-mail (Optional)" />
+						</div>
+						<div class="field col-md-2">
+							<!-- <label class="form-label" for="f_state">State*</label> -->
+							<select class="form-control" name="state" id="f_state" required>
+								<!-- <option></option> -->
+								<option value="">Select state</option>
+								<option style="color: #444;" value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+								<option style="color: #444;" value="Andhra Pradesh">Andhra Pradesh</option>
+								<option style="color: #444;" value="Arunachal Pradesh">Arunachal Pradesh</option>
+								<option style="color: #444;" value="Assam">Assam</option>
+								<option style="color: #444;" value="Bihar">Bihar</option>
+								<option style="color: #444;" value="Chandigarh">Chandigarh</option>
+								<option style="color: #444;" value="Chhattisgarh">Chhattisgarh</option>
+								<option style="color: #444;" value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+								<option style="color: #444;" value="Daman and Diu">Daman and Diu</option>
+								<option style="color: #444;" value="Delhi">Delhi</option>
+								<option style="color: #444;" value="Goa">Goa</option>
+								<option style="color: #444;" value="Gujarat">Gujarat</option>
+								<option style="color: #444;" value="Haryana">Haryana</option>
+								<option style="color: #444;" value="Himachal Pradesh">Himachal Pradesh</option>
+								<option style="color: #444;" value="Jammu and Kashmir">Jammu and Kashmir</option>
+								<option style="color: #444;" value="Jharkhand">Jharkhand</option>
+								<option style="color: #444;" value="Karnataka">Karnataka</option>
+								<option style="color: #444;" value="Kerala">Kerala</option>
+								<option style="color: #444;" value="Lakshadweep">Lakshadweep</option>
+								<option style="color: #444;" value="Madhya Pradesh">Madhya Pradesh</option>
+								<option style="color: #444;" value="Maharashtra">Maharashtra</option>
+								<option style="color: #444;" value="Manipur">Manipur</option>
+								<option style="color: #444;" value="Meghalaya">Meghalaya</option>
+								<option style="color: #444;" value="Mizoram">Mizoram</option>
+								<option style="color: #444;" value="Nagaland">Nagaland</option>
+								<option style="color: #444;" value="Odisha">Odisha</option>
+								<option style="color: #444;" value="Pondicherry">Pondicherry</option>
+								<option style="color: #444;" value="Punjab">Punjab</option>
+								<option style="color: #444;" value="Rajasthan">Rajasthan</option>
+								<option style="color: #444;" value="Sikkim">Sikkim</option>
+								<option style="color: #444;" value="Tamil Nadu">Tamil Nadu</option>
+								<option style="color: #444;" value="Tripura">Tripura</option>
+								<option style="color: #444;" value="Uttaranchal">Uttaranchal</option>
+								<option style="color: #444;" value="Uttar Pradesh">Uttar Pradesh</option>
+								<option style="color: #444;" value="West Bengal">West Bengal</option>
+							</select>
+						</div>
+						<div class="field col-md-2">
+							<!-- <label class="form-label" for="f_district">District*</label> -->
+							<input id="f_district" class="a form-control" type="text" name="district" placeholder="District*" required="" />
+						</div>
+						<div class="field col-md-2">
+							<div class="g-recaptcha " data-sitekey="6LdPewgaAAAAAOrxjqOrgG5YeVfkq1RaZQOjwsbY"></div>
+						</div>
+
+						<div class="col-md-12 text-center ntc cl2">
+							<div class="checkbox agree">
+								<input type="checkbox" name="agree" id="footer_agree" required>
+								<label class="label-agree" for="footer_agree">
+									By clicking ‘Request Call Back’, I agree to receive calls and messages on my Mobile Phone and WhatsApp from Eicher Tractors or its authorized associates to assist me further.
+								</label>
+							</div>
+							<label id="agree-error" class="error" for="agree"></label>
+						</div>
+					</div>
+					<div class="row swap align-center">
+						<div class="field col-md-2 cl1 visible-xs">
+							<button type="submit" class="btr" style="width:100%;">Request Callback</button>
+						</div>
+						<div class="field col-md-12 dsc hidden-xs">
+							<button type="submit" class="btr">Request Callback</button>
+						</div>
+					</div>
+				</div>
+
+
+				<input type="hidden" name="form_name" value="Footer Form">
+				<!-- <input type="hidden" name="function" value="Microsite form"> -->
+				<input type="hidden" name="utm_source" value="">
+				<input type="hidden" name="utm_medium" value="">
+				<input type="hidden" name="utm_term" value="">
+				<input type="hidden" name="utm_content" value="">
+				<input type="hidden" name="utm_campaign" value="">
+				<input type="hidden" name="pageUrl" value="https://eichertractors.in/">
+
+			</form>
+		</div>
+	</div>
+	<div class="container nor">
+
+		<div class="row footer-widgets">
+			<div class="col-md-4 col-sm-6">
+				<div class="footer-widget contact-widget">
+					<h4>Corporate Office:<span class="head-line"></span></h4>
+					<ul>
+						<li>TAFE Motors and Tractors Limited
+							<br>77, Nungambakkam High Road,<br> Nungambakkam, Chennai - 600 034
+							<br>India
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="footer-widget contact-widget">
+					<div class="footer-adj-1">
+						<ul class="qls">
+
+							<li><span>Phone:</span> <a href="tel:1800-2020-200">1800-2020-200</a></li>
+							<li><span>Email:</span> <a href="mailto:corporate@tmtl.in" target="_top">corporate@tmtl.in</a>
+							</li>
+							<li><span>Website:</span> <a href="https://eichertractors.in/">eichertractors.in</a></li>
+						</ul>
+						<ul class="footer-social-icons for-mobile">
+							<li><a class="item1 instagram" href="https://www.instagram.com/eichertractorsofficial/" target="_blank" rel="noopener" style="color:#507CBE;"> <img src="https://eichertractors.in/images/instagram-icon.png" alt="Eicher" height="30"></a></li>
+							<li><a class="item1 facebook" href="https://www.facebook.com/EicherTractors" target="_blank" rel="noopener" style="color:#507CBE;"> <i class="icon-facebook-2 new-f-logo"></i></a></li>
+							<li><a class="item1 youtube-logo" href="https://www.youtube.com/channel/UCPgmx8fFMUGKQu54Msq3mWg" target="_blank" rel="noopener"> <img src="https://eichertractors.in/images/footmenu/youtube_social_icon_red.webp" alt="Eicher" height="30"> </a></li>
+							<li><a class="item1 linkdin" href="https://www.linkedin.com/company/eichertractors/" target="_blank" rel="noopener" style="color:#90CADD;"><i class="icon-linkedin-1 new-in-logo"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-12">
+				<div class="footer-widget social-widget">
+					<!-- <a href="https://eichertractors.in/sitemap.xml" class="head-line" target="_blank" rel="noreferrer"> -->
+						<h4>Site Map</h4>
+					<!-- </a> -->
+
+					<div class="panel1">
+						<div class="col-md-6 col-sm-6">
+							<div class="footer-adj">
+								<h3 class="panel-title panel-title-sm">
+									<a href="https://eichertractors.in/eichertractors/" class="collapsed">
+										Tractors
+									</a>
+								</h3>
+								<!-- <h3 class="panel-title panel-title-sm">
+								<a href="https://eichertractors.in/implements/" class="collapsed">
+								Implements
+								</a>
+								</h3> -->
+								<h3 class="panel-title panel-title-sm">
+									<a href="https://eichertractors.in/dealer-locator/" class="collapsed">
+										Dealer Locator
+									</a>
+								</h3>
+
+								<!-- <h3 class="panel-title panel-title-sm">
+									<a href="https://eichertractors.in/blog/" class="collapsed">
+										Blog
+									</a>
+								</h3> -->
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<div class="footer-adj">
+
+								<h3 class="panel-title panel-title-sm">
+									<a href="https://eichertractors.in/newsroom/" class="collapsed">
+										Newsroom
+									</a>
+								</h3>
+								<h3 class="panel-title panel-title-sm">
+									<a href="https://eichertractors.in/contact" class="collapsed">
+										Contact Us
+									</a>
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="copyright-section">
+			<div class="row">
+				<div class="col-md-6">
+					<p>© 2025 Eicher Tractors | Managed by TAFE Corporate Communications</p>
+				</div>
+				<div class="col-md-6">
+					<ul class="footer-nav">
+						<li><a href="//davincicreatives.com"> &nbsp </a>
+						</li>
+						<li><a href="https://eichertractors.in/legal">Legal</a>
+						</li>
+						<li><a href="https://eichertractors.in/privacy-policy">Privacy Policy</a>
+						</li>
+						<!-- <li><a href="https://eichertractors.in/sitemap.xml" target="_blank">Sitemap</a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body" style="padding:5%;">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<div class="container-fulid">
+					<div class="row">
+						<div class="col-md-6 hidden-sm hidden-xs">
+							<img src="https://eichertractors.in/images/form-mobile.webp" alt="Eicher Tractors | Best tractor in India" style="margin-left: calc(100% - 120%);max-width: -webkit-fill-available;">
+						</div>
+						<div class="col-md-6 modal-box">
+							<form action="https://eichertractors.in/saveInfo.php" method="post" class="row dafs" style="padding:15px" id="sticky-form" autocomplete="off">
+								<h2 class="text-center"><strong>Get Tractor Price & Book Demo</strong></h2>
+								<div class="row">
+									<div class="field col-md-12">
+										<!-- <label class="form-label" for="">Name</label> -->
+										<input id="" class="a-modal form-control" type="text" name="name" minlength="3" placeholder="Name*" required />
+									</div>
+									<div class="field col-md-12">
+										<!-- <label class="form-label" for="" style="color:#444;">Mobile</label> -->
+										<input id="number" name="number" type="text" onkeypress="return isNumberKey(event);" minlength="10" maxlength="12" placeholder="Number" class="a-modal form-control" required />
+									</div>
+									<div class="field col-md-12">
+										<!-- <label class="form-label" for="" style="color:#444;">E-Mail</label> -->
+										<input id="" class="a-modal form-control" type="email" name="email" placeholder="Email*" />
+									</div>
+									<div class="field col-md-12">
+										<!-- <label class="form-label" for="" style="color:#444;">Select State*</label> -->
+										<select class="a-modal a form-control" name="state" required>
+											<option>Select State</option>
+											<option value="Andhra Pradesh">Andhra Pradesh</option>
+											<option value="Assam">Assam</option>
+											<option value="Bihar">Bihar</option>
+											<option value="Chhattisgarh">Chhattisgarh</option>
+											<option value="Gujarat">Gujarat</option>
+											<option value="Haryana">Haryana</option>
+											<option value="Himachal Pradesh">Himachal Pradesh</option>
+											<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+											<option value="Jharkhand">Jharkhand</option>
+											<option value="Karnataka">Karnataka</option>
+											<option value="Kerala">Kerala</option>
+											<option value="Madhya Pradesh">Madhya Pradesh</option>
+											<option value="Maharashtra">Maharashtra</option>
+											<option value="Manipur">Manipur</option>
+											<option value="Odisha">Odisha</option>
+											<option value="Punjab">Punjab</option>
+											<option value="Rajasthan">Rajasthan</option>
+											<option value="Tamil Nadu">Tamil Nadu</option>
+											<option value="Telangana">Telangana</option>
+											<option value="Uttar Pradesh">Uttar Pradesh</option>
+											<option value="Uttarakhand">Uttarakhand</option>
+											<option value="West Bengal">West Bengal</option>
+										</select>
+									</div>
+									<div class="field col-md-12">
+										<!-- <label class="form-label" for="" style="color:#444;">District*</label> -->
+										<input id="" class="a-modal form-control" type="text" name="district" placeholder="District*" required />
+									</div>
+									<div class="g-recaptcha" data-sitekey="6LdPewgaAAAAAOrxjqOrgG5YeVfkq1RaZQOjwsbY"></div>
+
+									<div class="field col-md-12 text-center">
+										<button type="submit" class="btn btn-submit" data-animation="fadeInDown" data-animation-delay="01">Request Callback</button>
+									</div>
+								</div>
+								<input type="hidden" name="form_name" value="Book Form">
+								<input type="hidden" name="utm_source" value="">
+								<input type="hidden" name="utm_medium" value="">
+								<input type="hidden" name="utm_term" value="">
+								<input type="hidden" name="utm_content" value="">
+								<input type="hidden" name="utm_campaign" value="">
+								<input type="hidden" name="pageUrl" value="https://eichertractors.in/">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="boot-menu for-com">
+	<!-- <a class="item1" href="https://eichertractors.in/contact.php"><i class="icon-phone-2"></i> Contact Eicher Tractors &nbsp </a> -->
+	<!-- <a class="item1" href="https://eichertractors.in/contact.php"><i class="icon-phone-2"></i> Contact Eicher Tractors &nbsp </a> -->
+	<a href="#"></a>
+	<a class="item1 instagram" href="https://www.instagram.com/eichertractorsofficial/" target="_blank" rel="noopener" style="color:#507CBE;"> <img src="https://eichertractors.in/images/instagram-icon.png" alt="Eicher" height="30"></a>
+	<a class="item1 facebook" href="https://www.facebook.com/EicherTractors" target="_blank" rel="noopener" style="color:#507CBE;"> <i class="icon-facebook-2 new-f-logo"></i></a>
+	<a class="item1 youtube-logo" href="https://www.youtube.com/channel/UCPgmx8fFMUGKQu54Msq3mWg" target="_blank" rel="noopener"> <img src="https://eichertractors.in/images/footmenu/youtube_social_icon_red.webp" alt="Eicher" height="30"> </a>
+	<a class="item1 linkdin" href="https://www.linkedin.com/company/eichertractors/" target="_blank" rel="noopener" style="color:#90CADD;"><i class="icon-linkedin-1 new-in-logo"></i></a>
+	<a class="toll" href="tel:18002020200"><img style="background-color: white; width: 39px; margin-right: 11px; border-radius: 50%;margin-left: 7px;border: 3px solid white;" src="/images/smartphone.png" alt="Smart Phone Logo"><b style="font-size: 20px;color: #fefefe;    font-weight: 600;">Call Now!</b></a>
+	<!-- <a href="#" class="quick-contact" data-toggle="modal" data-target="#myModal"><img alt="Eicher Tractor 280 4WD book demo" src="https://eichertractors.in/images/eicher-380-icon.png"></a> -->
+	<a href="#" class="back-to-top"><i class="icon-up-open-1"></i></a>
+</div>
+<!-- <div class="boot-menu for-mob text-center">
+	<a class="item1 instagram" href="https://www.instagram.com/eichertractorsofficial/" target="_blank" rel="noopener" style="color:#507CBE;"> <img src="https://eichertractors.in/images/instagram-icon.png" alt="Eicher" height="30"></a>
+	<a class="item1 facebook" href="https://www.facebook.com/EicherTractors" target="_blank" rel="noopener" style="color:#507CBE;"> <i class="icon-facebook-2 new-f-logo"></i></a>
+	<a class="item1 youtube-logo" href="https://www.youtube.com/channel/UCPgmx8fFMUGKQu54Msq3mWg" target="_blank" rel="noopener"> <img src="https://eichertractors.in/images/footmenu/youtube_social_icon_red.png" alt="Eicher" height="30"> </a>
+	<a class="item1 linkdin" href="https://www.linkedin.com/company/eichertractors/" target="_blank" rel="noopener" style="color:#90CADD;"><i class="icon-linkedin-1 new-in-logo"></i></a>
+
+	<a class="toll" href="tel:18002020200"><img style="background-color: white; width: 39px; margin-right: 11px; border-radius: 50%;margin-left: 7px;border: 3px solid white;" src="/images/smartphone.png"><b style="font-size: 20px;color: #fefefe;    font-weight: 600;">Call Now!</b></a>
+	<a href="# " class="back-to-top"><i class="icon-up-open-1"></i></a>
+</div> -->
+<a href="#" class="quick-contact" data-toggle="modal" data-target="#myModal"><img src="https://eichertractors.in/images/eicher-380-icon.png" alt="Eicher tractor model 380 icon"></a>
+<!-- <div id="loader">
+	<div class="eicherloader">
+		<img src="https://eichertractors.in/images/preloader.gif" alt="Preloader" />
+		<img src="https://eichertractors.in/images/TAFE-65-Logo-Signature.gif" alt="Preloader"/>
+	</div>
+</div> -->
+
+<div id="ohsnap"></div>
+<link rel="stylesheet" type="text/css" href='https://eichertractors.in/css/ohsnap.min.css' media="screen">
+
+<script src="https://eichertractors.in/js/jquery.validate.min.js"></script>
+<script type="rocketlazyloadscript" src='https://eichertractors.in/js/ohsnap.min.js'></script>
+<script src='https://eichertractors.in/js/main.js'></script>
+
+
+<!-- Chatbot 2/08/2024-->
+<script src="https://app.chat360.io/widget/chatbox/common_scripts/script.js" type="rocketlazyloadscript" data-bot="081976a9-6db0-484a-9550-8b21d896ff15"></script>
+<script type="rocketlazyloadscript">
+	(function (botId) {
+     
+	 var s = document.createElement("script");
+	 s.async = true;
+	 s.type = 'text/javascript';
+	 s.src = "https://app.chat360.io/widget/chatbox/common_scripts/script.js";
+	 s.onload = function () {
+	   window.loadChat360Bot(botId);
+	 };
+	 s.onerror = function (err) {
+	   console.error(err);
+	 };
+	 document.body.appendChild(s);
+   })("081976a9-6db0-484a-9550-8b21d896ff15");
+  </script>
+<!-- Please configure the mentioned Bot id -->
+<!-- Bot id - 081976a9-6db0-484a-9550-8b21d896ff15 -->
+
+
+<script>
+	$('input').focus(function() {
+		$(this).parents('.field').addClass('focused');
+	});
+
+	$('select').focus(function() {
+		$(this).parents('.field').addClass('focused');
+	});
+
+
+	$('input').blur(function() {
+		var inputValue = $(this).val();
+		if (inputValue == "") {
+			$(this).removeClass('filled');
+			$(this).parents('.field').removeClass('focused');
+		} else {
+			$(this).addClass('filled');
+		}
+	})
+
+	$('select').blur(function() {
+		var inputValue = $(this).val();
+		if (inputValue == "") {
+			$(this).removeClass('filled');
+			$(this).parents('.field').removeClass('focused');
+		} else {
+			$(this).addClass('filled');
+		}
+	})
+
+	function isNumberKey(evt) {
+
+		console.log("evt: " + evt);
+
+		var charCode = (evt.which) ? evt.which : event.keyCode
+
+		console.log(charCode);
+
+		if (charCode > 31 && (charCode < 48 || charCode > 57))
+			return false;
+		return true;
+	}
+</script>
+<script type="rocketlazyloadscript">
+	setTimeout(function(){
+      var tag = document.createElement("script");     
+      tag.src = "https://www.google.com/recaptcha/api.js";     
+      document.getElementsByTagName("head")[0].appendChild(tag);
+    },4000);
+</script>
+
+</div>
+<!-- Road block -->
+<!--  <div id="roadblock" class="white-popup mfp-hide">
+                  <img class="desktop-roadblock" src="images/tafe-60-yrs-celebration-roadblock.png" alt="" width="100%">
+                  <img class="desktop-roadblock" src="images/mallika-srinivasan-appointed-as-pesb-roadblock.jpeg" alt="" width="100%">
+              </div>  -->
+<!-- <div id="disc">
+  <div style="display: none;" id="dialog1" class="window text-center">    
+	    <span class="close">&times;</span>
+		DISCLAIMER: The information relating to Eicher Tractor’s products, product images, specification and availability provided on Eicher Tractor’s websites, digital and social media platforms are subject to constant revision, upgradation based on its policies and current product-line, and may not reflect the updated information. You are advised to contact corporate@tmtl.in, our regional sales representative or your nearest authorized dealer / distributor in this regard. Products listed on Eicher Tractor’s digital platforms may not be available in certain geographies and may be enhanced or discontinued without any prior notice.
+		<br><br>
+		Eicher Tractors does not verify, endorse or approve any information relating to itself, its products, their price, specification, availability etc. provided by third-party on any platform whatsoever, including websites, aggregator sites, social media platforms, RSS feeds, instant messaging platforms, non-digital platforms - print media, trade journals, publications etc. It is hereby made clear that no information derived from such third-party shall be treated as accurate and Eicher Tractor shall not be responsible for the same in any manner whatsoever.
+  </div>
+</div> -->
+
+<!--<div id="disc">
+  <div style="display: none;" id="dialog1" class="window text-center">
+    
+	    <span class="close">&times;</span>
+		<a target="_blank" href="https://www.usibc.com/director/mallika-srinivasan/"> <img src="images/Chairman-USIBC.jpg" alt="Chairman USIBC" class="pop"/> </a> 
+  </div>
+</div> -->
+<script>
+  // $.magnificPopup.open({
+
+  //     items: {
+
+  //         src: '#roadblock'
+
+  //     },
+
+  //     type: 'inline',
+
+  //     closeOnBgClick : false,
+
+  //     showCloseBtn : true,
+
+  //     enableEscapeKey : false,
+
+  //     removalDelay: 300,
+
+  //     mainClass: 'mfp-fade'
+
+  //   })
+  $('input').focus(function() {
+    $(this).parents('.field').addClass('focused');
+  });
+
+  $('select').focus(function() {
+    $(this).parents('.field').addClass('focused');
+  });
+
+  $('input').blur(function() {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+      $(this).removeClass('filled');
+      $(this).parents('.field').removeClass('focused');
+    } else {
+      $(this).addClass('filled');
+    }
+  })
+
+  $('select').blur(function() {
+    var inputValue = $(this).val();
+    if (inputValue == "") {
+      $(this).removeClass('filled');
+      $(this).parents('.field').removeClass('focused');
+    } else {
+      $(this).addClass('filled');
+    }
+  })
+
+  $(document).ready(function() {
+    var id = '#dialog';
+    var id1 = '#dialog1';
+    var id2 = '#disc';
+    if (localStorage.getItem('popState') != 'shown') {
+      $(id).delay(500).fadeIn();
+      localStorage.setItem('popState', 'shown')
+    }
+    $(id1).delay(500).fadeIn();
+    var winH = $(window).height();
+    var winW = $(window).width();
+
+    $('.window .close').click(function(e) {
+      e.preventDefault();
+      $('.window').hide();
+      $(id2).hide();
+    });
+    $(id2).click(function() {
+      $(this).hide();
+      $('.window').hide();
+      $(id2).hide();
+    });
+  });
+
+  $('input[name="name"], input[name="city"], input[name="state"], input[name="country"], input[name="district"]').keydown(function(e) {
+    var key = e.keyCode;
+    if (
+      !(
+        key == 8 ||
+        key == 16 ||
+        key == 32 ||
+        key == 46 ||
+        (key >= 35 && key <= 40) ||
+        (key >= 65 && key <= 90)
+      )
+    ) {
+      e.preventDefault();
+    }
+    // }
+  });
+</script>
+
+</body>
+
+</html>

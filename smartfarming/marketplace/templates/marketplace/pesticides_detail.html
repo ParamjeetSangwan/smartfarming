@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pesticide.name }} - Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: rgba(68, 67, 67, 0.7); /* Transparent */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            background: rgba(113, 128, 150, 0.9);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(74, 85, 104, 0.95);
+        }
+
+        .detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .detail img {
+            flex: 1 1 350px;
+            max-width: 350px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: contain;
+            background: rgba(241, 238, 238, 0.6); /* Transparent image box */
+            padding: 10px;
+        }
+
+        .info {
+            flex: 2 1 400px;
+        }
+
+        .info h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #e9ebec;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #f3f0f0;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #38a169;
+            margin: 15px 0;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 6px;
+            font-size: 15px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            margin-right: 15px;
+            background: rgba(239, 236, 236, 0.8);
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 15px;
+            background-color: rgba(56, 161, 105, 0.9);
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgba(47, 133, 90, 0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Back Button -->
+        <a href="{% url 'marketplace:pesticides_view' %}" class="back-btn">← Back to Pesticides</a>
+
+        <!-- Product Detail -->
+        <!-- <div class="detail">
+            {% if pesticide.image %}
+                <img src="{{ pesticide.image.url }}" alt="{{ pesticide.name }}">
+            {% else %}
+                <img src="{% static 'images/default.png' %}" alt="No image available">
+            {% endif %} -->
+
+            <div class="info">
+                <h1>{{ pesticide.name }}</h1>
+                <p><strong>Description:</strong> {{ pesticide.description }}</p>
+                <p class="price">₹{{ pesticide.price }}</p>
+
+                <form method="post" action="{% url 'marketplace:add_pesticide_to_cart' pesticide.id %}">
+                    {% csrf_token %}
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

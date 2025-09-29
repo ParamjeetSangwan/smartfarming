@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            text-shadow: 1px 1px 4px black;
+        }
+
+        .weather-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 6% auto;
+            padding: 30px 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .weather-container h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .weather-container p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .back-button,
+        .search-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ffffff33;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #fff;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover,
+        .search-button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-right: 10px;
+            width: 60%;
+        }
+
+        .search-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h2>Check Weather</h2>
+
+        <form method="get" class="search-form">
+            <input type="text" name="city" placeholder="Enter city..." required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+
+        <hr style="margin: 20px 0; border-color: #999;">
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% elif weather_data %}
+            <h2>Weather in {{ weather_data.name }}</h2>
+            <p>Temperature: {{ weather_data.main.temp }} °C</p>
+            <p>Condition: {{ weather_data.weather.0.description|title }}</p>
+            <p>Humidity: {{ weather_data.main.humidity }}%</p>
+            <p>Wind Speed: {{ weather_data.wind.speed }} m/s</p>
+        {% endif %}
+
+        <a href="{% url 'dashboard' %}" class="back-button">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
