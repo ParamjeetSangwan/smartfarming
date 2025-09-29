@@ -62,7 +62,6 @@ To run the project locally:
 ---
 
 ## Screenshots
-*(Replace with your actual screenshots if you have them)*
 
 ![Dashboard](screenshots/dashboard.png)
 ![Crop Management](screenshots/ai.png)
