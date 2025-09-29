@@ -11,6 +11,7 @@ SmartFarming is a smart agriculture project that helps farmers make informed dec
 ## Table of Contents
 - [About](#about)
 - [Features](#features)
+- [Setup](#setup)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
@@ -32,6 +33,11 @@ SmartFarming assists farmers in monitoring crops, managing resources, and optimi
 - Integration with external data sources (weather, soil, etc.)  
 
 ---
+
+## Setup
+
+1. Clone the repo.
+2. Create a `.env` file in the project root:
 
 ## Usage
 To run the project locally:
