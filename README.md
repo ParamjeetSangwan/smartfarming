@@ -11,7 +11,6 @@ SmartFarming is a smart agriculture project that helps farmers make informed dec
 ## Table of Contents
 - [About](#about)
 - [Features](#features)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
@@ -34,22 +33,50 @@ SmartFarming assists farmers in monitoring crops, managing resources, and optimi
 
 ---
 
-## Installation
-1. Clone the repository:
-
-```bash
-git clone https://github.com/ParamjeetSangwan/smartfarming.git
-
-
 ## Usage
-- Open your browser and go to `http://127.0.0.1:8000/`.
-- Add crops, manage resources, and get smart farming recommendations.
-- Navigate through the dashboard to monitor farm data.
+To run the project locally:
 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ParamjeetSangwan/smartfarming.git
+
+2. Navigate to the project folder:
+   cd smartfarming
+
+3. (Optional) Create and activate a virtual environment:
+   python -m venv venv
+   source venv/bin/activate   # Linux/Mac
+   venv\Scripts\activate      # Windows
+
+4. Install the required packages:
+   pip install -r requirements.txt
+
+5. Apply migrations:
+   python manage.py migrate
+
+6. Run the development server:
+   python manage.py runserver
+
+7. Open your browser and go to http://127.0.0.1:8000/ to access the dashboard.
+
+---
 
 ## Screenshots
+*(Replace with your actual screenshots if you have them)*
+
 ![Dashboard](screenshots/dashboard.png)
-![Crop Management](screenshots/crop_management.png)
+![Crop Management](screenshots/ai.png)
+![Crop Management](screenshots/cart.png)
+![Crop Management](screenshots/crop.png)
+![Crop Management](screenshots/pesticides.png)
+![Crop Management](screenshots/login.png)
+![Crop Management](screenshots/marketplace.png)
+![Crop Management](screenshots/orders.png)
+![Crop Management](screenshots/profile.png)
+![Crop Management](screenshots/tools.png)
+![Crop Management](screenshots/weather.png)
+
+---
 
 ## Technologies Used
 - Python 3.x
@@ -59,6 +86,7 @@ git clone https://github.com/ParamjeetSangwan/smartfarming.git
 - Pandas / NumPy (for data analysis)
 - Bootstrap (optional for UI styling)
 
+---
 
 ## Contributing
 Contributions are welcome!
@@ -69,5 +97,15 @@ Contributions are welcome!
 4. Push to the branch (`git push origin feature-name`).
 5. Open a Pull Request.
 
+---
+
 ## License
 This project is licensed under the **MIT License**.
+---
+
+This version fixes:  
+- Fully GitHub-friendly **anchors**  
+- **Detailed local setup instructions**  
+- **Numbered features list** for clarity  
+- Notes about screenshots and database  
+- Consistent formatting  
