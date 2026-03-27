@@ -11,11 +11,18 @@
         <i class="fas fa-arrow-left"></i> Back to Orders
     </a>
 </div>
+
 <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">
+
+    <!-- ORDER ITEMS -->
     <div class="table-card">
         <div class="table-header"><span class="table-title">Order Items</span></div>
         <table>
-            <thead><tr><th>Product</th><th>Type</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Product</th><th>Type</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th>
+                </tr>
+            </thead>
             <tbody>
                 {% for item in items %}
                 <tr>
@@ -31,10 +38,17 @@
                             <strong style="font-size:13.5px;">{{ item.name }}</strong>
                         </div>
                     </td>
-                    <td><span class="status-badge {% if item.item_type == 'tool' %}processing{% else %}shipped{% endif %}">{{ item.item_type|capfirst }}</span></td>
+                    <td>
+                        <span class="status-badge {% if item.item_type == 'tool' %}processing{% else %}pending{% endif %}">
+                            {{ item.item_type|capfirst }}
+                        </span>
+                    </td>
                     <td style="font-weight:600;">{{ item.quantity }}</td>
                     <td>₹{{ item.price }}</td>
-                    <td style="font-weight:700;color:var(--green-bright);">₹{{ item.price|floatformat:2 }}</td>
+                    <!-- FIX: was item.price|floatformat:2 — now correctly shows price × qty -->
+                    <td style="font-weight:700;color:var(--green-bright);">
+                        ₹{% widthratio item.price 1 item.quantity %}
+                    </td>
                 </tr>
                 {% empty %}
                 <tr><td colspan="5" style="text-align:center;padding:20px;color:var(--gray-400);">No items</td></tr>
@@ -47,42 +61,115 @@
             </div>
         </div>
     </div>
-    <div class="chart-card">
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:16px;">Customer Info</div>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-            <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-bright),var(--green-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;">
-                {{ order.user.username|first|upper }}
+
+    <!-- SIDEBAR -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <!-- Customer Info -->
+        <div class="chart-card">
+            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:16px;">Customer Info</div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-bright),var(--green-light));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;">
+                    {{ order.user.username|first|upper }}
+                </div>
+                <div>
+                    <div style="font-weight:600;">{{ order.user.username }}</div>
+                    <div style="font-size:12px;color:var(--gray-400);">{{ order.user.email }}</div>
+                </div>
             </div>
-            <div>
-                <div style="font-weight:600;">{{ order.user.username }}</div>
-                <div style="font-size:12px;color:var(--gray-400);">{{ order.user.email }}</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <span style="font-size:13px;color:var(--gray-400);">Order ID</span>
+                    <strong>#{{ order.id }}</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <span style="font-size:13px;color:var(--gray-400);">Date</span>
+                    <span style="font-size:13px;">{{ order.created_at|date:"M d, Y" }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <span style="font-size:13px;color:var(--gray-400);">Items</span>
+                    <strong>{{ items|length }}</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <span style="font-size:13px;color:var(--gray-400);">Current Status</span>
+                    <span class="status-badge {{ order.status }}">{{ order.status|capfirst }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <span style="font-size:13px;color:var(--gray-400);">Payment</span>
+                    <span style="font-size:13px;font-weight:600;">{{ order.get_payment_method_display }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:8px 0;">
+                    <span style="font-size:13px;color:var(--gray-400);">Pay Status</span>
+                    <span style="font-size:13px;font-weight:700;color:{% if order.payment_status == 'paid' %}var(--green-bright){% elif order.payment_status == 'pending' %}var(--accent-gold){% else %}var(--accent-red){% endif %};">
+                        {{ order.payment_status|capfirst }}
+                    </span>
+                </div>
+                {% if order.upi_transaction_id %}
+                <div style="padding:10px 0;">
+                    <div style="font-size:12px;color:var(--gray-400);margin-bottom:6px;font-weight:600;">
+                        <i class="fas fa-mobile-screen-button" style="color:#3b82f6;"></i> UPI Transaction ID
+                    </div>
+                    <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:8px 12px;font-family:monospace;font-size:13px;color:#3b82f6;word-break:break-all;">
+                        {{ order.upi_transaction_id }}
+                    </div>
+                    <div style="font-size:11px;color:var(--gray-400);margin-top:5px;line-height:1.5;">
+                        <i class="fas fa-triangle-exclamation" style="color:var(--accent-gold);"></i>
+                        Verify this ID in your PhonePe/GPay app before marking payment as paid.
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div style="margin-top:16px;">
+                <a href="{% url 'admin_user_detail' order.user.id %}"
+                    style="display:block;text-align:center;padding:10px;background:var(--green-pale);color:var(--green-bright);border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;">
+                    <i class="fas fa-user"></i> View Customer Profile
+                </a>
             </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
-                <span style="font-size:13px;color:var(--gray-400);">Order ID</span>
-                <strong>#{{ order.id }}</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-100);">
-                <span style="font-size:13px;color:var(--gray-400);">Date</span>
-                <span style="font-size:13px;">{{ order.created_at|date:"M d, Y" }}</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;padding:8px 0;">
-                <span style="font-size:13px;color:var(--gray-400);">Total Items</span>
-                <strong>{{ items|length }}</strong>
-            </div>
+
+        <!-- FIX: NEW — Update Order Status (was completely missing) -->
+        <div class="chart-card">
+            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;">Update Status</div>
+            <form method="POST" action="{% url 'admin_order_update_status' order.id %}">
+                {% csrf_token %}
+                <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Order Status</div>
+                <select name="status" style="width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:var(--gray-800);margin-bottom:10px;">
+                    <option value="pending"    {% if order.status == 'pending' %}selected{% endif %}>⏳ Pending</option>
+                    <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>🔄 Processing</option>
+                    <option value="shipped"    {% if order.status == 'shipped' %}selected{% endif %}>🚚 Shipped</option>
+                    <option value="delivered"  {% if order.status == 'delivered' %}selected{% endif %}>✅ Delivered</option>
+                    <option value="cancelled"  {% if order.status == 'cancelled' %}selected{% endif %}>❌ Cancelled</option>
+                    <option value="returned"   {% if order.status == 'returned' %}selected{% endif %}>↩️ Returned</option>
+                </select>
+                <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Payment Status</div>
+                <select name="payment_status" style="width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:var(--gray-800);margin-bottom:10px;">
+                    <option value="pending"  {% if order.payment_status == 'pending' %}selected{% endif %}>⏳ Pending</option>
+                    <option value="paid"     {% if order.payment_status == 'paid' %}selected{% endif %}>✅ Paid</option>
+                    <option value="failed"   {% if order.payment_status == 'failed' %}selected{% endif %}>❌ Failed</option>
+                    <option value="refunded" {% if order.payment_status == 'refunded' %}selected{% endif %}>↩️ Refunded</option>
+                </select>
+                <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;line-height:1.4;">
+                    <i class="fas fa-info-circle" style="color:var(--green-bright);"></i>
+                    Setting to <strong>Delivered</strong> automatically marks COD as <strong>Paid</strong> and notifies the customer.
+                </div>
+                <button type="submit"
+                    style="width:100%;padding:10px;background:var(--green-bright);color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </form>
         </div>
-        <div style="margin-top:20px;">
-            <a href="{% url 'admin_user_detail' order.user.id %}" style="display:block;text-align:center;padding:10px;background:var(--green-pale);color:var(--green-bright);border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;margin-bottom:8px;">
-                <i class="fas fa-user"></i> View Customer Profile
-            </a>
+
+        <!-- Delete Order -->
+        <div class="chart-card">
             <form method="POST" action="{% url 'admin_order_delete' order.id %}" onsubmit="return confirm('Delete Order #{{ order.id }}?')">
                 {% csrf_token %}
-                <button type="submit" style="width:100%;padding:10px;background:rgba(255,71,87,0.1);color:var(--accent-red);border:1.5px solid rgba(255,71,87,0.2);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
+                <button type="submit"
+                    style="width:100%;padding:10px;background:rgba(255,71,87,0.1);color:var(--accent-red);border:1.5px solid rgba(255,71,87,0.2);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
                     <i class="fas fa-trash"></i> Delete Order
                 </button>
             </form>
         </div>
+
     </div>
 </div>
 {% endblock %}

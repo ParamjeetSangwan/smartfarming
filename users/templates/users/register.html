@@ -1,4 +1,6 @@
 {% load static %}
+{% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -305,6 +307,34 @@
             .right-panel { width: 100%; padding: 40px 24px; }
             .form-row { grid-template-columns: 1fr; }
         }
+        .btn-google {
+            width: 100%;
+            padding: 13px;
+            background: #ffffff;
+            color: #444;
+            border: 1.5px solid #d8e2dc;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+            text-decoration: none;
+        }
+
+        .btn-google:hover {
+            background: #f1f3f4;
+        }
+
+        .btn-google i {
+            color: #db4437;
+        }
+
     </style>
 </head>
 <body>
@@ -407,6 +437,11 @@
             <button type="submit" class="btn-register">
                 <i class="fas fa-user-plus"></i> Create Account
             </button>
+
+            <div class="divider"><span>OR</span></div>
+            <a href="{% provider_login_url 'google' %}" class="btn-google">
+                <i class="fab fa-google"></i> Sign up with Google
+            </a>
         </form>
 
         <div class="divider"><span>Already registered?</span></div>

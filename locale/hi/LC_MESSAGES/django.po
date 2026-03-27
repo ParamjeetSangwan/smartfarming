@@ -1,0 +1,252 @@
+# Hindi translations for SmartFarming
+# Copy this file to: locale/hi/LC_MESSAGES/django.po
+# Then run: python manage.py compilemessages
+
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hi\n"
+
+# ── Dashboard ──
+msgid "Welcome back"
+msgstr "वापस स्वागत है"
+
+msgid "What would you like to do today?"
+msgstr "आज आप क्या करना चाहेंगे?"
+
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+msgid "Total Orders"
+msgstr "कुल ऑर्डर"
+
+msgid "Delivered"
+msgstr "डिलीवर हो गया"
+
+msgid "Pending"
+msgstr "लंबित"
+
+msgid "AI Queries"
+msgstr "AI प्रश्न"
+
+msgid "Weather"
+msgstr "मौसम"
+
+msgid "Check real-time weather for your farm location"
+msgstr "अपने खेत के लिए रियल-टाइम मौसम जांचें"
+
+msgid "Crop Suggestion"
+msgstr "फसल सुझाव"
+
+msgid "Get smart recommendations based on soil & climate"
+msgstr "मिट्टी और जलवायु के आधार पर स्मार्ट सुझाव पाएं"
+
+msgid "Marketplace"
+msgstr "बाज़ार"
+
+msgid "Browse tools, equipment and pesticides"
+msgstr "औजार, उपकरण और कीटनाशक देखें"
+
+msgid "AI Recommendations"
+msgstr "AI अनुशंसाएं"
+
+msgid "Ask AI for personalized farming advice"
+msgstr "व्यक्तिगत खेती सलाह के लिए AI से पूछें"
+
+msgid "My Orders"
+msgstr "मेरे ऑर्डर"
+
+msgid "Track and manage your marketplace orders"
+msgstr "अपने ऑर्डर ट्रैक और प्रबंधित करें"
+
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
+msgid "Update your name, location and preferences"
+msgstr "अपना नाम, स्थान और प्राथमिकताएं अपडेट करें"
+
+msgid "Notifications"
+msgstr "सूचनाएं"
+
+msgid "Logout"
+msgstr "लॉग आउट"
+
+# ── Login / Register ──
+msgid "Welcome back"
+msgstr "वापस स्वागत है"
+
+msgid "Sign in to your SmartFarming account"
+msgstr "अपने SmartFarming खाते में साइन इन करें"
+
+msgid "Username"
+msgstr "उपयोगकर्ता नाम"
+
+msgid "Password"
+msgstr "पासवर्ड"
+
+msgid "Remember me"
+msgstr "मुझे याद रखें"
+
+msgid "Forgot password?"
+msgstr "पासवर्ड भूल गए?"
+
+msgid "Sign In"
+msgstr "साइन इन करें"
+
+msgid "New to SmartFarming?"
+msgstr "SmartFarming में नए हैं?"
+
+msgid "Don't have an account?"
+msgstr "खाता नहीं है?"
+
+msgid "Create one free"
+msgstr "मुफ्त बनाएं"
+
+msgid "AI-Powered Crop Recommendations"
+msgstr "AI-संचालित फसल अनुशंसाएं"
+
+msgid "Real-time Weather Integration"
+msgstr "रियल-टाइम मौसम एकीकरण"
+
+msgid "Farm Tools & Pesticide Marketplace"
+msgstr "कृषि उपकरण और कीटनाशक बाज़ार"
+
+msgid "Smart Crop Database"
+msgstr "स्मार्ट फसल डेटाबेस"
+
+# ── Marketplace ──
+msgid "Cart"
+msgstr "कार्ट"
+
+msgid "Your Cart"
+msgstr "आपकी कार्ट"
+
+msgid "Checkout"
+msgstr "चेकआउट"
+
+msgid "Proceed to Checkout"
+msgstr "चेकआउट करें"
+
+msgid "Add to Cart"
+msgstr "कार्ट में जोड़ें"
+
+msgid "Continue Shopping"
+msgstr "खरीदारी जारी रखें"
+
+msgid "Update Cart"
+msgstr "कार्ट अपडेट करें"
+
+msgid "Free delivery"
+msgstr "मुफ्त डिलीवरी"
+
+msgid "Order Summary"
+msgstr "ऑर्डर सारांश"
+
+msgid "Subtotal"
+msgstr "उप-कुल"
+
+msgid "Delivery"
+msgstr "डिलीवरी"
+
+msgid "Total"
+msgstr "कुल"
+
+msgid "Place Order"
+msgstr "ऑर्डर दें"
+
+# ── Checkout / Address ──
+msgid "Delivery Address"
+msgstr "डिलीवरी पता"
+
+msgid "Full Name"
+msgstr "पूरा नाम"
+
+msgid "Phone Number"
+msgstr "फोन नंबर"
+
+msgid "Full Address"
+msgstr "पूरा पता"
+
+msgid "City"
+msgstr "शहर"
+
+msgid "State"
+msgstr "राज्य"
+
+msgid "Pincode"
+msgstr "पिन कोड"
+
+msgid "Landmark"
+msgstr "लैंडमार्क"
+
+msgid "Alternate Phone"
+msgstr "वैकल्पिक फोन"
+
+msgid "Save this address for future orders"
+msgstr "भविष्य के ऑर्डर के लिए यह पता सेव करें"
+
+msgid "Payment Method"
+msgstr "भुगतान तरीका"
+
+msgid "Cash on Delivery"
+msgstr "कैश ऑन डिलीवरी"
+
+msgid "Pay when your order arrives"
+msgstr "ऑर्डर आने पर भुगतान करें"
+
+# ── Order Tracking ──
+msgid "Order Confirmed!"
+msgstr "ऑर्डर की पुष्टि हो गई!"
+
+msgid "Thank you for your purchase. We'll get it to you soon!"
+msgstr "आपकी खरीदारी के लिए धन्यवाद। हम जल्द ही आप तक पहुंचाएंगे!"
+
+msgid "Track Order"
+msgstr "ऑर्डर ट्रैक करें"
+
+msgid "Order ID"
+msgstr "ऑर्डर आईडी"
+
+msgid "Order Status"
+msgstr "ऑर्डर स्थिति"
+
+msgid "Est. Delivery"
+msgstr "अनुमानित डिलीवरी"
+
+msgid "3 – 5 business days"
+msgstr "3 – 5 कार्यदिवस"
+
+msgid "Order Placed"
+msgstr "ऑर्डर दिया गया"
+
+msgid "Processing"
+msgstr "प्रोसेसिंग"
+
+msgid "Shipped"
+msgstr "भेजा गया"
+
+msgid "Order Timeline"
+msgstr "ऑर्डर टाइमलाइन"
+
+msgid "Items Ordered"
+msgstr "ऑर्डर किए गए आइटम"
+
+msgid "All Orders"
+msgstr "सभी ऑर्डर"
+
+msgid "Shop More"
+msgstr "और खरीदारी करें"
+
+# ── Notifications ──
+msgid "No notifications yet"
+msgstr "अभी तक कोई सूचना नहीं"
+
+msgid "View all notifications"
+msgstr "सभी सूचनाएं देखें"
+
+msgid "Got it"
+msgstr "समझ गया"
+
+msgid "Announcement from Admin"
+msgstr "एडमिन से घोषणा"

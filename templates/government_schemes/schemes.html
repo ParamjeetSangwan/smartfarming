@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | Government Schemes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a2e1a 0%, #1a5c35 60%, #0f3d22 100%);
+            color: white;
+        }
+
+        .topbar {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 0 32px; height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .topbar-brand { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+        .topbar-right { display: flex; align-items: center; gap: 10px; }
+        .back-btn {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px; background: rgba(255,255,255,0.1);
+            color: white; border-radius: 8px; text-decoration: none;
+            font-size: 13px; font-weight: 600; transition: all 0.2s;
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.18); }
+
+        .main { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+
+        .page-header { text-align: center; margin-bottom: 40px; animation: fadeUp 0.5s ease; }
+        .page-header .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px;
+            background: rgba(240,192,64,0.15);
+            border: 1px solid rgba(240,192,64,0.3);
+            border-radius: 20px;
+            font-size: 12px; font-weight: 600; color: #f0c040;
+            margin-bottom: 16px;
+        }
+        .page-title { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 10px; }
+        .page-subtitle { font-size: 15px; color: rgba(255,255,255,0.55); }
+
+        .search-bar {
+            max-width: 500px; margin: 0 auto 32px; position: relative;
+            animation: fadeUp 0.5s ease 0.1s both;
+        }
+        .search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 15px; }
+        .search-bar input {
+            width: 100%; padding: 13px 16px 13px 46px;
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 12px; color: white; font-size: 14px;
+            font-family: 'DM Sans', sans-serif; outline: none; transition: all 0.2s;
+        }
+        .search-bar input::placeholder { color: rgba(255,255,255,0.35); }
+        .search-bar input:focus { border-color: #25a244; background: rgba(255,255,255,0.15); }
+
+        .category-filters {
+            display: flex; gap: 8px; flex-wrap: wrap;
+            justify-content: center; margin-bottom: 36px;
+            animation: fadeUp 0.5s ease 0.15s both;
+        }
+        .cat-btn {
+            padding: 7px 16px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; color: rgba(255,255,255,0.65);
+            font-size: 13px; font-weight: 500;
+            cursor: pointer; text-decoration: none; transition: all 0.2s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .cat-btn:hover { background: rgba(255,255,255,0.13); color: white; }
+        .cat-btn.active { background: rgba(37,162,68,0.2); border-color: rgba(37,162,68,0.4); color: #4cca6e; }
+
+        .stats-row {
+            display: flex; gap: 16px; justify-content: center;
+            margin-bottom: 32px; flex-wrap: wrap;
+            animation: fadeUp 0.5s ease 0.2s both;
+        }
+        .stat-pill {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; font-size: 13px; font-weight: 600;
+        }
+        .stat-pill span { color: #4cca6e; }
+
+        .schemes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .scheme-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 24px;
+            transition: all 0.25s;
+            animation: fadeUp 0.5s ease both;
+            position: relative; overflow: hidden;
+        }
+        .scheme-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        }
+        .scheme-card.green::before { background: linear-gradient(90deg, #25a244, #4cca6e); }
+        .scheme-card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .scheme-card.gold::before { background: linear-gradient(90deg, #f0c040, #ffda70); }
+        .scheme-card.orange::before { background: linear-gradient(90deg, #ff7d3b, #ffaa70); }
+        .scheme-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+
+        /* Applied badge on card */
+        .applied-badge {
+            position: absolute; top: 14px; right: 14px;
+            display: flex; align-items: center; gap: 4px;
+            padding: 4px 10px;
+            background: rgba(37,162,68,0.2);
+            border: 1px solid rgba(37,162,68,0.4);
+            border-radius: 20px;
+            font-size: 11px; font-weight: 600; color: #4cca6e;
+        }
+
+        .scheme-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+        .scheme-emoji { font-size: 36px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2)); }
+        .scheme-category {
+            font-size: 10px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 4px 10px; border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .scheme-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+        .scheme-ministry { font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+        .scheme-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 16px; }
+
+        .scheme-benefit {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 12px;
+            background: rgba(37,162,68,0.15);
+            border: 1px solid rgba(37,162,68,0.25);
+            border-radius: 20px;
+            font-size: 12px; font-weight: 600; color: #4cca6e;
+            margin-bottom: 12px;
+        }
+
+        .scheme-eligibility {
+            font-size: 12px; color: rgba(255,255,255,0.4);
+            margin-bottom: 16px;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        .scheme-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .btn-apply {
+            flex: 1; padding: 10px;
+            background: linear-gradient(135deg, #25a244, #4cca6e);
+            color: white; border: none; border-radius: 10px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer; text-decoration: none;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(37,162,68,0.3);
+        }
+        .btn-apply:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,162,68,0.4); color: white; }
+
+        .btn-ai {
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.7);
+            border-radius: 10px; font-size: 13px;
+            cursor: pointer; text-decoration: none;
+            display: flex; align-items: center; gap: 6px;
+            transition: all 0.2s; font-weight: 500;
+        }
+        .btn-ai:hover { background: rgba(255,255,255,0.15); color: white; }
+
+        /* I Applied button */
+        .btn-i-applied {
+            width: 100%;
+            padding: 9px;
+            background: rgba(37,162,68,0.1);
+            border: 1.5px dashed rgba(37,162,68,0.35);
+            color: #4cca6e;
+            border-radius: 10px; font-size: 13px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.2s; margin-top: 8px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .btn-i-applied:hover { background: rgba(37,162,68,0.2); border-style: solid; }
+        .btn-i-applied.done {
+            background: rgba(37,162,68,0.2);
+            border-style: solid;
+            border-color: rgba(37,162,68,0.5);
+            cursor: default;
+        }
+
+        .empty-state { text-align: center; padding: 80px 20px; grid-column: 1 / -1; }
+        .empty-state .emoji { font-size: 56px; display: block; margin-bottom: 16px; opacity: 0.4; }
+        .empty-state p { font-size: 15px; color: rgba(255,255,255,0.4); }
+
+        .notice {
+            margin-top: 40px; padding: 16px 20px;
+            background: rgba(240,192,64,0.08);
+            border: 1px solid rgba(240,192,64,0.2);
+            border-radius: 14px;
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 13px; color: rgba(255,255,255,0.6);
+        }
+        .notice i { color: #f0c040; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+        /* Toast notification */
+        .toast {
+            position: fixed; bottom: 32px; right: 32px;
+            padding: 12px 20px;
+            background: rgba(37,162,68,0.9);
+            border-radius: 12px;
+            font-size: 13px; font-weight: 600; color: white;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            transform: translateY(80px); opacity: 0;
+            transition: all 0.3s; z-index: 999;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .schemes-grid { grid-template-columns: 1fr; }
+            .topbar { padding: 0 16px; }
+            .main { padding: 24px 16px; }
+            .page-title { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-brand">🌾 SmartFarming</div>
+        <div class="topbar-right">
+            <a href="{% url 'ai_recommendations' %}" class="back-btn">
+                <i class="fas fa-robot"></i> AI Assistant
+            </a>
+            <a href="{% url 'dashboard' %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Dashboard
+            </a>
+        </div>
+    </header>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Done!</span>
+    </div>
+
+    <main class="main">
+
+        <!-- HEADER -->
+        <div class="page-header">
+            <div class="badge"><i class="fas fa-landmark"></i> Government of India</div>
+            <div class="page-title">🏛️ Farming Schemes & Benefits</div>
+            <div class="page-subtitle">Latest government schemes, subsidies and benefits for Indian farmers</div>
+        </div>
+
+        <!-- SEARCH -->
+        <form method="GET" class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" name="q" value="{{ search }}" placeholder="Search schemes by name, benefit or category...">
+            {% if selected_category != 'all' %}
+            <input type="hidden" name="category" value="{{ selected_category }}">
+            {% endif %}
+        </form>
+
+        <!-- CATEGORY FILTERS -->
+        <div class="category-filters">
+            {% for cat_id, cat_name, cat_emoji in categories %}
+            <a href="?category={{ cat_id }}{% if search %}&q={{ search }}{% endif %}"
+                class="cat-btn {% if selected_category == cat_id %}active{% endif %}">
+                {{ cat_emoji }} {{ cat_name }}
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-row">
+            <div class="stat-pill"><span>{{ total }}</span> schemes found</div>
+            <div class="stat-pill"><span>12</span> total schemes</div>
+            <div class="stat-pill">Updated <span>2025</span></div>
+        </div>
+
+        <!-- SCHEMES GRID -->
+        <div class="schemes-grid">
+            {% for scheme in schemes %}
+            <div class="scheme-card {{ scheme.color }}" style="animation-delay: {{ forloop.counter0 }}0ms">
+
+                {% if scheme.self_applied %}
+                <div class="applied-badge">
+                    <i class="fas fa-check-circle"></i> Applied
+                </div>
+                {% endif %}
+
+                <div class="scheme-top">
+                    <div class="scheme-emoji">{{ scheme.emoji }}</div>
+                    <span class="scheme-category">{{ scheme.category|title }}</span>
+                </div>
+
+                <div class="scheme-name">{{ scheme.name }}</div>
+                <div class="scheme-ministry">
+                    <i class="fas fa-building" style="font-size:10px;"></i> {{ scheme.ministry }}
+                </div>
+                <div class="scheme-desc">{{ scheme.description }}</div>
+
+                <div class="scheme-benefit">
+                    <i class="fas fa-gift"></i> {{ scheme.benefit }}
+                </div>
+
+                <div class="scheme-eligibility">
+                    <i class="fas fa-users"></i> {{ scheme.eligibility }}
+                </div>
+
+                <div class="scheme-actions">
+                    <!-- Apply button — tracks click via AJAX then opens link -->
+                    <a href="{{ scheme.link }}" target="_blank" class="btn-apply"
+                        onclick="trackApply(event, {{ scheme.id }}, '{{ scheme.link }}')">
+                        <i class="fas fa-external-link-alt"></i> Apply / Learn More
+                    </a>
+                    <!-- Ask AI — pre-fills AI page with this scheme -->
+                    <a href="{% url 'ai_recommendations' %}?scheme={{ scheme.name|urlencode }}"
+                        class="btn-ai" title="Ask AI about this scheme">
+                        <i class="fas fa-robot"></i> Ask AI
+                    </a>
+                </div>
+
+                <!-- I Applied button -->
+                <button class="btn-i-applied {% if scheme.self_applied %}done{% endif %}"
+                    id="applied-btn-{{ scheme.id }}"
+                    onclick="markApplied({{ scheme.id }}, '{{ scheme.name|escapejs }}')"
+                    {% if scheme.self_applied %}disabled{% endif %}>
+                    {% if scheme.self_applied %}
+                        <i class="fas fa-check-circle"></i> You marked this as Applied
+                    {% else %}
+                        <i class="fas fa-check"></i> I Applied for this Scheme
+                    {% endif %}
+                </button>
+
+            </div>
+            {% empty %}
+            <div class="empty-state">
+                <span class="emoji">🔍</span>
+                <p>No schemes found matching your search.<br>Try different keywords.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- NOTICE -->
+        <div class="notice">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong style="color:rgba(255,255,255,0.8);">Important:</strong>
+                Scheme details and eligibility criteria may change. Always verify the latest information from official government websites before applying.
+                Use the <strong style="color:#4cca6e;">Ask AI</strong> button for personalized guidance on any scheme.
+            </div>
+        </div>
+
+    </main>
+
+<script>
+    const CSRF = '{{ csrf_token }}';
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMsg').textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Track "Apply / Learn More" click via AJAX, then open link
+    function trackApply(e, schemeId, link) {
+        e.preventDefault();
+        fetch("{% url 'track_apply_click' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': CSRF,
+            },
+            body: `scheme_id=${schemeId}`
+        }).finally(() => {
+            window.open(link, '_blank');
+        });
+    }
+
+    // "I Applied" button
+    function markApplied(schemeId, schemeName) {
+        const btn = document.getElementById(`applied-btn-${schemeId}`);
+        if (btn.disabled) return;
+
+        fetch("{% url 'mark_self_applied' %}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': CSRF,
+            },
+            body: `scheme_id=${schemeId}`
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.ok) {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> You marked this as Applied';
+                btn.classList.add('done');
+                btn.disabled = true;
+                // Add applied badge to card
+                const card = btn.closest('.scheme-card');
+                if (!card.querySelector('.applied-badge')) {
+                    const badge = document.createElement('div');
+                    badge.className = 'applied-badge';
+                    badge.innerHTML = '<i class="fas fa-check-circle"></i> Applied';
+                    card.appendChild(badge);
+                }
+                showToast(`✅ Marked "${schemeName}" as applied!`);
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -32,6 +32,7 @@
             <div>
                 <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:6px;">Temperature *</label>
                 <input type="text" name="temperature" value="{{ crop.temperature }}" required
+                    placeholder="e.g. 15 to 25"
                     style="width:100%;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;"
                     onfocus="this.style.borderColor='var(--green-bright)'" onblur="this.style.borderColor='var(--gray-200)'">
             </div>
@@ -39,10 +40,16 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
             <div>
                 <label style="display:block;font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:6px;">Season *</label>
+                <!-- FIX: replaced {% for s in "..."|split:"," %} with hardcoded options -->
                 <select name="season" required style="width:100%;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;outline:none;color:var(--gray-800);">
-                    {% for s in "Spring,Summer,Fall,Winter,Kharif,Rabi,Zaid,Year-round"|split:"," %}
-                    <option value="{{ s }}" {% if crop.season == s %}selected{% endif %}>{{ s }}</option>
-                    {% endfor %}
+                    <option value="Spring"    {% if crop.season == "Spring" %}selected{% endif %}>Spring</option>
+                    <option value="Summer"    {% if crop.season == "Summer" %}selected{% endif %}>Summer</option>
+                    <option value="Fall"      {% if crop.season == "Fall" %}selected{% endif %}>Fall</option>
+                    <option value="Winter"    {% if crop.season == "Winter" %}selected{% endif %}>Winter</option>
+                    <option value="Kharif"    {% if crop.season == "Kharif" %}selected{% endif %}>Kharif</option>
+                    <option value="Rabi"      {% if crop.season == "Rabi" %}selected{% endif %}>Rabi</option>
+                    <option value="Zaid"      {% if crop.season == "Zaid" %}selected{% endif %}>Zaid</option>
+                    <option value="Year-round" {% if crop.season == "Year-round" %}selected{% endif %}>Year-round</option>
                 </select>
             </div>
             <div>
@@ -56,7 +63,7 @@
             <button type="submit" style="flex:1;padding:12px;background:var(--green-bright);color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">
                 <i class="fas fa-save"></i> Save Changes
             </button>
-            <a href="{% url 'admin_crops' %}" style="flex:1;padding:12px;background:var(--gray-100);color:var(--gray-600);border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;text-align:center;">Cancel</a>
+            <a href="{% url 'admin_crops' %}" style="flex:1;padding:12px;background:var(--gray-100);color:var(--gray-600);border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Cancel</a>
         </div>
     </form>
 </div>

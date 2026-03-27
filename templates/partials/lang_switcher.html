@@ -1,0 +1,53 @@
+{% load i18n %}
+{# Language Switcher — include this in any topbar with {% include 'partials/lang_switcher.html' %} #}
+<div class="lang-switcher" style="position:relative;">
+    <div class="lang-btn" onclick="toggleLangDrop()" style="display:flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--cb,rgba(255,255,255,.07));border-radius:9px;cursor:pointer;background:var(--card,rgba(255,255,255,.04));color:var(--muted,rgba(238,250,242,.5));font-size:13px;font-weight:500;transition:all .2s;user-select:none;"
+         onmouseover="this.style.borderColor='var(--gb,rgba(34,197,94,.22))';this.style.color='var(--green,#22c55e)'"
+         onmouseout="this.style.borderColor='var(--cb,rgba(255,255,255,.07))';this.style.color='var(--muted,rgba(238,250,242,.5))'">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% if LANGUAGE_CODE == 'hi' %}
+            <span style="font-size:15px;">🇮🇳</span> हिंदी
+        {% else %}
+            <span style="font-size:15px;">🇬🇧</span> English
+        {% endif %}
+        <i class="fas fa-chevron-down" style="font-size:10px;"></i>
+    </div>
+
+    <div id="langDrop" style="display:none;position:absolute;top:44px;right:0;width:150px;background:#0c1d13;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;z-index:500;box-shadow:0 16px 40px rgba(0,0,0,.4);animation:dropIn .2s ease;">
+        <form action="{% url 'set_language' %}" method="post" id="langFormEn">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+            <input name="language" type="hidden" value="en">
+            <button type="submit" style="width:100%;display:flex;align-items:center;gap:10px;padding:12px 16px;font-size:13px;color:{% if LANGUAGE_CODE == 'en' %}#22c55e{% else %}rgba(238,250,242,.6){% endif %};background:{% if LANGUAGE_CODE == 'en' %}rgba(34,197,94,.08){% else %}none{% endif %};border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .2s;"
+                onmouseover="this.style.background='rgba(34,197,94,.1)';this.style.color='#e0ede6'"
+                onmouseout="this.style.background='{% if LANGUAGE_CODE == 'en' %}rgba(34,197,94,.08){% else %}none{% endif %}';this.style.color='{% if LANGUAGE_CODE == 'en' %}#22c55e{% else %}rgba(238,250,242,.6){% endif %}'">
+                <span style="font-size:16px;">🇬🇧</span> English
+                {% if LANGUAGE_CODE == 'en' %}<i class="fas fa-check" style="margin-left:auto;font-size:11px;color:#22c55e;"></i>{% endif %}
+            </button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post" id="langFormHi">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+            <input name="language" type="hidden" value="hi">
+            <button type="submit" style="width:100%;display:flex;align-items:center;gap:10px;padding:12px 16px;font-size:13px;color:{% if LANGUAGE_CODE == 'hi' %}#22c55e{% else %}rgba(238,250,242,.6){% endif %};background:{% if LANGUAGE_CODE == 'hi' %}rgba(34,197,94,.08){% else %}none{% endif %};border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .2s;border-top:1px solid rgba(255,255,255,.05);"
+                onmouseover="this.style.background='rgba(34,197,94,.1)';this.style.color='#e0ede6'"
+                onmouseout="this.style.background='{% if LANGUAGE_CODE == 'hi' %}rgba(34,197,94,.08){% else %}none{% endif %}';this.style.color='{% if LANGUAGE_CODE == 'hi' %}#22c55e{% else %}rgba(238,250,242,.6){% endif %}'">
+                <span style="font-size:16px;">🇮🇳</span> हिंदी
+                {% if LANGUAGE_CODE == 'hi' %}<i class="fas fa-check" style="margin-left:auto;font-size:11px;color:#22c55e;"></i>{% endif %}
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleLangDrop() {
+    const d = document.getElementById('langDrop');
+    d.style.display = d.style.display === 'none' ? 'block' : 'none';
+}
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-switcher')) {
+        const d = document.getElementById('langDrop');
+        if (d) d.style.display = 'none';
+    }
+});
+</script>

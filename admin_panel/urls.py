@@ -27,7 +27,9 @@ urlpatterns = [
 
     # Orders
     path('orders/', views.admin_orders_view, name='admin_orders'),
+    path('orders/analytics/', views.admin_order_analytics_view, name='admin_order_analytics'),
     path('orders/<int:order_id>/', views.admin_order_detail_view, name='admin_order_detail'),
+    path('orders/<int:order_id>/status/', views.admin_order_update_status, name='admin_order_update_status'),
     path('orders/<int:order_id>/delete/', views.admin_order_delete_view, name='admin_order_delete'),
 
     # Crops
@@ -48,4 +50,9 @@ urlpatterns = [
     # Reports & Settings
     path('reports/', views.admin_reports_view, name='admin_reports'),
     path('settings/', views.admin_settings_view, name='admin_settings'),
+
+    # Gov Schemes Tracker
+    path('schemes/', views.admin_schemes_view, name='admin_schemes'),
+    path('schemes/<int:interest_id>/delete/', views.admin_scheme_delete_interest, name='admin_scheme_delete'),
 ]
+

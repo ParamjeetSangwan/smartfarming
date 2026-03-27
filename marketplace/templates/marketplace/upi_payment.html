@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | Pay via UPI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{--bg:#060f0a;--green:#22c55e;--green-lt:#4ade80;--gg:rgba(34,197,94,0.12);--gb:rgba(34,197,94,0.22);--card:rgba(255,255,255,0.04);--cb:rgba(255,255,255,0.07);--text:#eefaf2;--muted:rgba(238,250,242,0.5);--gold:#f59e0b;--red:#f43f5e;}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+        .orb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(80px);z-index:0}
+        .o1{width:500px;height:500px;top:-150px;right:-150px;background:radial-gradient(circle,rgba(34,197,94,.09) 0%,transparent 70%)}
+        .o2{width:400px;height:400px;bottom:-150px;left:-150px;background:radial-gradient(circle,rgba(34,197,94,.06) 0%,transparent 70%)}
+        .card{background:var(--card);border:1px solid var(--cb);border-radius:24px;padding:36px 32px;max-width:440px;width:100%;text-align:center;position:relative;z-index:1;animation:up .5s ease}
+        @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px}
+        .sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+
+        .amount-box{background:var(--gg);border:1px solid var(--gb);border-radius:14px;padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between}
+        .amount-lbl{font-size:12px;color:var(--muted);margin-bottom:3px}
+        .amount-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--green)}
+        .order-ref{font-size:11px;color:var(--muted);text-align:right}
+
+        .qr-wrap{background:white;border-radius:18px;padding:14px;width:220px;height:220px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(34,197,94,.15);overflow:hidden}
+        .qr-wrap img{width:100%;height:100%;object-fit:contain;border-radius:8px}
+        .qr-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:#999}
+
+        .apps-row{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+        .app{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:var(--muted);font-weight:500}
+        .app-icon{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid var(--cb);display:flex;align-items:center;justify-content:center;font-size:20px}
+
+        .steps-box{background:rgba(255,255,255,.03);border:1px solid var(--cb);border-radius:12px;padding:14px 18px;margin-bottom:20px;text-align:left}
+        .step-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;font-size:13px;color:var(--muted);line-height:1.5}
+        .step-row:last-child{margin-bottom:0}
+        .step-num{width:22px;height:22px;border-radius:50%;background:var(--gg);border:1px solid var(--gb);color:var(--green);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+        .timer{font-size:13px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:6px}
+        #timerVal{color:var(--green);font-weight:700}
+
+        /* Transaction ID input */
+        .txn-section{margin-bottom:20px;text-align:left}
+        .txn-label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+        .txn-label .req{color:var(--red);font-size:14px}
+        .txn-input{width:100%;padding:12px 16px;background:rgba(255,255,255,.05);border:1.5px solid var(--cb);border-radius:10px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:all .2s;letter-spacing:.5px}
+        .txn-input::placeholder{color:var(--dim,rgba(238,250,242,0.25));letter-spacing:0}
+        .txn-input:focus{border-color:var(--gb);background:rgba(34,197,94,.04)}
+        .txn-hint{font-size:11px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:5px;line-height:1.5}
+
+        /* Warning note */
+        .note{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:12px;color:var(--gold);display:flex;align-items:flex-start;gap:8px;text-align:left;line-height:1.5}
+
+        /* Error message */
+        .error-msg{background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--red);display:none;align-items:center;gap:8px}
+        .error-msg.show{display:flex}
+
+        .confirm-btn{width:100%;padding:14px;background:var(--green);border:none;border-radius:12px;color:var(--bg);font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+        .confirm-btn:hover{background:var(--green-lt);transform:translateY(-1px)}
+        .confirm-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        .cancel-link{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:color .2s;padding:6px}
+        .cancel-link:hover{color:var(--text)}
+
+        /* Pending verification banner */
+        .verify-note{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:#93c5fd;display:flex;align-items:flex-start;gap:8px;text-align:left;line-height:1.5}
+    </style>
+</head>
+<body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<div class="card">
+    <h2><i class="fas fa-mobile-screen-button" style="color:var(--green);font-size:18px;"></i> Pay via UPI</h2>
+    <p class="sub">Scan with PhonePe, Google Pay, Paytm or any UPI app</p>
+
+    <!-- Amount -->
+    <div class="amount-box">
+        <div>
+            <div class="amount-lbl">Total Amount</div>
+            <div class="amount-val">&#8377;{{ total_price|floatformat:0 }}</div>
+        </div>
+        <div class="order-ref">
+            <div style="font-size:12px;font-weight:600;color:var(--text);">SmartFarming</div>
+            <div>Ref: SF-{{ request.user.id }}-{{ total_price|floatformat:0 }}</div>
+        </div>
+    </div>
+
+    <!-- QR CODE IMAGE — save your QR to static/images/upi_qr.png -->
+    <div class="qr-wrap">
+        <img src="{% static 'images/upi_qr.png' %}" alt="UPI QR Code"
+             id="qrImg"
+             onerror="this.style.display='none';document.getElementById('qrFallback').style.display='flex'">
+        <div id="qrFallback" class="qr-fallback" style="display:none;">
+            <i class="fas fa-qrcode" style="font-size:48px;opacity:.3;"></i>
+            <div style="font-size:11px;text-align:center;color:#999;">Add your QR to<br><code>static/images/upi_qr.png</code></div>
+        </div>
+    </div>
+
+    <!-- UPI Apps -->
+    <div class="apps-row">
+        <div class="app"><div class="app-icon">📱</div>PhonePe</div>
+        <div class="app"><div class="app-icon">🟢</div>GPay</div>
+        <div class="app"><div class="app-icon">💙</div>Paytm</div>
+        <div class="app"><div class="app-icon">🏦</div>BHIM</div>
+        <div class="app"><div class="app-icon">📲</div>Any UPI</div>
+    </div>
+
+    <!-- Steps -->
+    <div class="steps-box">
+        <div class="step-row"><div class="step-num">1</div>Open PhonePe / GPay / Paytm on your phone</div>
+        <div class="step-row"><div class="step-num">2</div>Tap "Scan QR" and scan the code above</div>
+        <div class="step-row"><div class="step-num">3</div>Pay exactly <strong style="color:var(--text);">&#8377;{{ total_price|floatformat:0 }}</strong> — note the UPI Transaction ID shown after payment</div>
+        <div class="step-row"><div class="step-num">4</div>Enter the Transaction ID below and click Confirm</div>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer">
+        <i class="fas fa-clock"></i>
+        Complete payment within <strong id="timerVal">10:00</strong>
+    </div>
+
+    <!-- Error message -->
+    <div class="error-msg" id="errorMsg">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="errorText">Please enter the UPI Transaction ID to confirm your order.</span>
+    </div>
+
+    <!-- Verification note -->
+    <div class="verify-note">
+        <i class="fas fa-shield-check" style="margin-top:1px;flex-shrink:0;"></i>
+        <span>Your order will be placed in <strong style="color:white;">Pending Verification</strong> status. Once admin verifies your payment, it will be confirmed. This usually takes a few minutes.</span>
+    </div>
+
+    <!-- Transaction ID input -->
+    <div class="txn-section">
+        <div class="txn-label">
+            <i class="fas fa-receipt" style="color:var(--green);"></i>
+            UPI Transaction ID <span class="req">*</span>
+        </div>
+        <input type="text" class="txn-input" id="txnInput"
+               placeholder="e.g. 425831674291 or T2503171234ABC"
+               maxlength="50"
+               oninput="onTxnInput(this)">
+        <div class="txn-hint">
+            <i class="fas fa-info-circle"></i>
+            Find this in your UPI app after payment — under "Transaction Details" or "Payment History". It is a 12-digit number or alphanumeric code.
+        </div>
+    </div>
+
+    <!-- Important note -->
+    <div class="note">
+        <i class="fas fa-triangle-exclamation" style="margin-top:1px;flex-shrink:0;"></i>
+        <span>Orders with fake or incorrect Transaction IDs will be cancelled. Only enter the ID after you have actually completed the payment.</span>
+    </div>
+
+    <!-- Confirm form -->
+    <form method="POST" action="{% url 'marketplace:confirm_upi_payment' %}" id="confirmForm">
+        {% csrf_token %}
+        <input type="hidden" name="upi_transaction_id" id="txnHidden">
+        <button type="button" class="confirm-btn" id="confirmBtn" onclick="submitConfirm()">
+            <i class="fas fa-check-circle"></i> Confirm Payment
+        </button>
+    </form>
+
+    <a href="{% url 'marketplace:checkout' %}" class="cancel-link">
+        <i class="fas fa-arrow-left"></i> Back to Checkout
+    </a>
+</div>
+
+<script>
+// Countdown timer
+let secs = 600;
+const el = document.getElementById('timerVal');
+const interval = setInterval(() => {
+    secs--;
+    if (secs <= 0) {
+        clearInterval(interval);
+        el.textContent = 'Expired';
+        el.style.color = '#f43f5e';
+        document.getElementById('confirmBtn').disabled = true;
+        return;
+    }
+    const m = Math.floor(secs / 60), s = secs % 60;
+    el.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+    if (secs <= 60) el.style.color = '#f43f5e';
+}, 1000);
+
+function onTxnInput(el) {
+    // Clear error when user starts typing
+    document.getElementById('errorMsg').classList.remove('show');
+    // Allow only alphanumeric characters
+    el.value = el.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+}
+
+function submitConfirm() {
+    const txn = document.getElementById('txnInput').value.trim();
+
+    if (!txn) {
+        const err = document.getElementById('errorMsg');
+        document.getElementById('errorText').textContent = 'Please enter the UPI Transaction ID to confirm your order.';
+        err.classList.add('show');
+        document.getElementById('txnInput').focus();
+        document.getElementById('txnInput').style.borderColor = '#f43f5e';
+        return;
+    }
+
+    if (txn.length < 8) {
+        const err = document.getElementById('errorMsg');
+        document.getElementById('errorText').textContent = 'Transaction ID seems too short. Please check again.';
+        err.classList.add('show');
+        document.getElementById('txnInput').focus();
+        return;
+    }
+
+    // Set hidden input and submit
+    document.getElementById('txnHidden').value = txn;
+    document.getElementById('confirmBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Confirming...';
+    document.getElementById('confirmBtn').disabled = true;
+    document.getElementById('confirmForm').submit();
+}
+</script>
+</body>
+</html>

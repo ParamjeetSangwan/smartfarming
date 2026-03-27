@@ -1,5 +1,5 @@
-<!-- templates/dashboard.html -->
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,310 +9,369 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0a2e1a 0%, #1a5c35 60%, #0f3d22 100%);
-            position: relative;
-            overflow-x: hidden;
+        :root{
+            --bg:#060f0a;--bg2:#0c1d13;
+            --green:#22c55e;--green-lt:#4ade80;
+            --gg:rgba(34,197,94,0.12);--gb:rgba(34,197,94,0.22);
+            --card:rgba(255,255,255,0.04);--cb:rgba(255,255,255,0.07);
+            --text:#eefaf2;--muted:rgba(238,250,242,0.5);--dim:rgba(238,250,242,0.25);
+            --gold:#f59e0b;--red:#f43f5e;--blue:#3b82f6;
         }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+        .orb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(100px);z-index:0}
+        .o1{width:600px;height:600px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(34,197,94,.1) 0%,transparent 70%)}
+        .o2{width:500px;height:500px;bottom:-150px;left:-150px;background:radial-gradient(circle,rgba(34,197,94,.07) 0%,transparent 70%)}
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: -200px; right: -200px;
-            width: 600px; height: 600px;
-            background: rgba(37,162,68,0.08);
-            border-radius: 50%;
-            pointer-events: none;
-        }
+        /* ── TOPBAR ── */
+        .topbar{position:sticky;top:0;z-index:300;height:64px;background:rgba(6,15,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--cb);display:flex;align-items:center;padding:0 32px;gap:14px}
+        .brand{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+        .brand-dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 2s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+        .tbr{margin-left:auto;display:flex;align-items:center;gap:10px}
 
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -200px; left: -200px;
-            width: 500px; height: 500px;
-            background: rgba(37,162,68,0.06);
-            border-radius: 50%;
-            pointer-events: none;
-        }
+        /* Notification bell — only rendered when authenticated (handled in template) */
+        .bell-wrap{position:relative}
+        .bell-btn{width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--cb);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:15px;transition:all .2s;position:relative}
+        .bell-btn:hover{border-color:var(--gb);color:var(--green);background:var(--gg)}
+        .bell-count{position:absolute;top:-4px;right:-4px;width:18px;height:18px;border-radius:50%;background:var(--red);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
 
-        /* TOPBAR */
-        .topbar {
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding: 0 32px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+        /* Notification dropdown */
+        .notif-drop{position:absolute;top:50px;right:0;width:320px;background:#0c1d13;border:1px solid var(--cb);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:400;display:none;overflow:hidden}
+        .notif-drop.open{display:block;animation:dropIn .2s ease}
+        @keyframes dropIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+        .nd-header{padding:14px 18px;border-bottom:1px solid var(--cb);display:flex;align-items:center;justify-content:space-between}
+        .nd-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700}
+        .nd-badge{background:var(--red);color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+        .nd-item{display:flex;align-items:flex-start;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .2s;text-decoration:none;color:var(--text)}
+        .nd-item:hover{background:rgba(34,197,94,.05)}
+        .nd-item:last-child{border-bottom:none}
+        .nd-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px}
+        .nd-icon.ann{background:rgba(245,158,11,.12);color:var(--gold)}
+        .nd-icon.order{background:rgba(34,197,94,.12);color:var(--green)}
+        .nd-text{font-size:13px;font-weight:600;margin-bottom:2px;line-height:1.4}
+        .nd-sub{font-size:11px;color:var(--muted)}
+        .nd-footer{padding:12px 18px;text-align:center}
+        .nd-footer a{font-size:12px;color:var(--green);text-decoration:none;font-weight:600}
 
-        .topbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Syne', sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            color: white;
-        }
+        /* User dropdown */
+        .user-btn{display:flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--cb);border-radius:10px;cursor:pointer;background:var(--card);transition:all .2s;font-size:13px;font-weight:500;color:var(--text)}
+        .user-btn:hover{border-color:var(--gb);background:var(--gg)}
+        .user-avatar{width:28px;height:28px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;color:var(--bg);font-weight:800;font-size:13px}
+        .user-drop{position:absolute;top:50px;right:0;width:190px;background:#0c1d13;border:1px solid var(--cb);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:400;display:none;overflow:hidden}
+        .user-drop.open{display:block;animation:dropIn .2s ease}
+        .ud-item{display:flex;align-items:center;gap:10px;padding:12px 16px;font-size:13px;color:var(--muted);text-decoration:none;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.04)}
+        .ud-item:hover{background:rgba(34,197,94,.06);color:var(--text)}
+        .ud-item:last-child{border-bottom:none;color:var(--red)}
+        .ud-item:last-child:hover{background:rgba(244,63,94,.06)}
 
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        /* ── MAIN ── */
+        .main{max-width:1100px;margin:0 auto;padding:36px 32px 80px;position:relative;z-index:1}
 
-        .topbar-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 14px 6px 6px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-        }
+        /* Announcement banner */
+        .ann-banner{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.22);border-radius:14px;margin-bottom:28px;animation:up .4s ease}
+        .ann-icon{width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:16px;flex-shrink:0}
+        .ann-body{flex:1;min-width:0}
+        .ann-label{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
+        .ann-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px}
+        .ann-msg{font-size:13px;color:var(--muted);line-height:1.5}
+        .ann-time{font-size:11px;color:var(--dim);margin-top:4px}
+        .ann-close{color:var(--dim);cursor:pointer;font-size:14px;padding:4px;flex-shrink:0;background:none;border:none;transition:color .2s}
+        .ann-close:hover{color:var(--gold)}
 
-        .user-avatar {
-            width: 32px; height: 32px;
-            background: linear-gradient(135deg, #25a244, #4cca6e);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800;
-            font-size: 14px;
-        }
+        /* Welcome */
+        .welcome{text-align:center;margin-bottom:36px;animation:up .5s ease}
+        .welcome h1{font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:8px}
+        .welcome h1 span{color:var(--green)}
+        .welcome p{font-size:15px;color:var(--muted)}
 
-        .btn-logout {
-            padding: 8px 16px;
-            background: rgba(255,71,87,0.15);
-            color: #ff6b7a;
-            border: 1px solid rgba(255,71,87,0.25);
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        /* Stats row */
+        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:32px}
+        .stat{background:var(--card);border:1px solid var(--cb);border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;animation:up .5s ease both}
+        .stat-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+        .si-green{background:rgba(34,197,94,.12);color:var(--green)}
+        .si-blue{background:rgba(59,130,246,.12);color:var(--blue)}
+        .si-gold{background:rgba(245,158,11,.12);color:var(--gold)}
+        .si-red{background:rgba(244,63,94,.12);color:var(--red)}
+        .stat-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800}
+        .stat-lbl{font-size:12px;color:var(--muted);margin-top:2px}
 
-        .btn-logout:hover { background: rgba(255,71,87,0.25); }
+        /* Feature cards */
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+        .feat{background:var(--card);border:1px solid var(--cb);border-radius:18px;padding:28px 22px;text-decoration:none;color:var(--text);transition:all .25s;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;animation:up .5s ease both;position:relative;overflow:hidden}
+        .feat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(34,197,94,.06),transparent);opacity:0;transition:opacity .25s}
+        .feat:hover{border-color:var(--gb);transform:translateY(-4px);box-shadow:0 12px 32px rgba(34,197,94,.12)}
+        .feat:hover::before{opacity:1}
+        .feat-icon{width:56px;height:56px;border-radius:16px;background:var(--gg);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .25s}
+        .feat:hover .feat-icon{transform:scale(1.1)}
+        .feat-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+        .feat-desc{font-size:12px;color:var(--muted);line-height:1.5}
+        .feat-arrow{font-size:11px;color:var(--green);opacity:0;transition:opacity .2s;margin-top:-4px}
+        .feat:hover .feat-arrow{opacity:1}
 
-        /* MAIN */
-        .main {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
+        /* Notification message modal */
+        .msg-modal{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+        .msg-modal.open{display:flex}
+        .msg-box{background:#0c1d13;border:1px solid var(--cb);border-radius:20px;padding:32px;max-width:460px;width:90%;animation:popIn .3s cubic-bezier(.34,1.56,.64,1)}
+        @keyframes popIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+        .msg-box-icon{width:52px;height:52px;border-radius:14px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+        .msg-box-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:8px}
+        .msg-box-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+        .msg-box-time{font-size:11px;color:var(--dim);margin-bottom:20px}
+        .msg-close-btn{width:100%;padding:12px;background:var(--green);border:none;border-radius:10px;color:var(--bg);font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+        .msg-close-btn:hover{background:var(--green-lt)}
 
-        .welcome-section {
-            text-align: center;
-            margin-bottom: 52px;
-            animation: fadeUp 0.5s ease;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .welcome-emoji {
-            font-size: 52px;
-            display: block;
-            margin-bottom: 14px;
-            filter: drop-shadow(0 4px 16px rgba(37,162,68,0.4));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .welcome-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 36px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .welcome-title span { color: #4cca6e; }
-
-        .welcome-subtitle {
-            font-size: 16px;
-            color: rgba(255,255,255,0.55);
-        }
-
-        /* GRID */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 28px 24px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            transition: all 0.25s cubic-bezier(.4,0,.2,1);
-            position: relative;
-            overflow: hidden;
-            animation: fadeUp 0.5s ease both;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #25a244, #4cca6e);
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .card:hover {
-            background: rgba(255,255,255,0.13);
-            transform: translateY(-6px);
-            border-color: rgba(37,162,68,0.4);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-        }
-
-        .card:hover::before { opacity: 1; }
-
-        .card-emoji {
-            font-size: 40px;
-            display: block;
-            margin-bottom: 14px;
-            transition: transform 0.2s;
-        }
-
-        .card:hover .card-emoji { transform: scale(1.15); }
-
-        .card-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: white;
-        }
-
-        .card-desc {
-            font-size: 12px;
-            color: rgba(255,255,255,0.45);
-            line-height: 1.5;
-        }
-
-        /* Animation delays */
-        .card:nth-child(1) { animation-delay: 0.05s; }
-        .card:nth-child(2) { animation-delay: 0.10s; }
-        .card:nth-child(3) { animation-delay: 0.15s; }
-        .card:nth-child(4) { animation-delay: 0.20s; }
-        .card:nth-child(5) { animation-delay: 0.25s; }
-        .card:nth-child(6) { animation-delay: 0.30s; }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-bottom: 32px;
-            color: rgba(255,255,255,0.25);
-            font-size: 13px;
-        }
-
-        @media (max-width: 600px) {
-            .welcome-title { font-size: 26px; }
-            .topbar { padding: 0 16px; }
-            .main { padding: 32px 16px; }
-        }
+        @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){.topbar,.main{padding-left:16px;padding-right:16px}.grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:480px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
     </style>
 </head>
 <body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
 
-    <!-- TOPBAR -->
-    <header class="topbar">
-        <div class="topbar-brand">
-            🌾 SmartFarming
-        </div>
-        <div class="topbar-right">
-            <div class="topbar-user">
-                <div class="user-avatar">{{ name|first|upper }}</div>
-                {{ name }}
+<!-- ── TOPBAR ── -->
+<header class="topbar">
+    <a href="{% url 'dashboard' %}" class="brand">
+        <div class="brand-dot"></div>SmartFarming
+    </a>
+
+    <div class="tbr">
+        {% if request.user.is_authenticated %}
+        <!-- LANGUAGE SWITCHER -->
+        <!-- {% include 'partials/lang_switcher.html' %} -->
+        <!-- NOTIFICATION BELL — only shown when logged in -->
+        <div class="bell-wrap">
+            <button class="bell-btn" onclick="toggleNotif()" id="bellBtn">
+                <i class="fas fa-bell"></i>
+                {% if unread_count > 0 %}
+                <span class="bell-count">{{ unread_count }}</span>
+                {% endif %}
+            </button>
+
+            <div class="notif-drop" id="notifDrop">
+                <div class="nd-header">
+                    <span class="nd-title">{% trans "Notifications" %}</span>
+                    {% if unread_count > 0 %}
+                    <span class="nd-badge">{{ unread_count }}</span>
+                    {% endif %}
+                </div>
+
+                {% for notif in notifications %}
+                <!-- Clicking opens full message modal -->
+                <div class="nd-item" onclick="openMsg('{{ notif.title|escapejs }}','{{ notif.message|escapejs }}','{{ notif.created_at|timesince }}')">
+                    <div class="nd-icon {% if notif.notification_type == 'announcement' %}ann{% else %}order{% endif %}">
+                        <i class="fas {% if notif.notification_type == 'announcement' %}fa-bullhorn{% elif notif.notification_type == 'alert' %}fa-triangle-exclamation{% else %}fa-bell{% endif %}"></i>
+                    </div>
+                    <div style="flex:1;min-width:0">
+                        <div class="nd-text">{{ notif.title|truncatechars:40 }}</div>
+                        <div class="nd-sub">{{ notif.message|truncatechars:55 }}</div>
+                        <div class="nd-sub" style="margin-top:3px;color:var(--dim);">{{ notif.created_at|timesince }} ago</div>
+                    </div>
+                </div>
+                {% empty %}
+                <div style="padding:32px;text-align:center;color:var(--dim);font-size:13px;">
+                    <i class="fas fa-bell-slash" style="font-size:24px;opacity:.3;display:block;margin-bottom:8px;"></i>
+                    No notifications yet
+                </div>
+                {% endfor %}
+
+                <div class="nd-footer">
+                    <a href="{% url 'notifications' %}">View all notifications →</a>
+                </div>
             </div>
-            <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn-logout">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </form>
-        </div>
-    </header>
-
-    <!-- MAIN -->
-    <main class="main">
-        <div class="welcome-section">
-            <span class="welcome-emoji">🌾</span>
-            <div class="welcome-title">Welcome back, <span>{{ name }}</span>!</div>
-            <div class="welcome-subtitle">What would you like to do today?</div>
         </div>
 
-        <div class="cards-grid">
-            <a href="{% url 'weather' %}" class="card">
-                <span class="card-emoji">🌤️</span>
-                <div class="card-title">Weather</div>
-                <div class="card-desc">Check real-time weather for your farm location</div>
-            </a>
-
-            <a href="{% url 'crop_suggestion' %}" class="card">
-                <span class="card-emoji">🌱</span>
-                <div class="card-title">Crop Suggestion</div>
-                <div class="card-desc">Get smart recommendations based on soil & climate</div>
-            </a>
-
-            <a href="{% url 'marketplace:marketplace_home' %}" class="card">
-                <span class="card-emoji">🛒</span>
-                <div class="card-title">Marketplace</div>
-                <div class="card-desc">Browse tools, equipment and pesticides</div>
-            </a>
-
-            <a href="{% url 'ai_recommendations' %}" class="card">
-                <span class="card-emoji">🤖</span>
-                <div class="card-title">AI Recommendations</div>
-                <div class="card-desc">Ask AI for personalized farming advice</div>
-            </a>
-
-            <a href="{% url 'marketplace:my_orders' %}" class="card">
-                <span class="card-emoji">📦</span>
-                <div class="card-title">My Orders</div>
-                <div class="card-desc">Track and manage your marketplace orders</div>
-            </a>
-
-            <a href="{% url 'profile' %}" class="card">
-                <span class="card-emoji">👤</span>
-                <div class="card-title">Profile</div>
-                <div class="card-desc">Update your name, location and preferences</div>
-            </a>
+        <!-- USER DROPDOWN -->
+        <div style="position:relative;">
+            <div class="user-btn" onclick="toggleUser()">
+                <div class="user-avatar">{{ request.user.username|first|upper }}</div>
+                <span>{{ request.user.username }}</span>
+                <i class="fas fa-chevron-down" style="font-size:11px;color:var(--dim);"></i>
+            </div>
+            <div class="user-drop" id="userDrop">
+                <a href="{% url 'profile' %}" class="ud-item"><i class="fas fa-user"></i> My Profile</a>
+                <a href="{% url 'marketplace:my_orders' %}" class="ud-item"><i class="fas fa-box"></i> My Orders</a>
+                <a href="{% url 'notifications' %}" class="ud-item"><i class="fas fa-bell"></i> Notifications</a>
+                <form method="post" action="{% url 'logout' %}" style="margin:0;">
+                    {% csrf_token %}
+                    <button type="submit" class="ud-item" style="width:100%;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+            </div>
         </div>
-    </main>
+        {% endif %}
+    </div>
+</header>
 
-    <div class="footer">© 2025 SmartFarming — Empowering farmers with technology 🌾</div>
+<!-- ── MAIN ── -->
+<main class="main">
 
+    <!-- ANNOUNCEMENT BANNER -->
+    {% if latest_announcement %}
+    <div class="ann-banner" id="annBanner">
+        <div class="ann-icon"><i class="fas fa-bullhorn"></i></div>
+        <div class="ann-body">
+            <div class="ann-label">📢 Announcement from Admin</div>
+            <div class="ann-title">{{ latest_announcement.title }}</div>
+            <div class="ann-msg">{{ latest_announcement.message }}</div>
+            <div class="ann-time">{{ latest_announcement.created_at|timesince }} ago · by {{ latest_announcement.created_by.username }}</div>
+        </div>
+        <button class="ann-close" onclick="document.getElementById('annBanner').style.display='none'">
+            <i class="fas fa-xmark"></i>
+        </button>
+    </div>
+    {% endif %}
+
+    <!-- WELCOME -->
+    <div class="welcome">
+        <h1>{% trans "Welcome back" %}, <span>{{ name }}</span>! 👋</h1>
+        <p>{% trans "What would you like to do today?" %}</p>
+    </div>
+
+    <!-- STATS ROW -->
+    <div class="stats">
+        <div class="stat" style="animation-delay:.05s">
+            <div class="stat-icon si-green"><i class="fas fa-shopping-bag"></i></div>
+            <div><div class="stat-val">{{ total_orders }}</div><div class="stat-lbl">{% trans "Total Orders" %}</div></div>
+        </div>
+        <div class="stat" style="animation-delay:.1s">
+            <div class="stat-icon si-blue"><i class="fas fa-check-circle"></i></div>
+            <div><div class="stat-val">{{ delivered_orders }}</div><div class="stat-lbl">{% trans "Delivered" %}</div></div>
+        </div>
+        <div class="stat" style="animation-delay:.15s">
+            <div class="stat-icon si-gold"><i class="fas fa-clock"></i></div>
+            <div><div class="stat-val">{{ pending_orders }}</div><div class="stat-lbl">{% trans "Pending" %}</div></div>
+        </div>
+        <div class="stat" style="animation-delay:.2s">
+            <div class="stat-icon si-red"><i class="fas fa-robot"></i></div>
+            <div><div class="stat-val">{{ ai_queries }}</div><div class="stat-lbl">{% trans "AI Queries" %}</div></div>
+        </div>
+    </div>
+
+    <!-- FEATURE CARDS -->
+    <div class="grid">
+        <a href="{% url 'weather' %}" class="feat" style="animation-delay:.06s">
+            <div class="feat-icon">🌤️</div>
+            <div>
+                <div class="feat-name">{% trans "Weather" %}</div>
+                <div class="feat-desc">{% trans "Check real-time weather for your farm location" %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        <a href="{% url 'crop_suggestion' %}" class="feat" style="animation-delay:.1s">
+            <div class="feat-icon">🌱</div>
+            <div>
+                <div class="feat-name">{% trans "Crop Suggestion" %}</div>
+                <div class="feat-desc">Smart recommendations based on soil & climate</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        <a href="{% url 'marketplace:marketplace_home' %}" class="feat" style="animation-delay:.14s">
+            <div class="feat-icon">🛒</div>
+            <div>
+                <div class="feat-name">{% trans "Marketplace" %}</div>
+                <div class="feat-desc">{% trans "Browse tools, equipment and pesticides" %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        <a href="{% url 'ai_recommendations' %}" class="feat" style="animation-delay:.18s">
+            <div class="feat-icon">🤖</div>
+            <div>
+                <div class="feat-name">{% trans "AI Recommendations" %}</div>
+                <div class="feat-desc">{% trans "Ask AI for personalized farming advice" %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        <a href="{% url 'marketplace:my_orders' %}" class="feat" style="animation-delay:.22s">
+            <div class="feat-icon">📦</div>
+            <div>
+                <div class="feat-name">{% trans "My Orders" %}</div>
+                <div class="feat-desc">{% trans "Track and manage your marketplace orders" %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        <a href="{% url 'profile' %}" class="feat" style="animation-delay:.26s">
+            <div class="feat-icon">👤</div>
+            <div>
+                <div class="feat-name">{% trans "Profile" %}</div>
+                <div class="feat-desc">{% trans "Update your name, location and preferences" %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        {% if unread_count > 0 %}
+
+        <a href="{% url 'government_schemes' %}" class="feat" style="animation-delay:.28s">
+            <div class="feat-icon">🏛️</div>
+            <div>
+                <div class="feat-name">Gov Schemes</div>
+                <div class="feat-desc">
+                    Latest government farming schemes & benefits
+                </div>
+            </div>
+            <div class="feat-arrow">
+                <i class="fas fa-arrow-right"></i> Open
+            </div>
+        </a>
+
+
+        <a href="{% url 'notifications' %}" class="feat" style="animation-delay:.3s;border-color:rgba(245,158,11,.3);">
+            <div class="feat-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3);">🔔</div>
+            <div>
+                <div class="feat-name">{% trans "Notifications" %}</div>
+                <div class="feat-desc" style="color:var(--gold);">{{ unread_count }} unread message{% if unread_count != 1 %}s{% endif %}</div>
+            </div>
+            <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
+        </a>
+        {% endif %}
+    </div>
+
+</main>
+
+<!-- NOTIFICATION MESSAGE MODAL -->
+<div class="msg-modal" id="msgModal" onclick="if(event.target===this)closeMsgModal()">
+    <div class="msg-box">
+        <div class="msg-box-icon"><i class="fas fa-bullhorn" style="color:var(--gold);"></i></div>
+        <div class="msg-box-title" id="msgTitle"></div>
+        <div class="msg-box-time" id="msgTime"></div>
+        <div class="msg-box-body" id="msgBody"></div>
+        <button class="msg-close-btn" onclick="closeMsgModal()">{% trans "Got it" %}</button>
+    </div>
+</div>
+
+<script>
+// Notification bell toggle
+function toggleNotif() {
+    document.getElementById('notifDrop').classList.toggle('open');
+    document.getElementById('userDrop').classList.remove('open');
+}
+// User dropdown toggle
+function toggleUser() {
+    document.getElementById('userDrop').classList.toggle('open');
+    document.getElementById('notifDrop').classList.remove('open');
+}
+// Close dropdowns on outside click
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.bell-wrap') && !e.target.closest('[onclick="toggleNotif()"]')) {
+        document.getElementById('notifDrop')?.classList.remove('open');
+    }
+    if (!e.target.closest('[onclick="toggleUser()"]') && !e.target.closest('.user-drop')) {
+        document.getElementById('userDrop')?.classList.remove('open');
+    }
+});
+
+// Open full notification message
+function openMsg(title, message, time) {
+    document.getElementById('msgTitle').textContent = title;
+    document.getElementById('msgBody').textContent = message;
+    document.getElementById('msgTime').textContent = time + ' ago';
+    document.getElementById('msgModal').classList.add('open');
+    document.getElementById('notifDrop').classList.remove('open');
+}
+function closeMsgModal() {
+    document.getElementById('msgModal').classList.remove('open');
+}
+</script>
 </body>
 </html>

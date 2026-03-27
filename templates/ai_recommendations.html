@@ -20,7 +20,6 @@
             overflow: hidden;
         }
 
-        /* TOPBAR */
         .topbar {
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
@@ -32,7 +31,6 @@
             justify-content: space-between;
             flex-shrink: 0;
         }
-
         .topbar-left { display: flex; align-items: center; gap: 16px; }
         .topbar-brand { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: white; }
 
@@ -42,17 +40,9 @@
             background: rgba(37,162,68,0.15);
             border: 1px solid rgba(37,162,68,0.3);
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #4cca6e;
+            font-size: 12px; font-weight: 600; color: #4cca6e;
         }
-
-        .ai-dot {
-            width: 6px; height: 6px;
-            background: #4cca6e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+        .ai-dot { width: 6px; height: 6px; background: #4cca6e; border-radius: 50%; animation: pulse 2s infinite; }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -74,17 +64,24 @@
             padding: 8px 14px;
             background: rgba(255,71,87,0.12);
             border: 1px solid rgba(255,71,87,0.2);
-            color: #ff6b7a;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'DM Sans', sans-serif;
+            color: #ff6b7a; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            cursor: pointer; font-family: 'DM Sans', sans-serif;
             transition: all 0.2s;
         }
         .clear-btn:hover { background: rgba(255,71,87,0.2); }
 
-        /* CHAT AREA */
+        .schemes-btn {
+            display: flex; align-items: center; gap: 6px;
+            padding: 8px 14px;
+            background: rgba(240,192,64,0.15);
+            border: 1px solid rgba(240,192,64,0.3);
+            color: #f0c040; border-radius: 8px;
+            font-size: 13px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .schemes-btn:hover { background: rgba(240,192,64,0.25); }
+
         .chat-wrapper {
             flex: 1;
             display: flex;
@@ -104,28 +101,33 @@
             flex-direction: column;
             gap: 16px;
         }
-
         .chat-box::-webkit-scrollbar { width: 4px; }
         .chat-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
 
-        /* WELCOME */
         .welcome-msg {
             text-align: center;
             padding: 40px 20px;
             opacity: 0.7;
         }
-
         .welcome-msg .emoji { font-size: 48px; display: block; margin-bottom: 12px; }
         .welcome-msg h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
         .welcome-msg p { font-size: 14px; color: rgba(255,255,255,0.5); }
 
-        /* MESSAGES */
-        .msg-row {
-            display: flex;
-            gap: 10px;
-            animation: fadeUp 0.3s ease;
+        .suggestions {
+            display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+            margin-top: 16px;
         }
+        .suggestion-chip {
+            padding: 6px 14px;
+            background: rgba(37,162,68,0.15);
+            border: 1px solid rgba(37,162,68,0.25);
+            border-radius: 20px;
+            font-size: 12px; color: #4cca6e;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .suggestion-chip:hover { background: rgba(37,162,68,0.3); }
 
+        .msg-row { display: flex; gap: 10px; animation: fadeUp 0.3s ease; }
         .msg-row.user { flex-direction: row-reverse; }
 
         @keyframes fadeUp {
@@ -137,18 +139,12 @@
             width: 34px; height: 34px;
             border-radius: 10px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 16px;
-            flex-shrink: 0;
-            margin-top: 2px;
+            font-size: 16px; flex-shrink: 0; margin-top: 2px;
         }
-
         .msg-row.user .msg-avatar {
             background: linear-gradient(135deg, #25a244, #4cca6e);
-            font-size: 14px;
-            font-weight: 800;
-            font-family: 'Syne', sans-serif;
+            font-size: 14px; font-weight: 800; font-family: 'Syne', sans-serif;
         }
-
         .msg-row.ai .msg-avatar { background: rgba(255,255,255,0.1); }
 
         .msg-bubble {
@@ -159,13 +155,10 @@
             line-height: 1.6;
             position: relative;
         }
-
         .msg-row.user .msg-bubble {
             background: linear-gradient(135deg, #25a244, #1a7a35);
-            border-bottom-right-radius: 4px;
-            color: white;
+            border-bottom-right-radius: 4px; color: white;
         }
-
         .msg-row.ai .msg-bubble {
             background: rgba(255,255,255,0.08);
             border: 1px solid rgba(255,255,255,0.1);
@@ -173,50 +166,52 @@
             color: rgba(255,255,255,0.9);
         }
 
+        /* Image preview in bubble */
+        .msg-image {
+            max-width: 200px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
         .msg-delete {
-            position: absolute;
-            top: -8px; right: -8px;
+            position: absolute; top: -8px; right: -8px;
             width: 22px; height: 22px;
             background: rgba(255,71,87,0.8);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 11px;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            border: none; border-radius: 50%;
+            color: white; font-size: 11px;
+            cursor: pointer; display: none;
+            align-items: center; justify-content: center;
         }
-
         .msg-row:hover .msg-delete { display: flex; }
 
-        /* TYPING INDICATOR */
-        .typing-indicator {
-            display: none;
-            align-items: center;
-            gap: 10px;
-            padding: 0;
+        .msg-speak {
+            position: absolute; top: -8px; left: -8px;
+            width: 22px; height: 22px;
+            background: rgba(37,162,68,0.8);
+            border: none; border-radius: 50%;
+            color: white; font-size: 10px;
+            cursor: pointer; display: none;
+            align-items: center; justify-content: center;
+            transition: all 0.2s;
         }
+        .msg-row.ai:hover .msg-speak { display: flex; }
 
+        .typing-indicator { display: none; align-items: center; gap: 10px; }
         .typing-indicator.show { display: flex; }
-
         .typing-dots {
             display: flex; gap: 4px;
             padding: 14px 18px;
             background: rgba(255,255,255,0.08);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 18px;
-            border-bottom-left-radius: 4px;
+            border-radius: 18px; border-bottom-left-radius: 4px;
         }
-
         .typing-dots span {
             width: 6px; height: 6px;
             background: rgba(255,255,255,0.4);
             border-radius: 50%;
             animation: bounce 1.4s infinite;
         }
-
         .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
         .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 
@@ -225,7 +220,6 @@
             30% { transform: translateY(-8px); }
         }
 
-        /* INPUT AREA */
         .input-area {
             padding: 16px 0 20px;
             border-top: 1px solid rgba(255,255,255,0.08);
@@ -233,78 +227,163 @@
         }
 
         .input-options {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            display: flex; align-items: center;
+            gap: 10px; margin-bottom: 10px;
         }
 
         .followup-label {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-            cursor: pointer;
+            display: flex; align-items: center; gap: 7px;
+            font-size: 12px; color: rgba(255,255,255,0.5); cursor: pointer;
+        }
+        .followup-label input[type="checkbox"] { width: 14px; height: 14px; accent-color: #25a244; }
+
+        /* ── IMAGE UPLOAD PREVIEW ── */
+        .upload-preview {
+            display: none;
+            align-items: center; gap: 10px;
+            padding: 10px 14px;
+            background: rgba(37,162,68,0.1);
+            border: 1px solid rgba(37,162,68,0.2);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        .upload-preview.show { display: flex; }
+        .upload-preview img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; }
+        .upload-preview-name { flex: 1; color: rgba(255,255,255,0.8); font-size: 12px; }
+        .upload-remove {
+            background: none; border: none; color: rgba(255,255,255,0.4);
+            cursor: pointer; font-size: 16px; padding: 2px 6px;
+            transition: color 0.2s;
+        }
+        .upload-remove:hover { color: #ff4757; }
+
+        /* ── UPLOAD ERROR ── */
+        .upload-error {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 14px;
+            background: rgba(255,71,87,0.1);
+            border: 1px solid rgba(255,71,87,0.2);
+            border-radius: 8px;
+            font-size: 12px; color: #ff6b7a;
+            margin-bottom: 10px;
         }
 
-        .followup-label input[type="checkbox"] {
-            width: 14px; height: 14px;
-            accent-color: #25a244;
-        }
-
-        .input-row {
-            display: flex;
-            gap: 10px;
-            align-items: flex-end;
-        }
-
+        .input-row { display: flex; gap: 10px; align-items: flex-end; }
         .input-wrap { flex: 1; position: relative; }
 
         textarea {
             width: 100%;
-            padding: 14px 18px;
+            padding: 14px 88px 14px 18px;
             background: rgba(255,255,255,0.08);
             border: 1.5px solid rgba(255,255,255,0.12);
             border-radius: 14px;
-            color: white;
-            font-size: 14px;
+            color: white; font-size: 14px;
             font-family: 'DM Sans', sans-serif;
-            resize: none;
-            outline: none;
-            transition: all 0.2s;
-            line-height: 1.5;
-            min-height: 52px;
-            max-height: 120px;
+            resize: none; outline: none; transition: all 0.2s;
+            line-height: 1.5; min-height: 52px; max-height: 120px;
         }
-
         textarea::placeholder { color: rgba(255,255,255,0.3); }
         textarea:focus { border-color: #25a244; background: rgba(255,255,255,0.12); }
+
+        /* ── UPLOAD BUTTON ── */
+        .upload-btn {
+            position: absolute;
+            right: 48px; top: 50%;
+            transform: translateY(-50%);
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.1);
+            border: none; border-radius: 50%;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .upload-btn:hover { background: rgba(240,192,64,0.3); color: #f0c040; }
+        .upload-btn.has-file { background: rgba(37,162,68,0.3); color: #4cca6e; }
+
+        /* ── VOICE BUTTON ── */
+        .voice-btn {
+            position: absolute;
+            right: 12px; top: 50%;
+            transform: translateY(-50%);
+            width: 32px; height: 32px;
+            background: rgba(255,255,255,0.1);
+            border: none; border-radius: 50%;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .voice-btn:hover { background: rgba(37,162,68,0.3); color: #4cca6e; }
+        .voice-btn.recording {
+            background: rgba(255,71,87,0.3);
+            color: #ff4757;
+            animation: recordPulse 1s infinite;
+        }
+
+        @keyframes recordPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,71,87,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(255,71,87,0); }
+        }
+
+        .voice-status {
+            display: none;
+            align-items: center; gap: 8px;
+            padding: 8px 14px;
+            background: rgba(255,71,87,0.1);
+            border: 1px solid rgba(255,71,87,0.2);
+            border-radius: 8px;
+            font-size: 12px; color: #ff6b7a;
+            margin-bottom: 10px;
+        }
+        .voice-status.show { display: flex; }
+        .voice-status .dot {
+            width: 8px; height: 8px;
+            background: #ff4757; border-radius: 50%;
+            animation: recordPulse 1s infinite;
+        }
 
         .send-btn {
             width: 52px; height: 52px;
             background: linear-gradient(135deg, #25a244, #4cca6e);
-            border: none;
-            border-radius: 14px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: none; border-radius: 14px;
+            color: white; font-size: 18px;
+            cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 14px rgba(37,162,68,0.35);
             flex-shrink: 0;
         }
-
         .send-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,162,68,0.4); }
-        .send-btn:active { transform: translateY(0); }
+
+        .no-voice-banner {
+            display: none;
+            padding: 8px 14px;
+            background: rgba(255,125,59,0.1);
+            border: 1px solid rgba(255,125,59,0.2);
+            border-radius: 8px;
+            font-size: 12px; color: #ff9f70;
+            margin-bottom: 10px;
+        }
+
+        /* Scheme prefill banner */
+        .scheme-banner {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 16px;
+            background: rgba(240,192,64,0.1);
+            border: 1px solid rgba(240,192,64,0.25);
+            border-radius: 10px;
+            font-size: 13px; color: #f0c040;
+            margin-bottom: 10px;
+        }
+        .scheme-banner i { font-size: 15px; }
 
         @media (max-width: 600px) {
             .topbar { padding: 0 16px; }
             .chat-wrapper { padding: 0 12px; }
             .msg-bubble { max-width: 85%; }
             .topbar-left .ai-badge { display: none; }
+            .schemes-btn span { display: none; }
         }
     </style>
 </head>
@@ -320,6 +399,10 @@
             </div>
         </div>
         <div class="topbar-right">
+            <a href="{% url 'government_schemes' %}" class="schemes-btn">
+                <i class="fas fa-landmark"></i>
+                <span>Gov Schemes</span>
+            </a>
             <form method="POST" style="display:inline;">
                 {% csrf_token %}
                 <button type="submit" name="clear_all" value="1" class="clear-btn">
@@ -340,7 +423,18 @@
             <div class="welcome-msg">
                 <span class="emoji">🤖</span>
                 <h3>Smart Farming AI Assistant</h3>
-                <p>Ask me anything about crops, soil, weather, pests,<br>fertilizers or farming techniques!</p>
+                <p>Ask me anything about crops, soil, weather, pests,<br>fertilizers, schemes or upload a photo for analysis!</p>
+                <div class="suggestions">
+                    <span class="suggestion-chip" onclick="fillPrompt('Best crops for black soil in winter?')">🌾 Best crops for black soil</span>
+                    <span class="suggestion-chip" onclick="fillPrompt('How to control pests organically?')">🐛 Organic pest control</span>
+                    <span class="suggestion-chip" onclick="fillPrompt('What fertilizer is best for wheat?')">🌿 Fertilizer for wheat</span>
+                    <span class="suggestion-chip" onclick="fillPrompt('How much water does rice need?')">💧 Water for rice</span>
+                    <span class="suggestion-chip" onclick="fillPrompt('Which government schemes are best for small farmers?')">🏛️ Best gov schemes</span>
+                </div>
+                <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.35);">
+                    <i class="fas fa-microphone"></i> Speak your question &nbsp;|&nbsp;
+                    <i class="fas fa-image"></i> Upload crop/soil photo for AI analysis
+                </div>
             </div>
             {% endif %}
 
@@ -353,6 +447,9 @@
                 <div class="msg-avatar">🤖</div>
                 <div class="msg-bubble" style="position:relative;">
                     {{ item.response }}
+                    <button class="msg-speak" onclick="speakText(this)" title="Listen">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
                     <form method="POST" style="display:inline;">
                         {% csrf_token %}
                         <input type="hidden" name="delete_id" value="{{ item.id }}">
@@ -365,11 +462,15 @@
             {% if response %}
             <div class="msg-row ai">
                 <div class="msg-avatar">🤖</div>
-                <div class="msg-bubble">{{ response }}</div>
+                <div class="msg-bubble" style="position:relative;">
+                    {{ response }}
+                    <button class="msg-speak" onclick="speakText(this)" title="Listen">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
             </div>
             {% endif %}
 
-            <!-- Typing indicator -->
             <div class="typing-indicator" id="typingIndicator">
                 <div class="msg-avatar" style="background:rgba(255,255,255,0.1);font-size:16px;">🤖</div>
                 <div class="typing-dots">
@@ -380,7 +481,43 @@
 
         <!-- INPUT -->
         <div class="input-area">
-            <form method="POST" id="chatForm" onsubmit="showTyping()">
+
+            <!-- Scheme pre-fill banner -->
+            {% if initial_prompt %}
+            <div class="scheme-banner">
+                <i class="fas fa-landmark"></i>
+                Asking AI about a government scheme — question pre-filled below.
+            </div>
+            {% endif %}
+
+            <!-- Upload error -->
+            {% if upload_error %}
+            <div class="upload-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{ upload_error }}
+            </div>
+            {% endif %}
+
+            <!-- Voice Status -->
+            <div class="voice-status" id="voiceStatus">
+                <div class="dot"></div>
+                <span id="voiceStatusText">Listening... speak now</span>
+            </div>
+
+            <!-- No voice support -->
+            <div class="no-voice-banner" id="noVoiceBanner">
+                <i class="fas fa-exclamation-triangle"></i>
+                Voice input not supported in this browser. Try Chrome or Edge.
+            </div>
+
+            <!-- Image upload preview -->
+            <div class="upload-preview" id="uploadPreview">
+                <img id="uploadThumb" src="" alt="preview">
+                <span class="upload-preview-name" id="uploadName"></span>
+                <button type="button" class="upload-remove" onclick="removeUpload()" title="Remove">×</button>
+            </div>
+
+            <form method="POST" id="chatForm" enctype="multipart/form-data" onsubmit="showTyping()">
                 {% csrf_token %}
                 <div class="input-options">
                     <label class="followup-label">
@@ -390,9 +527,28 @@
                 </div>
                 <div class="input-row">
                     <div class="input-wrap">
-                        <textarea name="prompt" id="promptInput" placeholder="Ask about crops, soil, weather, pests..." rows="1" required></textarea>
+                        <textarea name="prompt" id="promptInput"
+                            placeholder="Ask about crops, soil, weather, pests... or click 📎 to upload image"
+                            rows="1">{% if initial_prompt %}{{ initial_prompt }}{% endif %}</textarea>
+
+                        <!-- Hidden file input -->
+                        <input type="file" name="upload_file" id="fileInput"
+                            accept="image/jpeg,image/png,image/gif,image/webp"
+                            style="display:none;" onchange="handleFileSelect(this)">
+
+                        <!-- Upload button -->
+                        <button type="button" class="upload-btn" id="uploadBtn"
+                            onclick="document.getElementById('fileInput').click()"
+                            title="Upload image for AI analysis">
+                            <i class="fas fa-paperclip" id="uploadIcon"></i>
+                        </button>
+
+                        <!-- Voice button -->
+                        <button type="button" class="voice-btn" id="voiceBtn" onclick="toggleVoice()" title="Click to speak">
+                            <i class="fas fa-microphone" id="voiceIcon"></i>
+                        </button>
                     </div>
-                    <button type="submit" class="send-btn">
+                    <button type="submit" class="send-btn" id="sendBtn">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -400,31 +556,189 @@
         </div>
     </div>
 
-    <script>
-        // Auto scroll to bottom
-        const chatBox = document.getElementById('chatBox');
+<script>
+    // ── AUTO SCROLL ──
+    const chatBox = document.getElementById('chatBox');
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // ── TYPING INDICATOR ──
+    function showTyping() {
+        document.getElementById('typingIndicator').classList.add('show');
         chatBox.scrollTop = chatBox.scrollHeight;
+    }
 
-        // Show typing indicator on submit
-        function showTyping() {
-            document.getElementById('typingIndicator').classList.add('show');
-            chatBox.scrollTop = chatBox.scrollHeight;
+    // ── AUTO RESIZE TEXTAREA ──
+    const textarea = document.getElementById('promptInput');
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+    // Trigger resize if pre-filled
+    if (textarea.value) {
+        textarea.style.height = 'auto';
+        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        textarea.focus();
+        textarea.selectionStart = textarea.selectionEnd = textarea.value.length;
+    }
+
+    // ── ENTER TO SUBMIT ──
+    textarea.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            document.getElementById('chatForm').submit();
         }
+    });
 
-        // Auto resize textarea
-        const textarea = document.getElementById('promptInput');
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-        });
+    // ── QUICK SUGGESTIONS ──
+    function fillPrompt(text) {
+        textarea.value = text;
+        textarea.focus();
+        textarea.style.height = 'auto';
+        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+    }
 
-        // Submit on Enter (Shift+Enter for new line)
-        textarea.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('chatForm').submit();
+    // ── IMAGE UPLOAD ──
+    function handleFileSelect(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadPreview = document.getElementById('uploadPreview');
+        const uploadThumb = document.getElementById('uploadThumb');
+        const uploadName = document.getElementById('uploadName');
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            uploadThumb.src = e.target.result;
+            uploadName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+            uploadPreview.classList.add('show');
+            uploadBtn.classList.add('has-file');
+        };
+        reader.readAsDataURL(file);
+
+        // Update placeholder
+        if (!textarea.value) {
+            textarea.placeholder = 'Describe what you want to know about this image (or send as-is for auto analysis)';
+        }
+    }
+
+    function removeUpload() {
+        document.getElementById('fileInput').value = '';
+        document.getElementById('uploadPreview').classList.remove('show');
+        document.getElementById('uploadBtn').classList.remove('has-file');
+        document.getElementById('uploadThumb').src = '';
+        document.getElementById('uploadName').textContent = '';
+        textarea.placeholder = 'Ask about crops, soil, weather, pests... or click 📎 to upload image';
+    }
+
+    // ── TEXT TO SPEECH (AI reads response) ──
+    function speakText(btn) {
+        const bubble = btn.closest('.msg-bubble');
+        const text = Array.from(bubble.childNodes)
+            .filter(n => n.nodeType === 3 || (n.nodeType === 1 && !n.classList.contains('msg-delete') && !n.classList.contains('msg-speak') && n.tagName !== 'FORM'))
+            .map(n => n.textContent)
+            .join('').trim();
+
+        if (!text) return;
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        utterance.lang = 'en-IN';
+
+        const icon = btn.querySelector('i');
+        btn.style.background = 'rgba(37,162,68,0.8)';
+        utterance.onend = () => { btn.style.background = 'rgba(37,162,68,0.8)'; };
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // ── VOICE INPUT (Speech to Text) ──
+    let recognition = null;
+    let isRecording = false;
+
+    const voiceBtn = document.getElementById('voiceBtn');
+    const voiceIcon = document.getElementById('voiceIcon');
+    const voiceStatus = document.getElementById('voiceStatus');
+    const voiceStatusText = document.getElementById('voiceStatusText');
+    const noVoiceBanner = document.getElementById('noVoiceBanner');
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        voiceBtn.style.opacity = '0.4';
+        voiceBtn.title = 'Voice not supported in this browser';
+        voiceBtn.onclick = () => {
+            noVoiceBanner.style.display = 'flex';
+            setTimeout(() => noVoiceBanner.style.display = 'none', 4000);
+        };
+    } else {
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = 'en-IN';
+
+        recognition.onstart = () => {
+            isRecording = true;
+            voiceBtn.classList.add('recording');
+            voiceIcon.className = 'fas fa-stop';
+            voiceStatus.classList.add('show');
+            voiceStatusText.textContent = 'Listening... speak now';
+        };
+
+        recognition.onresult = (event) => {
+            let interim = '', final = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) final += transcript;
+                else interim += transcript;
             }
-        });
-    </script>
+            if (interim) {
+                textarea.value = interim;
+                voiceStatusText.textContent = `Hearing: "${interim}"`;
+            }
+            if (final) {
+                textarea.value = final;
+                voiceStatusText.textContent = `Got: "${final}"`;
+                setTimeout(() => {
+                    stopRecording();
+                    setTimeout(() => {
+                        showTyping();
+                        document.getElementById('chatForm').submit();
+                    }, 500);
+                }, 300);
+            }
+        };
+
+        recognition.onerror = (event) => {
+            stopRecording();
+            if (event.error === 'not-allowed') voiceStatusText.textContent = 'Microphone permission denied!';
+            else if (event.error === 'no-speech') voiceStatusText.textContent = 'No speech detected. Try again.';
+            else voiceStatusText.textContent = `Error: ${event.error}`;
+            voiceStatus.style.background = 'rgba(255,71,87,0.15)';
+            setTimeout(() => voiceStatus.classList.remove('show'), 3000);
+        };
+
+        recognition.onend = () => { if (isRecording) stopRecording(); };
+    }
+
+    function toggleVoice() {
+        if (!recognition) return;
+        if (isRecording) stopRecording();
+        else startRecording();
+    }
+    function startRecording() {
+        textarea.value = '';
+        try { recognition.start(); } catch(e) {}
+    }
+    function stopRecording() {
+        isRecording = false;
+        voiceBtn.classList.remove('recording');
+        voiceIcon.className = 'fas fa-microphone';
+        try { recognition.stop(); } catch(e) {}
+        setTimeout(() => voiceStatus.classList.remove('show'), 1000);
+    }
+</script>
 </body>
 </html>

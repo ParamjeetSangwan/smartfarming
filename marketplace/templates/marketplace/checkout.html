@@ -1,169 +1,476 @@
 {% load static %}
+{% load i18n %}
+{% load marketplace_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Checkout</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | {% trans "Checkout" %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg:#060f0a;--bg2:#0c1d13;
+            --green:#22c55e;--green-lt:#4ade80;
+            --gg:rgba(34,197,94,0.12);--gb:rgba(34,197,94,0.22);
+            --card:rgba(255,255,255,0.04);--cb:rgba(255,255,255,0.07);
+            --text:#eefaf2;--muted:rgba(238,250,242,0.5);--dim:rgba(238,250,242,0.28);
+            --red:#f43f5e;--gold:#f59e0b;--blue:#3b82f6;
         }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+        .orb{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(80px)}
+        .o1{width:500px;height:500px;top:-180px;right:-150px;background:radial-gradient(circle,rgba(34,197,94,.09) 0%,transparent 70%)}
+        .o2{width:400px;height:400px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(34,197,94,.06) 0%,transparent 70%)}
 
-        .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
+        /* TOPBAR */
+        .topbar{position:sticky;top:0;z-index:200;height:62px;background:rgba(6,15,10,.88);backdrop-filter:blur(22px);border-bottom:1px solid var(--cb);display:flex;align-items:center;padding:0 32px;gap:14px}
+        .brand{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+        .brand-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+        .tbr{margin-left:auto;display:flex;align-items:center;gap:10px}
+        .tbl{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--cb);border-radius:9px;color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+        .tbl:hover{border-color:var(--gb);color:var(--green);background:var(--gg)}
+
+        /* STEPS */
+        .steps-wrap{max-width:1100px;margin:0 auto;padding:28px 32px 0;position:relative;z-index:1;animation:up .5s ease}
+        .steps{display:flex;align-items:center}
+        .step{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500}
+        .step-circle{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+        .step.done .step-circle{background:var(--green);color:var(--bg)}
+        .step.active .step-circle{background:var(--green);color:var(--bg);box-shadow:0 0 12px rgba(34,197,94,.4)}
+        .step.pending .step-circle{background:var(--card);border:1px solid var(--cb);color:var(--dim)}
+        .step.done .step-label,.step.active .step-label{color:var(--text)}
+        .step.pending .step-label{color:var(--dim)}
+        .step-line{flex:1;height:1px;background:var(--cb);margin:0 12px}
+        .step-line.done{background:var(--green)}
+
+        /* MAIN */
+        .main{max-width:1100px;margin:0 auto;padding:24px 32px 72px;position:relative;z-index:1}
+        .layout{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+
+        /* CARD */
+        .card{background:var(--card);border:1px solid var(--cb);border-radius:18px;overflow:hidden;margin-bottom:18px;animation:up .5s ease both}
+        .card:nth-child(2){animation-delay:.04s}
+        .card:nth-child(3){animation-delay:.08s}
+        .card-hdr{padding:18px 24px;border-bottom:1px solid var(--cb);display:flex;align-items:center;gap:10px}
+        .hdr-icon{width:34px;height:34px;border-radius:9px;background:var(--gg);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:14px;flex-shrink:0}
+        .hdr-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+        .card-body{padding:20px 24px}
+
+        /* FORM FIELDS */
+        .field-grid{display:grid;gap:14px}
+        .grid-2{grid-template-columns:1fr 1fr}
+        .grid-3{grid-template-columns:1fr 1fr 1fr}
+        .field{display:flex;flex-direction:column;gap:6px}
+        .field label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+        .field label .req{color:var(--red);margin-left:2px}
+        .field input,.field select,.field textarea{
+            padding:11px 14px;
+            background:rgba(255,255,255,.04);
+            border:1px solid var(--cb);
+            border-radius:10px;
+            color:var(--text);
+            font-size:14px;font-family:'DM Sans',sans-serif;
+            outline:none;transition:all .2s;
         }
+        .field input::placeholder,.field textarea::placeholder{color:var(--dim)}
+        .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gb);background:rgba(34,197,94,.04)}
+        .field select option{background:var(--bg2)}
+        .field textarea{resize:vertical;min-height:80px}
 
-        .card-container {
-            background: rgba(0,0,0,0.6);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            color: white;
-        }
+        /* SAVE ADDRESS TOGGLE */
+        .save-row{display:flex;align-items:center;gap:10px;margin-top:4px;cursor:pointer;font-size:13px;color:var(--muted)}
+        .save-row input[type="checkbox"]{accent-color:var(--green);width:16px;height:16px}
+        .save-row:hover{color:var(--text)}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #00ffcc;
-        }
+        /* SAVED ADDRESS BANNER */
+        .saved-banner{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--gg);border:1px solid var(--gb);border-radius:12px;margin-bottom:16px}
+        .saved-banner i{color:var(--green);font-size:16px;margin-top:1px}
+        .saved-banner-text{font-size:13px;color:var(--text);line-height:1.6}
+        .saved-banner-text strong{font-weight:600}
+        .use-saved-btn{margin-left:auto;padding:6px 12px;background:var(--green);border:none;border-radius:8px;color:var(--bg);font-size:12px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;flex-shrink:0}
+        .use-saved-btn:hover{background:var(--green-lt)}
 
-        .back-btn {
-            margin-bottom: 20px;
-        }
+        /* PAYMENT OPTIONS */
+        .payment-grid{display:grid;gap:10px}
+        .pay-option{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--cb);border-radius:12px;cursor:pointer;transition:all .2s;position:relative}
+        .pay-option:hover{border-color:var(--gb);background:rgba(34,197,94,.03)}
+        .pay-option.selected{border-color:var(--green);background:var(--gg)}
+        .pay-option input[type="radio"]{position:absolute;opacity:0;pointer-events:none}
+        .pay-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--cb);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+        .pay-option.selected .pay-radio{border-color:var(--green);background:var(--green)}
+        .pay-option.selected .pay-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--bg);display:block}
+        .pay-icon{width:42px;height:28px;border-radius:6px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:18px}
+        .pay-info{flex:1}
+        .pay-name{font-size:14px;font-weight:600;color:var(--text)}
+        .pay-sub{font-size:11px;color:var(--muted);margin-top:2px}
+        .pay-badge{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;margin-left:auto}
+        .badge-popular{background:var(--gg);color:var(--green);border:1px solid var(--gb)}
+        .badge-soon{background:rgba(255,255,255,.06);color:var(--dim)}
 
-        .back-btn a {
-            color: white;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+        /* ORDER ITEMS in sidebar */
+        .item-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--cb)}
+        .item-row:last-child{border-bottom:none}
+        .item-img{width:44px;height:44px;border-radius:9px;overflow:hidden;background:linear-gradient(135deg,var(--gg),rgba(6,15,10,.9));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid var(--cb)}
+        .item-img img{width:100%;height:100%;object-fit:cover}
+        .item-name{font-size:13px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .item-qty{font-size:11px;color:var(--muted)}
+        .item-price{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--green);flex-shrink:0}
 
-        .back-btn a:hover {
-            background-color: #0056b3;
-        }
+        /* SUMMARY SIDEBAR */
+        .summary-card{background:var(--card);border:1px solid var(--cb);border-radius:18px;padding:22px;position:sticky;top:82px;animation:up .5s ease .06s both}
+        .sum-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:18px}
+        .sum-divider{border:none;border-top:1px solid var(--cb);margin:12px 0}
+        .sum-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
+        .sum-row .lbl{color:var(--muted)}
+        .sum-row .val{font-weight:600}
+        .sum-total{display:flex;justify-content:space-between;padding:14px 0 18px;border-top:2px solid var(--gb);margin-top:4px}
+        .sum-total .lbl{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
+        .sum-total .val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green)}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
+        .place-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;background:var(--green);border:none;border-radius:12px;color:var(--bg);font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(34,197,94,.28);margin-bottom:10px}
+        .place-btn:hover{background:var(--green-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,.38)}
+        .back-btn-sm{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px;border:1px solid var(--cb);border-radius:12px;color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+        .back-btn-sm:hover{border-color:var(--gb);color:var(--green);background:var(--gg)}
 
-        th, td {
-            padding: 15px;
-            text-align: center;
-            color: white;
-        }
+        .sec-row{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--cb)}
+        .sec-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;color:var(--dim);text-align:center}
+        .sec-item i{font-size:14px;color:var(--muted)}
 
-        th {
-            background: rgba(0,255,204,0.8);
-        }
+        .free-delivery{background:var(--gg);border:1px solid var(--gb);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--green);display:flex;align-items:center;gap:6px;margin-bottom:12px}
 
-        tr:nth-child(even) {
-            background: rgba(255,255,255,0.1);
-        }
-
-        .product-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 6px;
-            object-fit: cover;
-        }
-
-        .total {
-            text-align: right;
-            font-size: 22px;
-            margin-top: 20px;
-            font-weight: bold;
-            color: #00ffcc;
-        }
-
-        .btn-custom {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #00ffcc;
-            color: black;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: 0.3s ease;
-        }
-
-        .btn-custom:hover {
-            background-color: #00cc99;
-            color: white;
-        }
-
-    </style>
+        @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:900px){.layout{grid-template-columns:1fr}.summary-card{position:static}.grid-3{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.topbar,.main,.steps-wrap{padding-left:16px;padding-right:16px}.grid-2,.grid-3{grid-template-columns:1fr}}
+            @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+        </style>
 </head>
 <body>
-<div class="container">
-    <div class="back-btn">
-        <a href="{% url 'marketplace:cart_view' %}">← Back to Cart</a>
-    </div>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
 
-    <div class="card-container">
-        <h2>🛒 Checkout</h2>
-
-        {% if cart_items %}
-        <table class="table table-hover align-middle">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Image</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in cart_items %}
-                <tr>
-                    <td>{{ item.product.name }}</td>
-                    <td>
-                        <!-- {% if item.product.image %}
-                            <img src="{{ item.product.image.url }}" class="product-img" alt="{{ item.product.name }}">
-                        {% elif item.product.image_url %}
-                            <img src="{{ item.product.image_url }}" class="product-img" alt="{{ item.product.name }}">
-                        {% else %}
-                            <img src="{% static 'images/default_tool.png' %}" class="product-img" alt="No Image">
-                        {% endif %} -->
-                    </td>
-                    <td>{{ item.quantity }}</td>
-                    <td>₹{{ item.product.price }}</td>
-                    <td>₹{{ item.subtotal }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <p class="total">Total: ₹{{ total_price }}</p>
-
-        <form method="post" action="{% url 'marketplace:confirm_order' %}">
-            {% csrf_token %}
-            <div style="text-align:center;">
-                <button type="submit" class="btn-custom">✅ Confirm Order</button>
-            </div>
-        </form>
+<!-- TOPBAR -->
+<header class="topbar">
+    <a href="{% url 'marketplace:marketplace_home' %}" class="brand">
+        <div class="brand-dot"></div>SmartFarming
+    </a>
+    <div class="tbr">
+        {% include "partials/lang_switcher.html" %}
+        <a href="{% url 'marketplace:cart_view' %}" class="tbl"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+        {% if request.user.is_staff %}
+        <a href="{% url 'admin_dashboard' %}" class="tbl"><i class="fas fa-shield-alt"></i> Admin</a>
         {% else %}
-            <p style="text-align:center; font-size:18px;">Your cart is empty.</p>
+        <a href="{% url 'dashboard' %}" class="tbl"><i class="fas fa-home"></i> Dashboard</a>
         {% endif %}
+    </div>
+</header>
 
-        <br>
-        <a href="{% url 'marketplace:marketplace_home' %}" class="btn-custom">← Back to Marketplace</a>
+<!-- STEPS -->
+<div class="steps-wrap">
+    <div class="steps">
+        <div class="step done"><div class="step-circle"><i class="fas fa-check"></i></div><span class="step-label">{% trans "Cart" %}</span></div>
+        <div class="step-line done"></div>
+        <div class="step active"><div class="step-circle">2</div><span class="step-label">Checkout</span></div>
+        <div class="step-line"></div>
+        <div class="step pending"><div class="step-circle">3</div><span class="step-label">Confirmation</span></div>
     </div>
 </div>
+
+<main class="main">
+{% if cart_items %}
+<form method="POST" action="{% url 'marketplace:confirm_order' %}" id="checkoutForm">
+{% csrf_token %}
+<div class="layout">
+
+    <!-- LEFT -->
+    <div>
+
+        <!-- DELIVERY ADDRESS -->
+        <div class="card">
+            <div class="card-hdr">
+                <div class="hdr-icon"><i class="fas fa-location-dot"></i></div>
+                <span class="hdr-title">{% trans "Delivery Address" %}</span>
+            </div>
+            <div class="card-body">
+
+                {% if saved_address %}
+                <div class="saved-banner">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="saved-banner-text">
+                        <strong>{{ saved_address.full_name }}</strong> · {{ saved_address.phone }}<br>
+                        {{ saved_address.address_line }}, {{ saved_address.city }}, {{ saved_address.state }} — {{ saved_address.pincode }}
+                    </div>
+                    <button type="button" class="use-saved-btn" onclick="fillSaved()">Use this</button>
+                </div>
+                {% endif %}
+
+                <div class="field-grid grid-2">
+                    <div class="field">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" name="full_name" id="full_name" placeholder="As on ID"
+                            value="{{ saved_address.full_name|default:request.user.get_full_name }}" required>
+                    </div>
+                    <div class="field">
+                        <label>Phone Number <span class="req">*</span></label>
+                        <input type="tel" name="phone" id="phone" placeholder="+91 XXXXX XXXXX"
+                            value="{{ saved_address.phone|default:'' }}" required>
+                    </div>
+                </div>
+
+                <div class="field-grid" style="margin-top:14px;">
+                    <div class="field">
+                        <label>Full Address <span class="req">*</span></label>
+                        <textarea name="address_line" id="address_line"
+                            placeholder="House/Flat No., Street, Area, Colony" required>{{ saved_address.address_line|default:'' }}</textarea>
+                    </div>
+                </div>
+
+                <div class="field-grid grid-3" style="margin-top:14px;">
+                    <div class="field">
+                        <label>City <span class="req">*</span></label>
+                        <input type="text" name="city" id="city" placeholder="City"
+                            value="{{ saved_address.city|default:'' }}" required>
+                    </div>
+                    <div class="field">
+                        <label>State <span class="req">*</span></label>
+                        <input type="text" name="state" id="state" placeholder="State"
+                            value="{{ saved_address.state|default:'' }}" required>
+                    </div>
+                    <div class="field">
+                        <label>Pincode <span class="req">*</span></label>
+                        <input type="text" name="pincode" id="pincode" placeholder="6-digit PIN"
+                            maxlength="10" value="{{ saved_address.pincode|default:'' }}" required>
+                    </div>
+                </div>
+
+                <div class="field-grid grid-2" style="margin-top:14px;">
+                    <div class="field">
+                        <label>Landmark <span style="color:var(--dim);font-size:10px;">(optional)</span></label>
+                        <input type="text" name="landmark" id="landmark" placeholder="Near school, temple, etc."
+                            value="{{ saved_address.landmark|default:'' }}">
+                    </div>
+                    <div class="field">
+                        <label>Alternate Phone <span style="color:var(--dim);font-size:10px;">(optional)</span></label>
+                        <input type="tel" name="alternate_phone" id="alternate_phone" placeholder="+91 XXXXX XXXXX"
+                            value="{{ saved_address.alternate_phone|default:'' }}">
+                    </div>
+                </div>
+
+                <label class="save-row" style="margin-top:16px;">
+                    <input type="checkbox" name="save_address" checked>
+                    Save this address for future orders
+                </label>
+            </div>
+        </div>
+
+        <!-- PAYMENT METHOD -->
+        <div class="card">
+            <div class="card-hdr">
+                <div class="hdr-icon"><i class="fas fa-credit-card"></i></div>
+                <span class="hdr-title">{% trans "Payment Method" %}</span>
+            </div>
+            <div class="card-body">
+                <div class="payment-grid">
+
+                    <!-- COD -->
+                    <label class="pay-option selected" onclick="selectPay(this,'cod')">
+                        <input type="radio" name="payment_method" value="cod" checked>
+                        <div class="pay-radio"></div>
+                        <div class="pay-icon">💵</div>
+                        <div class="pay-info">
+                            <div class="pay-name">Cash on Delivery</div>
+                            <div class="pay-sub">Pay when your order arrives</div>
+                        </div>
+                        <span class="pay-badge badge-popular">Available</span>
+                    </label>
+
+                    <!-- Razorpay -->
+                    <label class="pay-option" onclick="selectPay(this,'razorpay')">
+                        <input type="radio" name="payment_method" value="razorpay">
+                        <div class="pay-radio"></div>
+                        <div class="pay-icon">🔵</div>
+                        <div class="pay-info">
+                            <div class="pay-name">Razorpay</div>
+                            <div class="pay-sub">UPI · NetBanking · Cards · Wallets</div>
+                        </div>
+                        <span class="pay-badge badge-popular">Available</span>
+                    </label>
+
+                    <!-- UPI -->
+                    <label class="pay-option" onclick="selectPay(this,'upi')">
+                        <input type="radio" name="payment_method" value="upi">
+                        <div class="pay-radio"></div>
+                        <div class="pay-icon">📱</div>
+                        <div class="pay-info">
+                            <div class="pay-name">UPI / PhonePe / GPay</div>
+                            <div class="pay-sub">Scan QR and pay instantly</div>
+                        </div>
+                        <span class="pay-badge badge-popular">Available</span>
+                    </label>
+
+                    <!-- Card -->
+                    <label class="pay-option" onclick="selectPay(this,'card')">
+                        <input type="radio" name="payment_method" value="card">
+                        <div class="pay-radio"></div>
+                        <div class="pay-icon">💳</div>
+                        <div class="pay-info">
+                            <div class="pay-name">Credit / Debit Card</div>
+                            <div class="pay-sub">Visa · Mastercard · Rupay</div>
+                        </div>
+                        <span class="pay-badge badge-soon">Coming Soon</span>
+                    </label>
+
+                    <!-- Stripe -->
+                    <label class="pay-option" onclick="selectPay(this,'stripe')">
+                        <input type="radio" name="payment_method" value="stripe">
+                        <div class="pay-radio"></div>
+                        <div class="pay-icon">🌍</div>
+                        <div class="pay-info">
+                            <div class="pay-name">Stripe (International)</div>
+                            <div class="pay-sub">For international cards</div>
+                        </div>
+                        <span class="pay-badge badge-soon">Coming Soon</span>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT: SUMMARY -->
+    <div>
+        <div class="summary-card">
+            <div class="sum-title">{% trans "Order Summary" %}</div>
+
+            <!-- Items -->
+            {% for item in cart_items %}
+            <div class="item-row">
+                <div class="item-img">
+                    {% if item.product.image %}<img src="{{ item.product.image.url }}" alt="">
+                    {% elif item.item_type == 'tool' %}🔧{% else %}🧪{% endif %}
+                </div>
+                <div>
+                    <div class="item-name">{{ item.product.name }}</div>
+                    <div class="item-qty">Qty: {{ item.quantity }}</div>
+                </div>
+                <div class="item-price">₹{{ item.subtotal|floatformat:0 }}</div>
+            </div>
+            {% endfor %}
+
+            <hr class="sum-divider">
+
+            <div class="sum-row"><span class="lbl">{% trans "Subtotal" %}</span><span class="val">₹{{ total_price|floatformat:0 }}</span></div>
+            <div class="sum-row">
+                <span class="lbl">{% trans "Delivery" %}</span>
+                <span class="val" style="color:var(--green);">{% if total_price >= 2000 %}Free{% else %}₹99{% endif %}</span>
+            </div>
+
+            {% if total_price >= 2000 %}
+            <div class="free-delivery"><i class="fas fa-truck"></i> Free delivery on this order!</div>
+            {% endif %}
+
+            <div class="sum-total">
+                <span class="lbl">{% trans "Total" %}</span>
+                <span class="val">₹{{ total_price|floatformat:0 }}</span>
+            </div>
+
+            <button type="submit" class="place-btn" id="placeBtn">
+                <i class="fas fa-check-circle"></i> Place Order
+            </button>
+            <a href="{% url 'marketplace:cart_view' %}" class="back-btn-sm">
+                <i class="fas fa-arrow-left"></i> Back to Cart
+            </a>
+
+            <div class="sec-row">
+                <div class="sec-item"><i class="fas fa-shield-check"></i>Secure</div>
+                <div class="sec-item"><i class="fas fa-lock"></i>Encrypted</div>
+                <div class="sec-item"><i class="fas fa-rotate-left"></i>Returns</div>
+                <div class="sec-item"><i class="fas fa-headset"></i>Support</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+
+{% else %}
+<div style="background:var(--card);border:1px solid var(--cb);border-radius:18px;padding:72px 24px;text-align:center;animation:up .5s ease">
+    <div style="font-size:56px;opacity:.2;margin-bottom:16px">🛒</div>
+    <h3 style="font-family:'Syne',sans-serif;font-size:20px;margin-bottom:8px">Nothing to checkout</h3>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:24px">Your cart is empty.</p>
+    <a href="{% url 'marketplace:tools_view' %}" style="display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:var(--green);border-radius:10px;color:var(--bg);font-size:13px;font-weight:700;text-decoration:none;">
+        <i class="fas fa-store"></i> Go to Marketplace
+    </a>
+</div>
+{% endif %}
+</main>
+
+<!-- COMING SOON MODAL -->
+<div id="comingSoonModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+    <div style="background:#0c1d13;border:1px solid rgba(34,197,94,.22);border-radius:20px;padding:40px 36px;max-width:380px;width:90%;text-align:center;animation:popIn .3s cubic-bezier(.34,1.56,.64,1)">
+        <div style="width:64px;height:64px;border-radius:50%;background:rgba(245,158,11,.12);border:2px solid rgba(245,158,11,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;">🚧</div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:10px;color:#eefaf2;">Coming Soon!</h3>
+        <p style="font-size:14px;color:rgba(238,250,242,.5);line-height:1.6;margin-bottom:24px;">Online payment is under development. For now, please use <strong style="color:#22c55e;">Cash on Delivery</strong>.</p>
+        <button onclick="closeComingSoon()" style="width:100%;padding:13px;background:#22c55e;border:none;border-radius:10px;color:#060f0a;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;">Use Cash on Delivery</button>
+    </div>
+</div>
+
+<script>
+// Only these show "coming soon" - UPI now works
+const comingSoonPayments = ['card','stripe'];
+
+function selectPay(el, val) {
+    if (comingSoonPayments.includes(val)) {
+        document.getElementById('comingSoonModal').style.display = 'flex';
+        return;
+    }
+    document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('input[type="radio"]').checked = true;
+}
+
+function closeComingSoon() {
+    document.getElementById('comingSoonModal').style.display = 'none';
+    // Re-select COD
+    const cod = document.querySelector('.pay-option');
+    document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+    cod.classList.add('selected');
+    cod.querySelector('input[type="radio"]').checked = true;
+}
+
+{% if saved_address %}
+function fillSaved() {
+    document.getElementById('full_name').value = "{{ saved_address.full_name }}";
+    document.getElementById('phone').value = "{{ saved_address.phone }}";
+    document.getElementById('alternate_phone').value = "{{ saved_address.alternate_phone }}";
+    document.getElementById('address_line').value = "{{ saved_address.address_line|escapejs }}";
+    document.getElementById('city').value = "{{ saved_address.city }}";
+    document.getElementById('state').value = "{{ saved_address.state }}";
+    document.getElementById('pincode').value = "{{ saved_address.pincode }}";
+    document.getElementById('landmark').value = "{{ saved_address.landmark }}";
+}
+{% endif %}
+
+// Validate before submit
+document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    const required = ['full_name','phone','address_line','city','state','pincode'];
+    for (const id of required) {
+        const el = document.getElementById(id);
+        if (!el || !el.value.trim()) {
+            e.preventDefault();
+            el.style.borderColor = '#f43f5e';
+            el.focus();
+            el.scrollIntoView({behavior:'smooth', block:'center'});
+            return;
+        }
+        el.style.borderColor = '';
+    }
+    document.getElementById('placeBtn').textContent = 'Placing Order...';
+    document.getElementById('placeBtn').disabled = true;
+});
+</script>
 </body>
 </html>

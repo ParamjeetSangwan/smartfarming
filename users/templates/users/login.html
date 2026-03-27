@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Farming | Login</title>
+    <title>SmartFarming | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -17,7 +19,7 @@
             background: #0a2e1a;
         }
 
-        /* LEFT PANEL */
+        /* ── LEFT PANEL ── */
         .left-panel {
             flex: 1;
             background: linear-gradient(135deg, #0a2e1a 0%, #1a5c35 50%, #0f3d22 100%);
@@ -29,7 +31,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .left-panel::before {
             content: '';
             position: absolute;
@@ -38,7 +39,6 @@
             border-radius: 50%;
             top: -100px; left: -100px;
         }
-
         .left-panel::after {
             content: '';
             position: absolute;
@@ -52,20 +52,26 @@
             text-align: center;
             z-index: 1;
         }
-
-        .brand-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            display: block;
-            filter: drop-shadow(0 4px 20px rgba(37,162,68,0.5));
+        .brand-icon-wrap {
+            width: 80px;
+            height: 80px;
+            background: rgba(37,162,68,0.15);
+            border: 2px solid rgba(37,162,68,0.3);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
             animation: float 3s ease-in-out infinite;
         }
-
+        .brand-icon-wrap i {
+            font-size: 36px;
+            color: #4cca6e;
+        }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
         .brand-name {
             font-family: 'Syne', sans-serif;
             font-size: 36px;
@@ -73,7 +79,6 @@
             color: white;
             margin-bottom: 10px;
         }
-
         .brand-tagline {
             font-size: 15px;
             color: rgba(255,255,255,0.6);
@@ -90,7 +95,6 @@
             width: 100%;
             max-width: 300px;
         }
-
         .feature-item {
             display: flex;
             align-items: center;
@@ -98,7 +102,6 @@
             color: rgba(255,255,255,0.75);
             font-size: 14px;
         }
-
         .feature-icon {
             width: 36px; height: 36px;
             background: rgba(37,162,68,0.2);
@@ -109,7 +112,7 @@
             flex-shrink: 0;
         }
 
-        /* RIGHT PANEL */
+        /* ── RIGHT PANEL ── */
         .right-panel {
             width: 480px;
             background: #f8faf9;
@@ -119,28 +122,29 @@
             padding: 60px 50px;
             overflow-y: auto;
         }
-
         .form-header {
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
-
         .form-title {
             font-family: 'Syne', sans-serif;
             font-size: 28px;
             font-weight: 800;
             color: #0a2e1a;
             margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
+        .form-title i {
+            color: #25a244;
+            font-size: 22px;
+        }
         .form-subtitle {
             font-size: 14px;
             color: #8fa99a;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
+        .form-group { margin-bottom: 20px; }
         .form-group label {
             display: block;
             font-size: 13px;
@@ -148,20 +152,16 @@
             color: #1e2e28;
             margin-bottom: 7px;
         }
-
-        .input-wrap {
-            position: relative;
-        }
-
-        .input-wrap i {
+        .input-wrap { position: relative; }
+        .input-wrap .input-icon {
             position: absolute;
             left: 14px;
             top: 50%;
             transform: translateY(-50%);
             color: #8fa99a;
             font-size: 14px;
+            pointer-events: none;
         }
-
         .form-group input {
             width: 100%;
             padding: 12px 14px 12px 40px;
@@ -174,12 +174,10 @@
             outline: none;
             transition: all 0.2s;
         }
-
         .form-group input:focus {
             border-color: #25a244;
             box-shadow: 0 0 0 3px rgba(37,162,68,0.1);
         }
-
         .toggle-password {
             position: absolute;
             right: 14px;
@@ -199,7 +197,6 @@
             align-items: center;
             margin-bottom: 24px;
         }
-
         .remember-me {
             display: flex;
             align-items: center;
@@ -208,20 +205,17 @@
             color: #4a6358;
             cursor: pointer;
         }
-
         .remember-me input[type="checkbox"] {
             width: 16px; height: 16px;
             accent-color: #25a244;
             cursor: pointer;
         }
-
         .forgot-link {
             font-size: 13px;
             color: #25a244;
             text-decoration: none;
             font-weight: 600;
         }
-
         .forgot-link:hover { text-decoration: underline; }
 
         .btn-login {
@@ -238,13 +232,15 @@
             transition: all 0.2s;
             letter-spacing: 0.3px;
             box-shadow: 0 4px 14px rgba(37,162,68,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
         .btn-login:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(37,162,68,0.4);
         }
-
         .btn-login:active { transform: translateY(0); }
 
         .divider {
@@ -253,14 +249,12 @@
             gap: 12px;
             margin: 24px 0;
         }
-
         .divider::before, .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: #d8e2dc;
         }
-
         .divider span {
             font-size: 12px;
             color: #8fa99a;
@@ -272,43 +266,69 @@
             font-size: 14px;
             color: #4a6358;
         }
-
         .bottom-link a {
             color: #25a244;
             font-weight: 600;
             text-decoration: none;
         }
-
         .bottom-link a:hover { text-decoration: underline; }
 
-        /* ALERTS */
+        /* ── ALERTS ── */
         .alert {
             padding: 12px 16px;
             border-radius: 10px;
             font-size: 13px;
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .alert-error {
             background: rgba(255,71,87,0.08);
             color: #c0392b;
             border: 1px solid rgba(255,71,87,0.2);
         }
-
-        .alert-success {
-            background: rgba(37,162,68,0.08);
+        .alert-info {
+            background: rgba(37,162,68,0.07);
             color: #1a7a35;
             border: 1px solid rgba(37,162,68,0.2);
         }
 
-        /* RESPONSIVE */
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .left-panel { display: none; }
             .right-panel { width: 100%; padding: 40px 28px; }
+        }
+        .btn-google {
+            width: 100%;
+            padding: 13px;
+            background: #ffffff;
+            color: #444;
+            border: 1.5px solid #d8e2dc;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-google:hover {
+            background: #f1f3f4;
+            border-color: #c6c6c6;
+        }
+
+        .btn-google i {
+            color: #db4437;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -317,7 +337,9 @@
     <!-- LEFT PANEL -->
     <div class="left-panel">
         <div class="brand">
-            <span class="brand-icon">🌾</span>
+            <div class="brand-icon-wrap">
+                <i class="fas fa-leaf"></i>
+            </div>
             <div class="brand-name">SmartFarming</div>
             <div class="brand-tagline">Empowering farmers with data-driven decisions and AI-powered recommendations</div>
         </div>
@@ -332,7 +354,7 @@
             </div>
             <div class="feature-item">
                 <div class="feature-icon"><i class="fas fa-store"></i></div>
-                <span>Farm Tools & Pesticide Marketplace</span>
+                <span>Farm Tools &amp; Pesticide Marketplace</span>
             </div>
             <div class="feature-item">
                 <div class="feature-icon"><i class="fas fa-seedling"></i></div>
@@ -343,17 +365,53 @@
 
     <!-- RIGHT PANEL -->
     <div class="right-panel">
-        <div class="form-header">
-            <div class="form-title">Welcome back 👋</div>
-            <div class="form-subtitle">Sign in to your SmartFarming account</div>
+        <!-- Language Switcher on login page -->
+        <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+            <div style="position:relative;">
+                <div onclick="toggleLangLogin()" style="display:inline-flex;align-items:center;">
+                    <!-- {% load i18n %}{% get_current_language as LANG %} -->
+                    <!-- {% if LANG == 'hi' %}<span>&#127470;&#127475;</span> हिंदी -->
+                    <!-- {% else %}<span>&#127468;&#127463;</span> English{% endif %} -->
+                    <!-- <i class="fas fa-chevron-down" style="font-size:10px;"></i> -->
+                </div>
+                <div id="langLoginDrop" style="display:none;position:absolute;">
+                    <!-- <form action="{% url 'set_language' %}" method="post"> -->
+                        <!-- {% csrf_token %} -->
+                        <!-- <input name="next" type="hidden" value="{{ request.get_full_path }}"> -->
+                        <!-- <input name="language" type="hidden" value="en"> -->
+                        <!-- <button type="submit" style="width:100%;padding:10px 14px;font-size:13px;color:#1e2e28;background:{% if LANG == 'en' %}#f0f9f3{% else %}none{% endif %};border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;display:flex;align-items:center;gap:8px;">
+                            <span>&#127468;&#127463;</span> English {% if LANG == 'en' %}<i class="fas fa-check" style="margin-left:auto;color:#25a244;font-size:11px;"></i>{% endif %}
+                        </button> -->
+                    <!-- </form> -->
+                    <!-- <form action="{% url 'set_language' %}" method="post"> -->
+                        <!-- {% csrf_token %} -->
+                        <!-- <input name="next" type="hidden" value="{{ request.get_full_path }}"> -->
+                        <!-- <input name="language" type="hidden" value="hi"> -->
+                        <!-- <button type="submit" style="width:100%;padding:10px 14px;font-size:13px;color:#1e2e28;background:{% if LANG == 'hi' %}#f0f9f3{% else %}none{% endif %};border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;display:flex;align-items:center;gap:8px;border-top:1px solid #eef2f0;">
+                            <span>&#127470;&#127475;</span> हिंदी {% if LANG == 'hi' %}<i class="fas fa-check" style="margin-left:auto;color:#25a244;font-size:11px;"></i>{% endif %}
+                        </button> -->
+                    </form>
+                </div>
+            </div>
         </div>
 
+        <div class="form-header">
+            <div class="form-title">
+                <i class="fas fa-leaf"></i> {% trans "Welcome back" %}
+            </div>
+            <div class="form-subtitle">{% trans "Sign in to your SmartFarming account" %}</div>
+        </div>
+
+        <!-- FIX: Only show error/warning/info messages — NOT success messages -->
+        <!-- Success messages from marketplace (cart, orders) must not appear here -->
         {% if messages %}
             {% for message in messages %}
-            <div class="alert {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %}">
-                <i class="fas fa-{% if message.tags == 'error' %}exclamation-circle{% else %}check-circle{% endif %}"></i>
+            {% if 'error' in message.tags or 'warning' in message.tags or 'info' in message.tags %}
+            <div class="alert alert-{% if 'error' in message.tags %}error{% else %}info{% endif %}">
+                <i class="fas fa-{% if 'error' in message.tags %}exclamation-circle{% else %}info-circle{% endif %}"></i>
                 {{ message }}
             </div>
+            {% endif %}
             {% endfor %}
         {% endif %}
 
@@ -361,17 +419,17 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label>Username</label>
+                <label>{% trans "Username" %}</label>
                 <div class="input-wrap">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user input-icon"></i>
                     <input type="text" name="username" placeholder="Enter your username" required autofocus>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Password</label>
+                <label>{% trans "Password" %}</label>
                 <div class="input-wrap">
-                    <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock input-icon"></i>
                     <input type="password" name="password" id="passwordInput" placeholder="Enter your password" required>
                     <button type="button" class="toggle-password" onclick="togglePass()">
                         <i class="fas fa-eye" id="eyeIcon"></i>
@@ -382,20 +440,26 @@
             <div class="form-options">
                 <label class="remember-me">
                     <input type="checkbox" name="remember_me">
-                    Remember me
+                    {% trans "Remember me" %}
                 </label>
-                <a href="{% url 'password_reset' %}" class="forgot-link">Forgot password?</a>
+                <a href="{% url 'password_reset' %}" class="forgot-link">{% trans "Forgot password?" %}</a>
             </div>
 
             <button type="submit" class="btn-login">
-                <i class="fas fa-sign-in-alt"></i> Sign In
+                <i class="fas fa-sign-in-alt"></i> {% trans "Sign In" %}
             </button>
+            
+            <a href="{% provider_login_url 'google' %}" class="btn-google">
+                <i class="fab fa-google"></i> Sign in with Google
+            </a>
+
+
         </form>
 
-        <div class="divider"><span>New to SmartFarming?</span></div>
+        <div class="divider"><span>{% trans "New to SmartFarming?" %}</span></div>
 
         <div class="bottom-link">
-            <p>Don't have an account? <a href="{% url 'register' %}">Create one free</a></p>
+            <p>{% trans "Don't have an account?" %} <a href="{% url 'register' %}">{% trans "Create one free" %}</a></p>
         </div>
     </div>
 
@@ -411,6 +475,18 @@ function togglePass() {
         icon.className = 'fas fa-eye';
     }
 }
+</script>
+<script>
+function toggleLangLogin() {
+    const d = document.getElementById('langLoginDrop');
+    d.style.display = d.style.display === 'none' ? 'block' : 'none';
+}
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('[onclick="toggleLangLogin()"]') && !e.target.closest('#langLoginDrop')) {
+        const d = document.getElementById('langLoginDrop');
+        if (d) d.style.display = 'none';
+    }
+});
 </script>
 </body>
 </html>

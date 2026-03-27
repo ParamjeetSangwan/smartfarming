@@ -1,7 +1,7 @@
 # users/urls.py
 from django.urls import path
 from . import views
-from .views import dashboard_view, orders_view
+from .views import dashboard_view
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -13,8 +13,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('profile/', views.profile_view, name='profile'),
     path('dashboard/', dashboard_view, name='dashboard'),
-    path('ai/', views.ai_recommendations_view, name='ai_recommendations'),
-    path('orders/', orders_view, name='orders'),
     path('notifications/', views.notifications_view, name='notifications'),
     path('notifications/<int:notif_id>/read/', views.mark_notification_read, name='mark_notification_read'),
     path('activate/<uidb64>/<token>/', views.activate_account, name='activate'),

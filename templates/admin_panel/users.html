@@ -10,21 +10,32 @@
     </div>
 </div>
 
-<!-- Stats Row -->
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;">
+<!-- Stats Row — FIX: added Blocked count card -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:24px;">
     <div class="stat-card green" style="padding:16px;">
         <div class="stat-value" style="font-size:24px;">{{ total }}</div>
         <div class="stat-label">Total Users</div>
     </div>
     <div class="stat-card blue" style="padding:16px;">
         <div class="stat-value" style="font-size:24px;">{{ active_count }}</div>
-        <div class="stat-label">Active Users</div>
+        <div class="stat-label">Active</div>
     </div>
     <div class="stat-card gold" style="padding:16px;">
         <div class="stat-value" style="font-size:24px;">{{ staff_count }}</div>
-        <div class="stat-label">Admin Users</div>
+        <div class="stat-label">Admins</div>
+    </div>
+    <div class="stat-card red" style="padding:16px;">
+        <div class="stat-value" style="font-size:24px;">{{ blocked_count }}</div>
+        <div class="stat-label">Blocked</div>
     </div>
 </div>
+
+<!-- FIX: added shipped CSS class + Blocked filter option -->
+<style>
+    .status-badge.staff { background:rgba(59,130,246,0.12);color:var(--accent-blue); }
+    /* FIX: was undefined — caused invisible badge */
+    .status-badge.shipped { background:rgba(59,130,246,0.12);color:var(--accent-blue); }
+</style>
 
 <!-- Search & Filter -->
 <div class="table-card" style="margin-bottom:20px;padding:18px 24px;">
@@ -32,14 +43,15 @@
         <div style="flex:1;min-width:200px;position:relative;">
             <i class="fas fa-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:13px;"></i>
             <input type="text" name="q" value="{{ search }}" placeholder="Search by username or email..."
-                style="width:100%;padding:9px 12px 9px 36px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border 0.2s;"
+                style="width:100%;padding:9px 12px 9px 36px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;"
                 onfocus="this.style.borderColor='var(--green-bright)'" onblur="this.style.borderColor='var(--gray-200)'">
         </div>
         <select name="status" style="padding:9px 14px;border:1.5px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;color:var(--gray-800);">
             <option value="">All Status</option>
-            <option value="active" {% if status == 'active' %}selected{% endif %}>Active</option>
+            <option value="active"   {% if status == 'active' %}selected{% endif %}>Active</option>
             <option value="inactive" {% if status == 'inactive' %}selected{% endif %}>Inactive</option>
-            <option value="staff" {% if status == 'staff' %}selected{% endif %}>Admin/Staff</option>
+            <option value="staff"    {% if status == 'staff' %}selected{% endif %}>Admin/Staff</option>
+            <option value="blocked"  {% if status == 'blocked' %}selected{% endif %}>Blocked</option>
         </select>
         <button type="submit" style="padding:9px 20px;background:var(--green-bright);color:white;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">
             <i class="fas fa-search"></i> Search
@@ -91,50 +103,76 @@
                 <td style="font-size:13px;">
                     {% if user.profile %}{{ user.profile.location|default:"—" }}{% else %}—{% endif %}
                 </td>
-                <td>
-                    <span style="font-weight:600;color:var(--green-bright);">{{ user.order_count }}</span>
-                </td>
+                <td><span style="font-weight:600;color:var(--green-bright);">{{ user.order_count }}</span></td>
                 <td style="font-size:12px;color:var(--gray-400);">{{ user.date_joined|date:"M d, Y" }}</td>
                 <td>
-                    <span class="status-badge {% if user.is_active %}delivered{% else %}cancelled{% endif %}">
-                        {% if user.is_active %}Active{% else %}Inactive{% endif %}
-                    </span>
+                    {% if user.profile.is_blocked %}
+                    <span class="status-badge cancelled">Blocked</span>
+                    {% elif user.is_active %}
+                    <span class="status-badge delivered">Active</span>
+                    {% else %}
+                    <span class="status-badge cancelled">Inactive</span>
+                    {% endif %}
                 </td>
                 <td>
                     {% if user.is_superuser %}
                     <span class="status-badge processing">Superadmin</span>
                     {% elif user.is_staff %}
-                    <span class="status-badge shipped">Staff</span>
+                    <span class="status-badge staff">Staff</span>
                     {% else %}
                     <span class="status-badge pending">User</span>
                     {% endif %}
                 </td>
                 <td>
-                    <div style="display:flex;gap:6px;">
-                        <a href="{% url 'admin_user_detail' user.id %}" title="View Details"
-                            style="width:30px;height:30px;border-radius:7px;background:rgba(59,130,246,0.1);color:var(--accent-blue);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:12px;transition:all 0.2s;">
+                    <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                        <!-- View -->
+                        <a href="{% url 'admin_user_detail' user.id %}" title="View"
+                            style="width:30px;height:30px;border-radius:7px;background:rgba(59,130,246,0.1);color:var(--accent-blue);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:12px;">
                             <i class="fas fa-eye"></i>
                         </a>
+                        <!-- Toggle Active -->
                         <form method="POST" action="{% url 'admin_user_toggle' user.id %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" title="{% if user.is_active %}Deactivate{% else %}Activate{% endif %}"
-                                style="width:30px;height:30px;border-radius:7px;background:rgba(240,192,64,0.12);color:var(--accent-gold);border:none;cursor:pointer;font-size:12px;transition:all 0.2s;">
+                                style="width:30px;height:30px;border-radius:7px;background:rgba(240,192,64,0.12);color:var(--accent-gold);border:none;cursor:pointer;font-size:12px;">
                                 <i class="fas fa-{% if user.is_active %}ban{% else %}check{% endif %}"></i>
                             </button>
                         </form>
                         {% if not user.is_superuser %}
+                        <!-- Toggle Staff -->
                         <form method="POST" action="{% url 'admin_user_staff' user.id %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" title="Toggle Staff"
-                                style="width:30px;height:30px;border-radius:7px;background:rgba(37,162,68,0.1);color:var(--green-bright);border:none;cursor:pointer;font-size:12px;transition:all 0.2s;">
+                                style="width:30px;height:30px;border-radius:7px;background:rgba(37,162,68,0.1);color:var(--green-bright);border:none;cursor:pointer;font-size:12px;">
                                 <i class="fas fa-user-shield"></i>
                             </button>
                         </form>
+                        <!-- FIX: Block/Unblock buttons — were completely missing from template -->
+                        {% if user.profile.is_blocked %}
+                        <form method="POST" action="{% url 'admin_user_unblock' user.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" title="Unblock user"
+                                style="width:30px;height:30px;border-radius:7px;background:rgba(37,162,68,0.1);color:var(--green-bright);border:none;cursor:pointer;font-size:12px;">
+                                <i class="fas fa-unlock"></i>
+                            </button>
+                        </form>
+                        {% else %}
+                        <form method="POST" action="{% url 'admin_user_block' user.id %}" style="display:inline;"
+                            onsubmit="return confirm('Block user {{ user.username }}?')">
+                            {% csrf_token %}
+                            <input type="hidden" name="reason" value="Violated terms of service">
+                            <button type="submit" title="Block user"
+                                style="width:30px;height:30px;border-radius:7px;background:rgba(255,125,59,0.1);color:var(--accent-orange);border:none;cursor:pointer;font-size:12px;">
+                                <i class="fas fa-lock"></i>
+                            </button>
+                        </form>
+                        {% endif %}
+                        <!-- Delete -->
                         <form method="POST" action="{% url 'admin_user_delete' user.id %}" style="display:inline;"
                             onsubmit="return confirm('Delete user {{ user.username }}? This cannot be undone!')">
                             {% csrf_token %}
                             <button type="submit" title="Delete"
-                                style="width:30px;height:30px;border-radius:7px;background:rgba(255,71,87,0.1);color:var(--accent-red);border:none;cursor:pointer;font-size:12px;transition:all 0.2s;">
+                                style="width:30px;height:30px;border-radius:7px;background:rgba(255,71,87,0.1);color:var(--accent-red);border:none;cursor:pointer;font-size:12px;">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
@@ -152,11 +190,4 @@
     </table>
     </div>
 </div>
-
-<!-- Messages -->
-{% for message in messages %}
-<div style="position:fixed;bottom:24px;right:24px;background:var(--green-deep);color:white;padding:14px 20px;border-radius:12px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);border-left:4px solid var(--green-bright);z-index:999;animation:slideIn 0.3s ease;">
-    <i class="fas fa-check-circle"></i> {{ message }}
-</div>
-{% endfor %}
 {% endblock %}

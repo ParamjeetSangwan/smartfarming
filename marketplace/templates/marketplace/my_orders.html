@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 {% load marketplace_filters %}
 <!DOCTYPE html>
 <html lang="en">
@@ -223,7 +224,7 @@
 <body>
 
     <header class="topbar">
-        <div class="topbar-brand">🌾 SmartFarming</div>
+        <div class="topbar-brand"><i class="fas fa-leaf" style="color:#4cca6e;margin-right:6px;"></i>ðŸŒ¾ SmartFarming</div>
         <div class="topbar-right">
             {% if orders %}
             <form method="POST" action="{% url 'marketplace:clear_orders' %}" onsubmit="return confirm('Clear all orders?')">
@@ -243,7 +244,7 @@
 
         <div class="page-header">
             <div class="page-title-wrap">
-                <div class="page-title">📦 My Orders</div>
+                <div class="page-title">ðŸ“¦ My Orders</div>
                 <div class="page-subtitle">
                     {% if orders %}{{ orders|length }} order(s) placed{% else %}No orders yet{% endif %}
                 </div>
@@ -260,13 +261,21 @@
                 <!-- ORDER HEADER -->
                 <div class="order-header">
                     <div class="order-header-left">
-                        <div class="order-icon">📦</div>
+                        <div class="order-icon"><i class="fas fa-box"></i></div>
                         <div>
                             <div class="order-id">Order #{{ order.id }}</div>
                             <div class="order-date">{{ order.created_at|date:"F d, Y" }} at {{ order.created_at|time:"H:i" }}</div>
                         </div>
                     </div>
-                    <div class="order-total">₹{{ order.total_price }}</div>
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                        <span style="padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;{% if order.status == 'delivered' %}background:rgba(37,162,68,.15);color:#4cca6e;{% elif order.status == 'shipped' %}background:rgba(168,85,247,.15);color:#a855f7;{% elif order.status == 'processing' %}background:rgba(59,130,246,.15);color:#3b82f6;{% elif order.status == 'cancelled' %}background:rgba(244,63,94,.15);color:#f43f5e;{% else %}background:rgba(245,158,11,.15);color:#f59e0b;{% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+                        <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#4cca6e;">&#8377;{{ order.total_price }}</div>
+                        <a href="{% url 'marketplace:order_tracking' order.id %}" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(37,162,68,.15);border:1px solid rgba(37,162,68,.3);color:#4cca6e;border-radius:9px;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s;">
+                            <i class="fas fa-location-dot"></i> Track Order
+                        </a>
+                    </div>
                 </div>
 
                 <!-- ORDER ITEMS -->
@@ -277,7 +286,7 @@
                         <img src="{{ item.product.image.url }}" alt="{{ item.name }}" class="item-img">
                         {% else %}
                         <div class="item-placeholder">
-                            {% if item.item_type == 'tool' %}🔧{% else %}🧪{% endif %}
+                            {% if item.item_type == 'tool' %}ðŸ”§{% else %}ðŸ§ª{% endif %}
                         </div>
                         {% endif %}
 
@@ -289,8 +298,8 @@
                         </div>
 
                         <div class="item-price-wrap">
-                            <div class="item-qty">× {{ item.quantity }}</div>
-                            <div class="item-subtotal">₹{{ item.price|mul:item.quantity|floatformat:2 }}</div>
+                            <div class="item-qty">Ã— {{ item.quantity }}</div>
+                            <div class="item-subtotal">&#8377;{{ item.price|mul:item.quantity|floatformat:2 }}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -301,7 +310,7 @@
 
         {% else %}
         <div class="empty-state">
-            <span class="emoji">📦</span>
+            <div style="font-size:48px;display:block;margin-bottom:16px;opacity:.3;"><i class="fas fa-box"></i></div>
             <h3>No Orders Yet</h3>
             <p>You haven't placed any orders yet.<br>Visit the marketplace to get started!</p>
             <a href="{% url 'marketplace:marketplace_home' %}" class="shop-btn">

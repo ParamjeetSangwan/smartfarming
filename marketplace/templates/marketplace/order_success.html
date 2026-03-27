@@ -1,66 +1,147 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Success</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | Order Confirmed!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
-            background-size: cover;
-            padding: 40px;
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
+        :root{
+            --bg:#060f0a;--green:#22c55e;--green-lt:#4ade80;
+            --gg:rgba(34,197,94,0.12);--gb:rgba(34,197,94,0.22);
+            --card:rgba(255,255,255,0.04);--cb:rgba(255,255,255,0.07);
+            --text:#eefaf2;--muted:rgba(238,250,242,0.5);
         }
-
-        .card {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 50px;
-            border-radius: 16px;
-            text-align: center;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-        }
-
-        h2 {
-            font-size: 2em;
-            color: #00ffcc;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .btn-home {
-            margin-top: 30px;
-            padding: 12px 30px;
-            background-color: #00cc99;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-home:hover {
-            background-color: #009977;
-            color: #fff;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-x:hidden}
+        .orb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(80px);z-index:0}
+        .o1{width:600px;height:600px;top:-200px;right:-200px;background:radial-gradient(circle,rgba(34,197,94,.12) 0%,transparent 70%)}
+        .o2{width:500px;height:500px;bottom:-200px;left:-200px;background:radial-gradient(circle,rgba(34,197,94,.08) 0%,transparent 70%)}
+        .card{background:var(--card);border:1px solid var(--cb);border-radius:24px;padding:48px 40px;max-width:580px;width:100%;text-align:center;position:relative;z-index:1;animation:popIn .6s cubic-bezier(.34,1.56,.64,1)}
+        @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+        .check-wrap{width:80px;height:80px;border-radius:50%;background:var(--gg);border:2px solid var(--gb);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.3)}50%{box-shadow:0 0 0 16px rgba(34,197,94,0)}}
+        .check-wrap i{font-size:36px;color:var(--green);animation:checkBounce .5s .3s cubic-bezier(.34,1.56,.64,1) both}
+        @keyframes checkBounce{from{transform:scale(0)}to{transform:scale(1)}}
+        h1{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;margin-bottom:8px}
+        h1 span{color:var(--green)}
+        .sub{font-size:15px;color:var(--muted);margin-bottom:32px}
+        .order-info{background:rgba(34,197,94,.06);border:1px solid var(--gb);border-radius:14px;padding:20px 24px;margin-bottom:20px;text-align:left}
+        .oi-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(34,197,94,.1)}
+        .oi-row:last-child{border-bottom:none}
+        .oi-lbl{font-size:13px;color:var(--muted)}
+        .oi-val{font-size:13px;font-weight:600}
+        .oi-val.big{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--green)}
+        .oi-val.green{color:var(--green)}
+        .address-box{background:var(--card);border:1px solid var(--cb);border-radius:12px;padding:14px 18px;margin-bottom:20px;text-align:left;display:flex;gap:12px}
+        .addr-icon{width:36px;height:36px;border-radius:9px;background:var(--gg);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:13px;flex-shrink:0;margin-top:2px}
+        .addr-text{font-size:13px;color:var(--muted);line-height:1.7}
+        .addr-text strong{color:var(--text);font-weight:600;display:block;margin-bottom:2px}
+        .items-list{margin-bottom:28px;text-align:left}
+        .items-lbl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+        .item-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--cb)}
+        .item-row:last-child{border-bottom:none}
+        .item-img{width:42px;height:42px;border-radius:9px;background:var(--gg);border:1px solid var(--cb);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden}
+        .item-img img{width:100%;height:100%;object-fit:cover}
+        .item-name{flex:1;font-size:13px;font-weight:600;text-align:left}
+        .item-qty{font-size:11px;color:var(--muted)}
+        .item-price{font-size:13px;font-weight:700;color:var(--green)}
+        .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+        .btn-p{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;background:var(--green);border-radius:12px;color:var(--bg);font-size:14px;font-weight:700;text-decoration:none;transition:all .2s}
+        .btn-p:hover{background:var(--green-lt);transform:translateY(-1px)}
+        .btn-s{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid var(--cb);border-radius:12px;color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+        .btn-s:hover{border-color:var(--gb);color:var(--green);background:var(--gg)}
+        canvas{position:fixed;top:0;left:0;pointer-events:none;z-index:0}
     </style>
 </head>
 <body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+<canvas id="confetti"></canvas>
 
 <div class="card">
-    <h2>✅ Order Confirmed!</h2>
-    <p>Thank you for your purchase.</p>
-    <p>Your Order ID is <strong>#{{ order.id }}</strong></p>
-    <a class="btn-home" href="{% url 'dashboard' %}">← Back to Dashboard</a>
+    <div class="check-wrap"><i class="fas fa-check"></i></div>
+    <h1>Order <span>Confirmed!</span></h1>
+    <p class="sub">Thank you for your purchase. We'll get it to you soon! 🚚</p>
+
+    <div class="order-info">
+        <div class="oi-row"><span class="oi-lbl">{% trans "Order ID" %}</span><span class="oi-val big">#{{ order.id }}</span></div>
+        <div class="oi-row"><span class="oi-lbl">Payment</span><span class="oi-val">{{ order.get_payment_method_display }}</span></div>
+        <div class="oi-row"><span class="oi-lbl">Status</span><span class="oi-val green">● {{ order.get_status_display }}</span></div>
+        <div class="oi-row"><span class="oi-lbl">{% trans "Total" %}</span><span class="oi-val big">₹{{ order.total_price|floatformat:0 }}</span></div>
+        <div class="oi-row"><span class="oi-lbl">Est. Delivery</span><span class="oi-val">3 – 5 business days</span></div>
+    </div>
+
+    {% if order.shipping_address %}
+    <div class="address-box">
+        <div class="addr-icon"><i class="fas fa-location-dot"></i></div>
+        <div class="addr-text">
+            <strong>{{ order.shipping_address.full_name }} · {{ order.shipping_address.phone }}</strong>
+            {{ order.shipping_address.address_line }},
+            {% if order.shipping_address.landmark %}Near {{ order.shipping_address.landmark }},{% endif %}
+            {{ order.shipping_address.city }}, {{ order.shipping_address.state }} — {{ order.shipping_address.pincode }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if items %}
+    <div class="items-list">
+        <div class="items-lbl">{% trans "Items Ordered" %}</div>
+        {% for item in items %}
+        <div class="item-row">
+            <div class="item-img">
+                {% if item.product and item.product.image %}<img src="{{ item.product.image.url }}" alt="">
+                {% elif item.item_type == 'tool' %}🔧{% else %}🧪{% endif %}
+            </div>
+            <div style="flex:1">
+                <div class="item-name">{{ item.name }}</div>
+                <div class="item-qty">Qty: {{ item.quantity }}</div>
+            </div>
+            <div class="item-price">₹{% widthratio item.price 1 item.quantity %}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="btns">
+        <a href="{% url 'marketplace:my_orders' %}" class="btn-p"><i class="fas fa-box"></i> Track Order</a>
+        <a href="{% if request.user.is_staff %}/myadmin/{% else %}/users/dashboard/{% endif %}" class="btn-s"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="{% url 'marketplace:tools_view' %}" class="btn-s"><i class="fas fa-store"></i> Shop More</a>
+    </div>
 </div>
 
+<script>
+const c = document.getElementById('confetti');
+const ctx = c.getContext('2d');
+c.width = window.innerWidth; c.height = window.innerHeight;
+const colors = ['#22c55e','#4ade80','#86efac','#f59e0b','#3b82f6','#f43f5e','#fbbf24'];
+const dots = Array.from({length:100}, () => ({
+    x: Math.random()*c.width, y:-20-Math.random()*200,
+    r: 3+Math.random()*6, color: colors[Math.floor(Math.random()*colors.length)],
+    speed: 1.5+Math.random()*3, sway: (Math.random()-.5)*1.5,
+    rot: Math.random()*360, rotS: (Math.random()-.5)*5,
+}));
+let frame=0;
+(function animate(){
+    if(frame>220) return;
+    ctx.clearRect(0,0,c.width,c.height);
+    dots.forEach(d=>{
+        d.y+=d.speed; d.x+=d.sway; d.rot+=d.rotS;
+        ctx.save();
+        ctx.globalAlpha=Math.max(0,1-frame/220);
+        ctx.fillStyle=d.color;
+        ctx.translate(d.x,d.y);
+        ctx.rotate(d.rot*Math.PI/180);
+        ctx.fillRect(-d.r/2,-d.r/2,d.r,d.r);
+        ctx.restore();
+    });
+    frame++;
+    requestAnimationFrame(animate);
+})();
+</script>
 </body>
 </html>

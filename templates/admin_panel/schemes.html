@@ -1,0 +1,215 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% load static %}
+
+{% block title %}Gov Schemes Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="page-title">🏛️ Government Schemes Tracker</h1>
+        <p class="page-subtitle">Track which users are interested in and applied for government schemes</p>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 28px;">
+    <div class="stat-card">
+        <div class="stat-icon" style="background: rgba(240,192,64,0.15); color: #f0c040;">
+            <i class="fas fa-landmark"></i>
+        </div>
+        <div class="stat-info">
+            <div class="stat-value">{{ total_interests }}</div>
+            <div class="stat-label">Total Interests</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background: rgba(37,162,68,0.15); color: #4cca6e;">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+            <div class="stat-value">{{ total_applied }}</div>
+            <div class="stat-label">Self-Marked Applied</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background: rgba(59,130,246,0.15); color: #60a5fa;">
+            <i class="fas fa-external-link-alt"></i>
+        </div>
+        <div class="stat-info">
+            <div class="stat-value">{{ total_clicked }}</div>
+            <div class="stat-label">Clicked Apply</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon" style="background: rgba(168,85,247,0.15); color: #c084fc;">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <div class="stat-value">{{ total_users_engaged }}</div>
+            <div class="stat-label">Users Engaged</div>
+        </div>
+    </div>
+</div>
+
+<!-- POPULAR SCHEMES -->
+{% if popular_schemes %}
+<div class="card" style="margin-bottom: 28px;">
+    <div class="card-header">
+        <h3 class="card-title">🔥 Most Popular Schemes</h3>
+    </div>
+    <div class="card-body" style="padding: 0;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Scheme Name</th>
+                    <th>Total Interested</th>
+                    <th>Clicked Apply</th>
+                    <th>Self-Applied</th>
+                    <th>Apply Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for scheme in popular_schemes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ scheme.scheme_name }}</strong></td>
+                    <td>
+                        <span class="badge badge-info">{{ scheme.interest_count }}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning">{{ scheme.click_count }}</span>
+                    </td>
+                    <td>
+                        <span class="badge badge-success">{{ scheme.applied_count }}</span>
+                    </td>
+                    <td>
+                        {% if scheme.interest_count > 0 %}
+                            {% widthratio scheme.applied_count scheme.interest_count 100 %}%
+                        {% else %}0%{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<!-- FILTERS -->
+<div class="card" style="margin-bottom: 20px;">
+    <div class="card-body">
+        <form method="GET" style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
+            <div style="flex: 1; min-width: 200px;">
+                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">Search</label>
+                <input type="text" name="q" value="{{ search }}"
+                    placeholder="Search by scheme name or username..."
+                    class="form-control">
+            </div>
+            <div style="min-width: 160px;">
+                <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">Status</label>
+                <select name="status" class="form-control">
+                    <option value="">All Statuses</option>
+                    <option value="interested" {% if status_filter == 'interested' %}selected{% endif %}>Interested</option>
+                    <option value="applied" {% if status_filter == 'applied' %}selected{% endif %}>Applied</option>
+                    <option value="approved" {% if status_filter == 'approved' %}selected{% endif %}>Approved</option>
+                    <option value="rejected" {% if status_filter == 'rejected' %}selected{% endif %}>Rejected</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Filter
+            </button>
+            <a href="{% url 'admin_schemes' %}" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Reset
+            </a>
+        </form>
+    </div>
+</div>
+
+<!-- INTERESTS TABLE -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            All Scheme Interests
+            <span class="badge badge-info" style="margin-left: 8px;">{{ interests.count }}</span>
+        </h3>
+    </div>
+    <div class="card-body" style="padding: 0;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Scheme</th>
+                    <th>Category</th>
+                    <th>Clicked Apply</th>
+                    <th>Self Applied</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for interest in interests %}
+                <tr>
+                    <td>
+                        <a href="{% url 'admin_user_detail' interest.user.id %}" style="color: var(--primary); font-weight: 600;">
+                            {{ interest.user.username }}
+                        </a>
+                    </td>
+                    <td style="font-size: 13px; max-width: 240px;">{{ interest.scheme_name }}</td>
+                    <td>
+                        <span class="badge badge-info" style="font-size: 11px;">
+                            {{ interest.scheme_category|title }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if interest.clicked_apply %}
+                            <span class="badge badge-warning"><i class="fas fa-check"></i> Yes</span>
+                        {% else %}
+                            <span style="color: var(--text-muted); font-size: 12px;">No</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if interest.self_marked_applied %}
+                            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Applied</span>
+                        {% else %}
+                            <span style="color: var(--text-muted); font-size: 12px;">No</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if interest.status == 'applied' %}
+                            <span class="badge badge-success">Applied</span>
+                        {% elif interest.status == 'approved' %}
+                            <span class="badge badge-success">Approved</span>
+                        {% elif interest.status == 'rejected' %}
+                            <span class="badge badge-danger">Rejected</span>
+                        {% else %}
+                            <span class="badge badge-warning">Interested</span>
+                        {% endif %}
+                    </td>
+                    <td style="font-size: 12px; color: var(--text-muted);">
+                        {{ interest.updated_at|date:"M d, Y" }}
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'admin_scheme_delete' interest.id %}"
+                            style="display:inline;"
+                            onsubmit="return confirm('Delete this interest record?')">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        No scheme interest records found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

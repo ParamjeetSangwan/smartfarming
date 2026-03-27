@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | Secure Payment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root{--bg:#060f0a;--green:#22c55e;--green-lt:#4ade80;--gg:rgba(34,197,94,0.12);--gb:rgba(34,197,94,0.22);--card:rgba(255,255,255,0.04);--cb:rgba(255,255,255,0.07);--text:#eefaf2;--muted:rgba(238,250,242,0.5);--gold:#f59e0b;--red:#f43f5e;--blue:#3b82f6;}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+        .orb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(80px);z-index:0}
+        .o1{width:500px;height:500px;top:-150px;right:-150px;background:radial-gradient(circle,rgba(34,197,94,.1) 0%,transparent 70%)}
+        .o2{width:400px;height:400px;bottom:-150px;left:-150px;background:radial-gradient(circle,rgba(34,197,94,.07) 0%,transparent 70%)}
+        .card{background:var(--card);border:1px solid var(--cb);border-radius:24px;padding:40px 36px;max-width:460px;width:100%;text-align:center;position:relative;z-index:1;animation:up .5s ease}
+        @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+        .lock-icon{width:72px;height:72px;border-radius:20px;background:var(--gg);border:2px solid var(--gb);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px;color:var(--green)}
+        h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:6px}
+        .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
+
+        .amount-box{background:var(--gg);border:1px solid var(--gb);border-radius:16px;padding:20px 24px;margin-bottom:28px;text-align:left}
+        .ab-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+        .ab-lbl{font-size:12px;color:var(--muted);margin-bottom:4px}
+        .ab-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--green)}
+        .ab-order{font-size:11px;color:var(--muted);text-align:right}
+        .ab-divider{border:none;border-top:1px solid var(--gb);margin:0 0 12px}
+        .ab-detail{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+
+        /* Payment methods grid */
+        .methods{display:flex;gap:10px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+        .method-badge{padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid var(--cb);border-radius:8px;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+        /* Security badges */
+        .security{background:rgba(34,197,94,.05);border:1px solid var(--gb);border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+        .sec-icon{width:36px;height:36px;border-radius:9px;background:var(--gg);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:14px;flex-shrink:0}
+        .sec-text{font-size:12px;color:var(--muted);text-align:left;line-height:1.5}
+        .sec-text strong{color:var(--text);display:block;margin-bottom:2px}
+
+        .pay-btn{width:100%;padding:16px;background:var(--green);border:none;border-radius:12px;color:var(--bg);font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
+        .pay-btn:hover{background:var(--green-lt);transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,197,94,.4)}
+        .pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+        .cancel-link{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:color .2s;padding:6px}
+        .cancel-link:hover{color:var(--text)}
+
+        .razorpay-badge{margin-top:20px;padding-top:16px;border-top:1px solid var(--cb);font-size:11px;color:var(--dim,rgba(238,250,242,0.2));display:flex;align-items:center;justify-content:center;gap:6px}
+
+        /* Test mode banner */
+        .test-banner{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:10px 14px;margin-bottom:20px;font-size:12px;color:var(--gold);display:flex;align-items:center;gap:8px}
+
+        /* Hidden form for verification */
+        #verifyForm{display:none}
+    </style>
+</head>
+<body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<div class="card">
+
+    <div class="lock-icon"><i class="fas fa-shield-check"></i></div>
+    <h2>Secure Payment</h2>
+    <p class="sub">Powered by Razorpay — India's most trusted payment gateway</p>
+
+    <!-- Test mode notice -->
+    <div class="test-banner">
+        <i class="fas fa-flask"></i>
+        <span><strong>Test Mode:</strong> Use card 4111 1111 1111 1111, any future date, any CVV</span>
+    </div>
+
+    <!-- Amount -->
+    <div class="amount-box">
+        <div class="ab-top">
+            <div>
+                <div class="ab-lbl">Amount to Pay</div>
+                <div class="ab-val">&#8377;{{ total_price|floatformat:0 }}</div>
+            </div>
+            <div class="ab-order">
+                <div style="font-size:12px;font-weight:600;color:var(--text);">SmartFarming</div>
+                <div>Order ID: {{ razorpay_order_id|slice:":20" }}...</div>
+            </div>
+        </div>
+        <hr class="ab-divider">
+        <div class="ab-detail">
+            <span>Razorpay Order</span>
+            <span style="font-family:monospace;font-size:11px;">{{ razorpay_order_id }}</span>
+        </div>
+    </div>
+
+    <!-- Supported methods -->
+    <div class="methods">
+        <div class="method-badge"><i class="fas fa-credit-card"></i> Cards</div>
+        <div class="method-badge"><i class="fas fa-mobile-screen-button"></i> UPI</div>
+        <div class="method-badge"><i class="fas fa-building-columns"></i> NetBanking</div>
+        <div class="method-badge"><i class="fas fa-wallet"></i> Wallets</div>
+    </div>
+
+    <!-- Security -->
+    <div class="security">
+        <div class="sec-icon"><i class="fas fa-lock"></i></div>
+        <div class="sec-text">
+            <strong>256-bit SSL Encrypted</strong>
+            Your payment info is never stored on our servers. All transactions are secured by Razorpay.
+        </div>
+    </div>
+
+    <!-- Pay Button -->
+    <button class="pay-btn" id="payBtn" onclick="openRazorpay()">
+        <i class="fas fa-bolt"></i> Pay &#8377;{{ total_price|floatformat:0 }} Now
+    </button>
+
+    <a href="{% url 'marketplace:checkout' %}" class="cancel-link">
+        <i class="fas fa-arrow-left"></i> Back to Checkout
+    </a>
+
+    <div class="razorpay-badge">
+        <i class="fas fa-shield-halved"></i>
+        Secured by Razorpay
+    </div>
+</div>
+
+<!-- Hidden verification form — submitted after successful payment -->
+<form id="verifyForm" method="POST" action="{% url 'marketplace:razorpay_verify' %}">
+    {% csrf_token %}
+    <input type="hidden" name="razorpay_payment_id" id="rzp_payment_id">
+    <input type="hidden" name="razorpay_order_id" id="rzp_order_id">
+    <input type="hidden" name="razorpay_signature" id="rzp_signature">
+</form>
+
+<script>
+function openRazorpay() {
+    const btn = document.getElementById('payBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening payment...';
+
+    const options = {
+        key: "{{ razorpay_key_id }}",
+        amount: {{ total_price|floatformat:0 }} * 100,
+        currency: "INR",
+        name: "SmartFarming",
+        description: "Order Payment",
+        order_id: "{{ razorpay_order_id }}",
+        prefill: {
+            name: "{{ user_name }}",
+            email: "{{ user_email }}",
+            contact: "{{ phone }}"
+        },
+        theme: {
+            color: "#22c55e"
+        },
+        modal: {
+            ondismiss: function() {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-bolt"></i> Pay &#8377;{{ total_price|floatformat:0 }} Now';
+            }
+        },
+        handler: function(response) {
+            // Payment successful — submit verification form
+            document.getElementById('rzp_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('rzp_order_id').value   = response.razorpay_order_id;
+            document.getElementById('rzp_signature').value  = response.razorpay_signature;
+
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> Payment successful! Confirming order...';
+            document.getElementById('verifyForm').submit();
+        }
+    };
+
+    const rzp = new Razorpay(options);
+
+    rzp.on('payment.failed', function(response) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-bolt"></i> Pay &#8377;{{ total_price|floatformat:0 }} Now';
+        alert('Payment failed: ' + response.error.description + '. Please try again.');
+    });
+
+    rzp.open();
+}
+</script>
+</body>
+</html>

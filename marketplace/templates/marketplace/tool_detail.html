@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarming | {{ tool.name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:#060f0a; --bg2:#0c1d13;
+            --green:#22c55e; --green-lt:#4ade80;
+            --gg:rgba(34,197,94,0.12); --gb:rgba(34,197,94,0.22);
+            --card:rgba(255,255,255,0.04); --cb:rgba(255,255,255,0.07);
+            --text:#eefaf2; --muted:rgba(238,250,242,0.5); --dim:rgba(238,250,242,0.28);
+            --gold:#f59e0b; --red:#f43f5e;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+        .orb{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(80px)}
+        .o1{width:500px;height:500px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(34,197,94,.08) 0%,transparent 70%)}
+        .o2{width:380px;height:380px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(34,197,94,.05) 0%,transparent 70%)}
+
+        .topbar{position:sticky;top:0;z-index:200;height:62px;background:rgba(6,15,10,.88);backdrop-filter:blur(22px);border-bottom:1px solid var(--cb);display:flex;align-items:center;padding:0 32px;gap:14px}
+        .brand{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+        .brand-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+        .tbr{margin-left:auto;display:flex;align-items:center;gap:10px}
+        .tbl{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--cb);border-radius:9px;color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+        .tbl:hover{border-color:var(--gb);color:var(--green);background:var(--gg)}
+        .tbc{display:flex;align-items:center;gap:7px;padding:8px 18px;background:var(--green);border-radius:10px;color:var(--bg);font-size:13px;font-weight:700;text-decoration:none;transition:all .2s}
+        .tbc:hover{background:var(--green-lt)}
+
+        .breadcrumb{max-width:1100px;margin:0 auto;padding:20px 32px 0;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);position:relative;z-index:1}
+        .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+        .breadcrumb a:hover{color:var(--green)}
+        .breadcrumb i{font-size:10px}
+
+        .main{max-width:1100px;margin:0 auto;padding:28px 32px 80px;position:relative;z-index:1}
+
+        .detail{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:56px}
+
+        .img-side{animation:up .5s ease}
+        .img-main{aspect-ratio:1;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,15,10,.95));border:1px solid var(--cb);display:flex;align-items:center;justify-content:center;position:relative}
+        .img-main img{width:100%;height:100%;object-fit:cover;border-radius:22px}
+        .img-placeholder{font-size:100px;opacity:.3}
+        .img-badge{position:absolute;top:16px;left:16px;padding:5px 13px;background:rgba(6,15,10,.88);border:1px solid var(--gb);border-radius:20px;font-size:11px;font-weight:700;color:var(--green);backdrop-filter:blur(8px);letter-spacing:.5px;text-transform:uppercase}
+
+        .info-side{animation:up .5s ease .06s both}
+        .info-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:var(--gg);border:1px solid var(--gb);border-radius:20px;font-size:11px;font-weight:600;color:var(--green);letter-spacing:.5px;text-transform:uppercase;margin-bottom:16px}
+        .info-name{font-family:'Syne',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;line-height:1.1;margin-bottom:14px}
+        .stars-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+        .stars{display:flex;gap:3px}
+        .stars i{font-size:13px;color:var(--gold)}
+        .review-cnt{font-size:13px;color:var(--muted)}
+
+        .info-desc{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--cb)}
+
+        .features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+        .feat{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+        .feat-icon{width:28px;height:28px;border-radius:8px;background:var(--gg);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--green);font-size:11px}
+
+        .price-block{background:var(--card);border:1px solid var(--cb);border-radius:16px;padding:22px;margin-bottom:20px}
+        .price-tag{font-size:12px;color:var(--dim);font-weight:500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+        .price-main{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;line-height:1;margin-bottom:12px}
+        .price-main small{font-size:20px;font-weight:600;color:var(--green)}
+        .delivery-note{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+        .delivery-note i{color:var(--green)}
+
+        .add-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 24px;background:var(--green);border:none;border-radius:10px;color:var(--bg);font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;text-decoration:none;box-shadow:0 4px 16px rgba(34,197,94,.25)}
+        .add-btn:hover{background:var(--green-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,.35)}
+
+        .related-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:18px}
+        .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+        .rel-card{background:var(--card);border:1px solid var(--cb);border-radius:14px;overflow:hidden;transition:all .2s;text-decoration:none;color:inherit;display:block}
+        .rel-card:hover{border-color:var(--gb);transform:translateY(-3px)}
+        .rel-img{height:130px;background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(6,15,10,.9));display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden}
+        .rel-img img{width:100%;height:100%;object-fit:cover}
+        .rel-body{padding:14px}
+        .rel-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:4px;color:var(--text)}
+        .rel-cat{font-size:11px;color:var(--muted);margin-bottom:6px}
+        .rel-price{font-size:14px;font-weight:700;color:var(--green)}
+
+        @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:900px){.detail{grid-template-columns:1fr}}
+        @media(max-width:768px){.topbar{padding-left:16px;padding-right:16px}.main{padding:20px 16px 56px}}
+    </style>
+</head>
+<body>
+
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<!-- TOPBAR -->
+<header class="topbar">
+    <a href="{% url 'marketplace:marketplace_home' %}" class="brand">
+        <div class="brand-dot"></div>SmartFarming
+    </a>
+    <div class="tbr">
+        <a href="{% url 'marketplace:tools_view' %}" class="tbl"><i class="fas fa-arrow-left"></i> Back</a>
+        {% if request.user.is_staff %}
+        <a href="{% url 'admin_dashboard' %}" class="tbl"><i class="fas fa-shield-alt"></i> Admin</a>
+        {% else %}
+        <a href="{% url 'dashboard' %}" class="tbl"><i class="fas fa-home"></i> Dashboard</a>
+        {% endif %}
+        <a href="{% url 'marketplace:cart_view' %}" class="tbc"><i class="fas fa-cart-shopping"></i> Cart</a>
+    </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+    <a href="{% url 'marketplace:marketplace_home' %}">Marketplace</a>
+    <i class="fas fa-chevron-right"></i>
+    <a href="{% url 'marketplace:tools_view' %}">Tools</a>
+    <i class="fas fa-chevron-right"></i>
+    <span style="color:var(--text)">{{ tool.name }}</span>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+    <div class="detail">
+
+        <!-- IMAGE -->
+        <div class="img-side">
+            <div class="img-main">
+                {% if tool.image %}
+                <img src="{{ tool.image.url }}" alt="{{ tool.name }}">
+                {% else %}
+                <div class="img-placeholder">🔧</div>
+                {% endif %}
+                <span class="img-badge">{{ tool.category }}</span>
+            </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="info-side">
+            <div class="info-pill"><i class="fas fa-screwdriver-wrench"></i> {{ tool.category }}</div>
+            <h1 class="info-name">{{ tool.name }}</h1>
+
+            <div class="stars-row">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="review-cnt">4.5 · Verified quality</span>
+            </div>
+
+            <p class="info-desc">{{ tool.description }}</p>
+
+            <div class="features">
+                <div class="feat"><div class="feat-icon"><i class="fas fa-shield-check"></i></div>Durable construction, built for field use</div>
+                <div class="feat"><div class="feat-icon"><i class="fas fa-tools"></i></div>{{ tool.category }} — designed for farming</div>
+                <div class="feat"><div class="feat-icon"><i class="fas fa-truck"></i></div>Fast delivery to your location</div>
+                <div class="feat"><div class="feat-icon"><i class="fas fa-rotate-left"></i></div>Easy returns within 7 days</div>
+            </div>
+
+            <div class="price-block">
+                <div class="price-tag">Price</div>
+                <div class="price-main"><small>₹</small>{{ tool.price|floatformat:0 }}</div>
+                <div class="delivery-note"><i class="fas fa-truck"></i> Free delivery on orders above ₹2000</div>
+            </div>
+
+            <a href="{% url 'marketplace:add_tool_to_cart' tool.id %}" class="add-btn">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+            </a>
+        </div>
+    </div>
+
+    <!-- RELATED TOOLS -->
+    {% if related_tools %}
+    <div>
+        <div class="related-title">More {{ tool.category }}</div>
+        <div class="related-grid">
+            {% for rt in related_tools %}
+            <a href="{% url 'marketplace:tool_detail' rt.id %}" class="rel-card">
+                <div class="rel-img">
+                    {% if rt.image %}<img src="{{ rt.image.url }}" alt="{{ rt.name }}">{% else %}🔧{% endif %}
+                </div>
+                <div class="rel-body">
+                    <div class="rel-name">{{ rt.name }}</div>
+                    <div class="rel-cat">{{ rt.category }}</div>
+                    <div class="rel-price">₹{{ rt.price|floatformat:0 }}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</main>
+</body>
+</html>
