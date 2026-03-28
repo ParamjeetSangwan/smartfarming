@@ -266,18 +266,6 @@ For issues, questions, or suggestions, please open an issue on GitHub.
 
 ## Screenshots
 
-![Dashboard](screenshots/dashboard.png)
-![Crop Management](screenshots/ai.png)
-![Crop Management](screenshots/cart.png)
-![Crop Management](screenshots/crop.png)
-![Crop Management](screenshots/pesticides.png)
-![Crop Management](screenshots/login.png)
-![Crop Management](screenshots/marketplace.png)
-![Crop Management](screenshots/orders.png)
-![Crop Management](screenshots/profile.png)
-![Crop Management](screenshots/tools.png)
-![Crop Management](screenshots/weather.png)
-
 ---
 
 ## Technologies Used
