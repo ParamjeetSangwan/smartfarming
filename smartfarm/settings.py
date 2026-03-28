@@ -91,6 +91,23 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'smartfarm.urls'
 
+
+ALLOWED_HOSTS = [
+    "web-production-e9366.up.railway.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-e9366.up.railway.app",
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_HTTPONLY = False
+
+
+
+
 # ── TEMPLATES ──
 TEMPLATES = [
     {
@@ -107,6 +124,9 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
 
 WSGI_APPLICATION = 'smartfarm.wsgi.application'
 
