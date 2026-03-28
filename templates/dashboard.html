@@ -300,22 +300,19 @@
             </div>
             <div class="feat-arrow"><i class="fas fa-arrow-right"></i> Open</div>
         </a>
-        {% if unread_count > 0 %}
-
         <a href="{% url 'government_schemes' %}" class="feat" style="animation-delay:.28s">
             <div class="feat-icon">🏛️</div>
             <div>
-                <div class="feat-name">Gov Schemes</div>
+                <div class="feat-name">{% trans "Gov Schemes" %}</div>
                 <div class="feat-desc">
-                    Latest government farming schemes & benefits
+                    {% trans "Latest government farming schemes & benefits" %}
                 </div>
             </div>
             <div class="feat-arrow">
                 <i class="fas fa-arrow-right"></i> Open
             </div>
         </a>
-
-
+        {% if unread_count > 0 %}
         <a href="{% url 'notifications' %}" class="feat" style="animation-delay:.3s;border-color:rgba(245,158,11,.3);">
             <div class="feat-icon" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3);">🔔</div>
             <div>

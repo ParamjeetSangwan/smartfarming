@@ -32,7 +32,7 @@ LANGUAGES = [
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 USE_L10N = True
 
-# ── INSTALLED APPS ──
+# ── INSTALLED APPS ── (UPDATED: apps now in apps/ subdirectory)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,15 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crops',
-    'weather',
-    'marketplace',
-    'orders',
-    'users',
+    'apps.crops',
+    'apps.weather',
+    'apps.marketplace',
+    'apps.orders',
+    'apps.users',
     'widget_tweaks',
-    'ai_recommendations',
-    'admin_panel',
-    'government_schemes',
+    'apps.ai_recommendations',
+    'apps.admin_panel',
+    'apps.government_schemes',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -85,7 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'admin_panel.middleware.activity_logging.ActivityLoggingMiddleware',
+    'apps.admin_panel.middleware.activity_logging.ActivityLoggingMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
 
