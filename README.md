@@ -266,10 +266,6 @@ For issues, questions, or suggestions, please open an issue on GitHub.
 
 ---
 
-## Screenshots
-
----
-
 ## Technologies Used
 - Python 3.x
 - Django 4.2
