@@ -13,7 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ── SECURITY ── (moved from hardcoded to env vars)
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-change-me-in-production')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 # ── API KEYS ── (all moved to .env)
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
